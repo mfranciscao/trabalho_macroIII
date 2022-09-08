@@ -1,0 +1,269 @@
+---
+title: "Small Open Economy Model"
+author: "Anna Catarina Tavella e Matheus Franciscão"
+date: "2022-xx-xx"
+output:
+  pdf_document:
+    keep_tex: yes
+    extra_dependencies: ["bbm", "amsmath"]
+  word_document: default
+  html_document:
+    df_print: paged
+geometry: left=1cm, right=1cm, top=1cm, bottom=1.5cm
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1 - Problem of the consumer (for reference)
+
+$\displaystyle {max} \ \mathbb{E}_0 \sum_{t=0}^\infty \beta^tU(C_t,N_t) =                     \displaystyle  {max} \ E_0 \sum_{t=0}^\infty \beta^tU \left(\left[ (1-\alpha)^{\frac{1}{\eta}} (C_{H,t})^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} (C_{F,t})^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)$ 
+
+subject to the budget constraint (specified below), where 
+
+$C_{H,t} \equiv \displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}}$,  $C_{F,t} \equiv \displaystyle \left( \int_0^1 (C_{i,t})^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}}$, $C_{i,t} \equiv \displaystyle \left( \int_0^1 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}}$ 
+
+and
+$C_t \equiv \left[ (1-\alpha)^{\frac{1}{\eta}} (C_{H,t})^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} (C_{F,t})^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}}$
+
+Substituting, we get
+
+$\displaystyle {max} \ \mathbb{E}_0 \sum_{t=0}^\infty \beta^tU \left(\left[ (1-\alpha)^{\frac{1}{\eta}} \left [\displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right]^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} \left[ \displaystyle \left( \int_0^1 (C_{F,t})^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}} \right]^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)$ = 
+
+$\displaystyle {max} \ \mathbb{E}_0 \sum_{t=0}^\infty \beta^tU \left(\left[ (1-\alpha)^{\frac{1}{\eta}} \left [\displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right]^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} \left[ \displaystyle \left( \int_0^1 \left( \displaystyle \left( \int_0^1 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right)^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}} \right]^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)$
+
+subject to the budget constraint:
+
+$\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj + \int_0^1\int_0^1 P_{i,t}(j)C_{i,t}(j)dj\ di + \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\} \leq D_t + W_tN_t + Tt$
+
+$\mathcal{L} = \displaystyle \mathbb{E}_t \sum_{t=0}^\infty \beta^t U \left(\left[ (1-\alpha)^{\frac{1}{\eta}} \left [\displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right]^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} \left[ \displaystyle \left( \int_0^1 \left( \displaystyle \left( \int_0^1 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right)^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}} \right]^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)$
+
+$+ \lambda_t \left(D_t + W_tN_t + Tt \displaystyle - \int_0^1 P_{H,t}(j)C_{H,t}(j)dj - \int_0^1\int_0^1 P_{i,t}(j)C_{i,t}(j)dj\ di - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\}\right)$
+
+
+
+
+## 2 - Finding the demand function for each specific good
+
+$\displaystyle C_{H,t}(j)= \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}C_{H,t}$,
+$\displaystyle C_{i,t}(j)= \left( \frac{P_{i,t}(j)}{P_{i,t}}\right)^{-\varepsilon}C_{i,t}$ and 
+$\displaystyle C_{i,t}= \left( \frac{P_{i,t}}{P_{F,t}}\right)^{-\gamma}C_{F,t}$
+
+It's easier by calculating the MRS (marginal rate of substitution) between $C_{H,t}(j)$ and $C_{H,t}$, as by the optimal allocation, it has to be the rate of prices in every period of time (otherwise the consumer could by a little less of the product with relative higher price and buy another with relative lower price, increasing his utility).
+
+$\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{H,t}(j)} = U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} (1-\alpha)^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{H,t}\right)^{-\frac{1}{\eta}}\frac{\varepsilon}{\varepsilon-1}\left(C_{H,t}^{\frac{\varepsilon-1}{\varepsilon}} \right)^{\frac{\varepsilon}{\varepsilon-1}-1}\int_0^1 \frac{\varepsilon-1}{\varepsilon} C_{H,t}(j)^{-\frac{1}{\varepsilon}}dj$
+
+After simplifying, we get
+
+$\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{H,t}(j)} = U_c(C_t,N_t) (1-\alpha)^{\frac{1}{\eta}} C_t^{\frac{1}{\eta}}\left( C_{H,t}\right)^{-\frac{1}{\eta}}C_{H,t}^{\frac{1}{\varepsilon}} \int_0^1  C_{H,t}(j)^{-\frac{1}{\varepsilon}}dj = U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}}  \int_0^1  \left[\frac{C_{H,t}}{C_{H,t}(j)}\right]^{\frac{1}{\varepsilon}}dj$
+
+Similarly,
+
+$\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{H,t}} = U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} (1-\alpha)^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{H,t}\right)^{-\frac{1}{\eta}} = U_c(C_t,N_t) (1-\alpha)^{\frac{1}{\eta}} C_t^{\frac{1}{\eta}}\left( C_{H,t}\right)^{-\frac{1}{\eta}} = U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}}$
+
+$\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{H,t}(j)}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_{H,t}}} = \frac{\displaystyle U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}}  \int_0^1  \left[\frac{C_{H,t}}{C_{H,t}(j)}\right]^{\frac{1}{\varepsilon}}dj}{\displaystyle U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}}} = \frac{\displaystyle \int_0^1P_{H,t}(j)dj}{P_{H,t}}$
+
+After simplifying again, the expression is almost the demand function we want.
+
+$\displaystyle \int_0^1  \left[\frac{C_{H,t}}{C_{H,t}(j)}\right]^{\frac{1}{\varepsilon}}dj = \displaystyle \int_0^1 \frac{P_{H,t}(j)}{P_{H,t}}dj$
+
+As the interval of both integrals are the same and the variable being integrated is also the same, what is inside the integral in both sides have also to be the same. So,
+
+$\displaystyle \left[\frac{C_{H,t}}{C_{H,t}(j)}\right]^{\frac{1}{\varepsilon}} = \frac{P_{H,t}(j)}{P_{H,t}} \Rightarrow \left[\frac{C_{H,t}(j)}{C_{H,t}}\right]^{-\frac{1}{\varepsilon}} = \frac{P_{H,t}(j)}{P_{H,t}} \Rightarrow C_{H,t}(j)= \left[ \frac{P_{H,t}(j)}{P_{H,t}} \right]^{-\varepsilon}C_{H,t}$
+
+Calculating now the MRS (marginal rate of substitution) between $C_{i,t}(j)$ and $C_{i,t}$, which is also equal the rate of the prices.
+
+$\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}(j)} =$
+
+$\displaystyle U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} \alpha^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{F,t}\right)^{-\frac{1}{\eta}}\frac{\gamma}{\gamma-1}\left(C_{H,t}^{\frac{\gamma-1}{\gamma}} \right)^{\frac{\gamma}{\gamma-1}-1}\int_0^1 \frac{\gamma-1}{\gamma} C_{i,t}^{-\frac{1}{\gamma}}\left[  \frac{\varepsilon}{\varepsilon-1}\left(C_{i,t}^{\frac{\varepsilon-1}{\varepsilon}} \right)^{\frac{\varepsilon}{\varepsilon-1}-1}\int_0^1 \frac{\varepsilon-1}{\varepsilon} C_{i,t}(j)^{-\frac{1}{\varepsilon}}dj \right]di$
+
+After simplifying, we get
+
+$\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}(j)} = U_c(C_t,N_t) \alpha^{\frac{1}{\eta}} C_t^{\frac{1}{\eta}}\left( C_{F,t}\right)^{-\frac{1}{\eta}}C_{F,t}^{\frac{1}{\gamma}} \int_0^1  C_{i,t}^{-\frac{1}{\gamma}} \left[ C_{i,t}^\frac{1}{\varepsilon} \int_0^1  C_{i,t}(j)^{-\frac{1}{\varepsilon}}dj \right] di$
+
+$\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}(j)} = U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}  \int_0^1  \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \int_0^1  \left[\frac{C_{i,t}}{C_{i,t}(j)}\right]^{\frac{1}{\varepsilon}}dj \ di$
+
+$\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}} = U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} \alpha^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{F,t}\right)^{-\frac{1}{\eta}}\frac{\gamma}{\gamma-1}\left(C_{H,t}^{\frac{\gamma-1}{\gamma}} \right)^{\frac{\gamma}{\gamma-1}-1}\int_0^1 \frac{\gamma-1}{\gamma} C_{i,t}^{-\frac{1}{\gamma}}di$
+
+$\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}} = U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}  \int_0^1  \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} di$
+
+Calculating the MRS we have
+
+$\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{i,t}(j)}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_{i,t}}} = \frac{\displaystyle    U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}  \int_0^1  \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \int_0^1  \left[\frac{C_{i,t}}{C_{i,t}(j)}\right]^{\frac{1}{\varepsilon}}dj \ di }{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}  \int_0^1  \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} di} = \frac{\displaystyle \int_0^1P_{i,t}(j)dj}{P_{i,t}}$
+
+As before, we can simplify again. Also, as there's a continuum of firms, we can consider that the price of each product $P_{i,t}(j)$ is only correlated with its specific demand function and not with the demand function of other in its country or another country, it follows that each specific price is uncorrelated with $C_{F,t}$ and $C_{i,t}$. Also, as each firm is very small, we can consider that it has negligible influence on the aggregate index price of its country ($P_{i,t}$). Whith these independence assumption, the joint distribution is equal to the product of the marginal distributions.
+
+$\displaystyle  \int_0^1 \int_0^1 \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \left[\frac{C_{i,t}}{C_{i,t}(j)}\right]^{\frac{1}{\varepsilon}}dj \ di   = \int_0^1  \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} di \int_0^1 \frac{\displaystyle P_{i,t}(j)}{P_{i,t}}dj = \int_0^1  \int_0^1 \frac{\displaystyle P_{i,t}(j)}{P_{i,t}} \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}}  dj \ di$
+
+Now, as before, the integrand in both sides needs to be the same. The we get the second demand equation.
+
+$\displaystyle  \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \left[\frac{C_{i,t}}{C_{i,t}(j)}\right]^{\frac{1}{\varepsilon}}   =  \frac{\displaystyle P_{i,t}(j)}{P_{i,t}} \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \Rightarrow  \left[\frac{C_{i,t}(j)}{C_{i,t}}\right]^{-\frac{1}{\varepsilon}}   =  \frac{\displaystyle P_{i,t}(j)}{P_{i,t}} \Rightarrow C_{i,t}(j) =  \left[ \frac{\displaystyle P_{i,t}(j)}{P_{i,t}} \right]^{-\varepsilon}C_{i,t}$
+
+To find the aggregate demand for each country, in terms of total foreign demand, we proceed by calculating the MRS between the aggregate consumption for the country and the aggregate consumption of foreign goods, which the optimal allocation resulting from the rate between the prices, as before.
+
+$\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{F,t}} = U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} \alpha^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{F,t}\right)^{-\frac{1}{\eta}} = U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}$
+
+$\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{i,t}}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_{F,t}}} = \frac{\displaystyle    U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}  \int_0^1  \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} di }{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}  } = \frac{\displaystyle \int_0^1P_{i,t}di}{P_{F,t}}$
+
+As $P_{F,t}$ doesn't depend on a specific i, we can put it inside the integral. Then we get again two integrans which have to be the same for the equality to hold.
+
+$\displaystyle \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} = \frac{P_{i,t}}{P_{F,t}} \Rightarrow \left[\frac{C_{i,t}}{C_{F,t}}\right]^{-\frac{1}{\gamma}} = \frac{P_{i,t}}{P_{F,t}} \Rightarrow C_{i,t} = \left[ \frac{P_{i,t}}{P_{F,t}} \right]^{-\gamma}C_{F,t}$
+
+
+
+## 3 - Aggregating the expenditure
+
+Now that we have the demand functions
+
+$\displaystyle C_{H,t}(j)= \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}C_{H,t}$,
+$\displaystyle C_{i,t}(j)= \left( \frac{P_{i,t}(j)}{P_{i,t}}\right)^{-\varepsilon}C_{i,t}$ and 
+$\displaystyle C_{i,t}= \left( \frac{P_{i,t}}{P_{F,t}}\right)^{-\gamma}C_{F,t}$
+
+let's prove that
+
+$\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj = P_{H,t}C_{H,t}$ , 
+$\displaystyle \int_0^1 P_{i,t}(j)C_{i,t}(j)dj = P_{i,t}C_{i,t}$ and
+$\displaystyle \int_0^1 P_{i,t}C_{i,t}dj = P_{F,t}C_{F,t}$ 
+
+using the definition of the price indexes:
+
+$\displaystyle P_{H,t} \equiv \left( \int_0^1 P_{H,t}(j)^{1-\varepsilon}dj \right)^{\frac{1}{1-\varepsilon}}$,
+
+$\displaystyle P_{i,t} \equiv \left( \int_0^1 P_{i,t}(j)^{1-\varepsilon}dj \right)^{\frac{1}{1-\varepsilon}}$ and
+
+$\displaystyle P_{F,t} \equiv \left( \int_0^1 P_{i,t}^{1-\gamma}di \right)^{\frac{1}{1-\gamma}}$
+
+$\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj = \int_0^1P_{H,t}(j)\left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}C_{H,t}dj = \frac{C_{H,t}}{P_{H,t}^{-\varepsilon}}\int_0^1P_{H,t}(j)^{1-\varepsilon}dj = \frac{C_{H,t}}{P_{H,t}^{-\varepsilon}}P_{H,t}^{1-\varepsilon} = P_{H,t}C_{H,t}$
+
+$\displaystyle \int_0^1 P_{i,t}(j)C_{i,t}(j)dj = \int_0^1P_{i,t}(j)\left( \frac{P_{i,t}(j)}{P_{i,t}}\right)^{-\varepsilon}C_{i,t}dj = \frac{C_{i,t}}{P_{i,t}^{-\varepsilon}}\int_0^1 P_{i,t}(j)^{1-\varepsilon}dj = \frac{C_{i,t}}{P_{i,t}^{-\varepsilon}}P_{i,t}^{1-\varepsilon} = P_{i,t}C_{i,t}$
+
+$\displaystyle \int_0^1 P_{i,t}C_{i,t}di = \int_0^1P_{i,t}\left( \frac{P_{i,t}}{P_{F,t}}\right)^{-\gamma}C_{F,t}di = \frac{C_{F,t}}{P_{F,t}^{-\gamma}}\int_0^1 P_{F,t}^{1-\gamma}dj = \frac{C_{F,t}}{P_{F,t}^{-\varepsilon}}P_{F,t}^{1-\varepsilon} = P_{F,t}C_{F,t}$
+
+With this aggregatio, the budget constraint can be simplified
+
+$\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj + \int_0^1\int_0^1 P_{i,t}(j)C_{i,t}(j)dj\ di + \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\} \leq D_t + W_tN_t + Tt$
+
+$\displaystyle P_{H,t}C_{H,t} + \int_0^1P_{i,t}C_{i,t}di = P_{H,t}C_{H,t} + P_{F,t}C_{F,t} \leq D_t + W_tN_t + Tt - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\}$
+
+As the total consumption expenditure by the representative consumer is with the domestic produts or foreig products, the budget constraint becomes:
+
+$\displaystyle P_t C_t \leq D_t + W_tN_t + Tt - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\}$
+
+
+
+
+## 3 - Finding the optimal share between the domestic and imported goods
+ 
+Now we will calculate the MRS between the domestic products and the total consumption, which has to be equal to the rate of prices. After, we will do the same for the foreign products.
+
+$\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{H,t}}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_t}} = \frac{\displaystyle U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}}}{\displaystyle U_c(C_t,N_t) } = \frac{P_{H,t}}{P_t} \ \ \Rightarrow \ \ (1-\alpha) \frac{C_t}{C_{H,t}}  = \left( \frac{P_{H,t}}{P_t} \right)^\eta  \ \ \Rightarrow \ \ C_{H,t} = (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t$
+
+$\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{F,t}}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_t}} = \frac{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}}{\displaystyle U_c(C_t,N_t) } = \frac{P_{F,t}}{P_t} \ \ \Rightarrow \ \ \alpha \frac{C_t}{C_{F,t}}  = \left( \frac{P_{F,t}}{P_t} \right)^\eta  \ \ \Rightarrow \ \ C_{H,t} = \alpha \left( \frac{P_{F,t}}{P_t} \right)^{-\eta}C_t$
+
+
+
+## 4 - Standard problem of the representative consumer 
+
+Now we arrive at a standard problem for the representative consumer
+
+$\displaystyle \underset{C_t,N_t,D_{t+1}} {max} \ \mathbb{E}_0 \sum_{t=0}^\infty \beta^t U(C_t,N_t)  = \displaystyle \underset{C_t,N_t} {max} \ E_0 \sum_{t=0}^\infty \beta^t \left( \frac{C_t^{1-\sigma}}{1-\sigma}-\frac{N_t^{1+\varphi}}{1+\varphi} \right)$ 
+
+subject to $\displaystyle  D_t + W_tN_t + Tt - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\} - P_t C_t = 0$, as an optimal condition.
+
+using the separable utility function specified as $\displaystyle U(C_t,N_t)=\frac{C_t^{1-\sigma}}{1-\sigma}-\frac{N_t^{1+\varphi}}{1+\varphi}$
+
+$\mathcal{L} = \displaystyle \mathbb{E}_t \sum_{t=0}^\infty \beta^t \left[ \left( \frac{C_t^{1-\sigma}}{1-\sigma}-\frac{N_t^{1+\varphi}}{1+\varphi} \right) + \lambda_t \left( D_t + W_tN_t + Tt - Q_{t,t+1}D_{t+1} - P_t C_t \right) \right]$
+
+with first order conditions (FOCs):
+
+($C_t$): $\displaystyle \beta^tC_t^{-\sigma} = \beta^t \lambda_t P_t \ \ \Rightarrow \ \ C_t^{-\sigma} = \lambda_t P_t$
+
+($N_t$): $\displaystyle \beta^tN_t^{\varphi} = \beta^t \lambda_t W_t \ \ \Rightarrow \ \ N_t^{\varphi} = \lambda_t P_t$
+
+($D_{t+1}$): $\displaystyle \beta^t \lambda_t \mathbb{E} [Q_{t,t+1}] = \beta^{t+1} \mathbb {E}[\lambda_{t+1}]  \ \ \Rightarrow \ \ \frac{\mathbb{E}[\lambda_{t+1}]}{\lambda_t} = \frac{\mathbb{E} [Q_{t,t+1}]}{\beta}$
+
+Dividing ($N_t$) FOC by ($C_t$) FOC, we have the standard equation of intratemporal substitution between consumption and leisure $\displaystyle C_t^{\sigma}N_t^{\varphi} = \frac{W_t}{P_t}$
+
+Advancing one period for the consumption FOC, we have $\mathbb{E} [C_{t+1}^{-\sigma}] = \mathbb{E}[\lambda_{t+1}P_{t+1}]$
+
+As the model will be log-linearized and an approximation of the first order will be used to solve it, we can ignore the Jensen's inequality where there is an expectation operator. Up to first order approximation, $\mathbb{E}[xy] \approx \mathbb{E}[x] \mathbb{E}[y]$.
+
+Dividing the consumption FOC in t+1 by the equation in t and substituting by the $\mathbb{E}[\lambda_{t+1}]/\lambda_t$ in the $D_{t+1}$ FOC, we get the Euler equation
+
+$\displaystyle \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \right] = \mathbb{E} \left[ \frac{\lambda_{t+1} P_{t+1}}{\lambda_t P_t} \right]  \ \ \Rightarrow \ \   \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right]= \frac{\mathbb{E}[Q_{t,t+1}]}{\beta} \ \ \Rightarrow \ \ \beta R_t \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right]= 1$
+
+as $\mathbb{E}[Q_{t,t+1}]$, is the price of a a riskless one-period discount bond in domestic currency with gross return $R_t$.
+
+
+
+## 5 - Log linearization
+
+Log-linearizing $\displaystyle C_t^{\sigma}N_t^{\varphi} = \frac{W_t}{P_t}$ is straight forward: 
+$w_t - p_t = \sigma c_t + \varphi n_t$
+
+To log-linerize the Euler equation, we'll use the Taylor expansion: $f(x) \approx f(x_0) + f'(x_o)(x-x_0)$.
+When expanding the exponential function around 0, we get $e^x=e^0+e^0(x-0)=1+x$
+
+$\mathbb{E} \left[ \exp \left( \ln \left[ \beta R_t \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}} \right] \right) \right] = \mathbb{E} \left[ \exp \left( \ln(\beta) + r_t -\sigma(c_{t+1}-c_t)  + p_t - p_{t+1} \right) \right] = 1 \ \ \Rightarrow$
+
+$\displaystyle 1 + \ln(\beta) + r_t -\sigma(\mathbb{E} \left[c_{t+1} \right]-c_t)  - \mathbb{E} \left[ \pi_{t+1} \right] = 1 \ \ \Rightarrow \ \ \sigma c_t = \sigma \mathbb{E} \left[c_{t+1} \right] + \mathbb{E} \left[ \pi_{t+1} \right] - r_t - \ln(\beta)$
+$\displaystyle \Rightarrow \ \ c_t = \mathbb{E} \left[c_{t+1} \right] -\frac{1}{\sigma} \left( r_t - \mathbb{E} \left[ \pi_{t+1} \right] -\rho\right)$ as $\rho \equiv \frac{1-\beta}{\beta} \approx -\ln(\beta)$
+
+
+
+## 6 - Terms of trade
+
+Let's log-linearize the expression for the bilateral terms of trade
+$\displaystyle S_t \equiv \frac{P_{F,t}}{P_{H,t}}= \left( \int_0^1 S_{i,t}^{1-\gamma}di \right)^{\frac{1}{1-\gamma}} \ \ \Rightarrow \ \ S_t^{1-\gamma} = \int_0^1 S_{i,t}^{1-\gamma}di$
+
+$\displaystyle \exp \left(\ln \left[ S_t^{1-\gamma}\right] \right) = \int_0^1 \exp \left(\ln \left[ S_{i,t}^{1-\gamma}\right] \right)di \ \ \Rightarrow \ \ \exp[(1-\gamma)s_t]=\int_0^1 \exp[(1-\gamma)s_{i,t}]di$
+
+Applying the exponential Taylor expansion ($e^x = 1 + x$) in both sides, we get $\displaystyle 1+(1+\gamma)s_t = 1 + (1+\gamma) \int_0^1 s_{i,t}di \ \ \Rightarrow \ \ s_t = \int_0^1 s_{i,t}di$
+
+To log-linearize the CPI formula, considering that it is a symmetric steady-state, we have $P_{H,t}=P_{F,t}=P_t$. Now, taking logs in both sides and using the Taylor expansion for a vector of two variables we have $\displaystyle f(x,y) \approx f(x_0,y_0)+\frac{\partial f(x,y)}{\partial x} \biggr|_{x_0,y_0}(x-x_0)+\frac{\partial f(x,y)}{\partial y} \biggr|_{x_0,y_0}(y-y_0)$
+So, $\displaystyle (P_t)^{\eta-1} = (1-\alpha)(P_{H,t})^{1-\eta} + \alpha(P_{F,t})^{1-\eta}$
+
+By the CPI definition, we have $\displaystyle P_t \equiv \left[ (1-\alpha)(P_{H,t})^{1-\eta} + \alpha(P_{F,t})^{1-\eta} \right]^{\frac{1}{1-\eta}} \ \ \Rightarrow \ \ (P_t)^{1-\eta} =  (1-\alpha)(P_{H,t})^{1-\eta} + \alpha(P_{F,t})^{1-\eta}$
+
+Taking logs, we have $(1-\eta)\ln(P_t) = \ln\left[ (1-\alpha)(P_{H,t})^{1-\eta} + \alpha(P_{F,t})^{1-\eta} \right]=f(P_{H,t},P_{F,t})$
+
+Applying the Taylor expansion on the right side using $x = P_{H,t}$, $y = P_{F,t}$ and $x_0 = y_0 = P_t$, 
+
+$\displaystyle (1-\eta)p_t \approx \ln \left[ (1-\alpha)(P_t)^{1-\eta} + \alpha(P_t)^{1-\eta} \right]+ \frac{(1-\alpha)(1-\eta)P_t^{-\eta}}{P_t^{1-\eta}}(P_{H,t}-P_t) + \frac{\alpha(1-\eta)P_t^{-\eta}}{P_t^{1-\eta}}(P_{F,t}-P_t)$
+
+$\displaystyle (1-\eta)p_t = \ln(P_t^{1-\eta}) + (1-\alpha)(1-\eta)\frac{P_{H,t}-P_t}{P_t} + \alpha(1-\eta)\frac{P_{F,t}-P_t}{P_t}$. 
+
+$p_t \approx p_t + (1-\alpha)[\ln(P_{H,t})-\ln(P_t)] + \alpha[\ln(P_{F,t})-\ln(P_t)] \ \ \Rightarrow \ \  p_t = (1-\alpha)p_{H,t}+\alpha \ p_{F,t}$, as defined in the paper. 
+
+As $s_t \equiv p_{F,t}-p_{H,t}$, $p_t=(1-\alpha)P_{H,t}+\alpha (s_t+p_{H,t}) = p_{H,t} + \alpha s_t$
+
+The domestic inflation rate is defined as $\displaystyle \pi_{H,t} \equiv p_{H,t}-p_{H,t-1}$, taking the difference between the equation between t and t-1, we have $p_t-p_{t-1}=p_{H,t}-p_{H,t-1}+\alpha(s_t-s_{t-1}) \ \ \Rightarrow \ \ \pi_t = \pi_{H,t}+\alpha \Delta s_t$.
+
+Assuming that the law of one price is valid in all times (the same goods produced in different countries have the same price when converting to the domestic currency, using the nominal interest rate), we have $P_{i,t}^i(j) = \mathcal{E}_{i,t}P_{i,t}^i(j)$ for all $i, j \in [0,1]$.
+
+As $P_{i,t}^i \equiv \displaystyle \left( \int_0^1 P_{i,t}^i(j)^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}}$, we have $\displaystyle \mathcal{E}_{i,t}P_{i,t}^i = \mathcal{E}_{i,t} \left( \int_0^1 P_{i,t}^i(j)^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}} =  \left( (\mathcal{E}_{i,t})^{1-\varepsilon} \int_0^1 P_{i,t}^i(j)^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}}$
+
+$\displaystyle = \left(  \int_0^1 \left( \mathcal{E}_{i,t}P_{i,t}^i(j)\right) ^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}} = \left(  \int_0^1  P_{i,t}(j)^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}} = P_{i,t}$
+
+Now, we have $\displaystyle P_{F,t}= \left(  \int_0^1  P_{i,t}^{{1-\gamma}}di \right) ^{\frac{1}{1-\gamma}} = \left(  \int_0^1  \left( \mathcal{E}_{i,t}P_{i,t}^i \right)^{{1-\gamma}}di \right)^{\frac{1}{1-\gamma}} \ \ \Rightarrow \ \ P_{F,t}^{1-\gamma} =  \int_0^1  \left( \mathcal{E}_{i,t}P_{i,t}^i \right)^{{1-\gamma}}di$
+
+Log-linearizing the last expression, we get $\displaystyle \exp \left[(1-\gamma)\ln P_{F,t} \right] =  \int_0^1 \exp \left[(1-\gamma) \ln \left( \mathcal{E}_{i,t}P_{i,t}^i \right) \right]di$
+
+$\Rightarrow \ \  \displaystyle 1 + (1-\gamma)p_{F,t} = \int_0^1 \left[ 1+ (1-\gamma)(e_{i,t}+p_{i,t}^i)\right]di \ \ \Rightarrow \ \ p_{F,t} = \int_0^1  (e_{i,t}+p_{i,t}^i)di=e_t+p_t^*$, 
+
+where $\displaystyle e_t \equiv \int_0^1 e_{i,t} \ di$ and $\displaystyle p_t^*\equiv \int_0^1 p_{i,t}^i \ di$. Also, we have that $s_t = p_{F,t}-p_{H,t}=e_t + p_t^*-p_{H,t}$.
+
+Defining the bilateral real exchange rate $\displaystyle \mathcal{Q}_{i,t} \equiv \frac{\mathcal{E}_{i,t}P_{i,t}}{P_t}$ and the (log) effective real exchange rate $\displaystyle q_t \equiv \int_0^1 q_{i,t}di$ we have $\displaystyle q_t = \int_0^1 \ln \left( \frac{\mathcal{E}_{i,t}P_{i,t}}{P_t} \right)di= \int_0^1 \left(e_{i,t}+p_{i,t}-p_t \right)di = e_t+p_t^*-p_t = s_t+p_{H,t}-(p_{H,t}+\alpha s_t) = (1-\alpha)s_t$
+
+
+
+
+
+
+
+
+
+
+
+
