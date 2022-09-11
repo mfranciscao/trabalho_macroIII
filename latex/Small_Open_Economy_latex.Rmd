@@ -108,7 +108,7 @@ $\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \par
 
 As $P_{F,t}$ doesn't depend on a specific i, we can put it inside the integral. Then we get again two integrans which have to be the same for the equality to hold.
 
-$\displaystyle \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} = \frac{P_{i,t}}{P_{F,t}} \Rightarrow \left[\frac{C_{i,t}}{C_{F,t}}\right]^{-\frac{1}{\gamma}} = \frac{P_{i,t}}{P_{F,t}} \Rightarrow C_{i,t} = \left[ \frac{P_{i,t}}{P_{F,t}} \right]^{-\gamma}C_{F,t}$
+$\displaystyle \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} = \frac{P_{i,t}}{P_{F,t}} \Rightarrow \left[\frac{C_{i,t}}{C_{F,t}}\right]^{-\frac{1}{\gamma}} = \frac{P_{i,t}}{P_{F,t}} \ \ \Rightarrow \ \ C_{i,t} = \left[ \frac{P_{i,t}}{P_{F,t}} \right]^{-\gamma}C_{F,t}$
 
 
 
@@ -128,11 +128,7 @@ $\displaystyle \int_0^1 P_{i,t}C_{i,t}dj = P_{F,t}C_{F,t}$
 
 using the definition of the price indexes:
 
-$\displaystyle P_{H,t} \equiv \left( \int_0^1 P_{H,t}(j)^{1-\varepsilon}dj \right)^{\frac{1}{1-\varepsilon}}$,
-
-$\displaystyle P_{i,t} \equiv \left( \int_0^1 P_{i,t}(j)^{1-\varepsilon}dj \right)^{\frac{1}{1-\varepsilon}}$ and
-
-$\displaystyle P_{F,t} \equiv \left( \int_0^1 P_{i,t}^{1-\gamma}di \right)^{\frac{1}{1-\gamma}}$
+$\displaystyle P_{H,t} \equiv \left( \int_0^1 P_{H,t}(j)^{1-\varepsilon}dj \right)^{\frac{1}{1-\varepsilon}}$, $\displaystyle P_{i,t} \equiv \left( \int_0^1 P_{i,t}(j)^{1-\varepsilon}dj \right)^{\frac{1}{1-\varepsilon}}$ and $\displaystyle P_{F,t} \equiv \left( \int_0^1 P_{i,t}^{1-\gamma}di \right)^{\frac{1}{1-\gamma}}$
 
 $\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj = \int_0^1P_{H,t}(j)\left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}C_{H,t}dj = \frac{C_{H,t}}{P_{H,t}^{-\varepsilon}}\int_0^1P_{H,t}(j)^{1-\varepsilon}dj = \frac{C_{H,t}}{P_{H,t}^{-\varepsilon}}P_{H,t}^{1-\varepsilon} = P_{H,t}C_{H,t}$
 
@@ -153,17 +149,17 @@ $\displaystyle P_t C_t \leq D_t + W_tN_t + Tt - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\
 
 
 
-## 3 - Finding the optimal share between the domestic and imported goods
+## 4 - Finding the optimal share between the domestic and imported goods
  
 Now we will calculate the MRS between the domestic products and the total consumption, which has to be equal to the rate of prices. After, we will do the same for the foreign products.
 
 $\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{H,t}}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_t}} = \frac{\displaystyle U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}}}{\displaystyle U_c(C_t,N_t) } = \frac{P_{H,t}}{P_t} \ \ \Rightarrow \ \ (1-\alpha) \frac{C_t}{C_{H,t}}  = \left( \frac{P_{H,t}}{P_t} \right)^\eta  \ \ \Rightarrow \ \ C_{H,t} = (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t$
 
-$\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{F,t}}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_t}} = \frac{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}}{\displaystyle U_c(C_t,N_t) } = \frac{P_{F,t}}{P_t} \ \ \Rightarrow \ \ \alpha \frac{C_t}{C_{F,t}}  = \left( \frac{P_{F,t}}{P_t} \right)^\eta  \ \ \Rightarrow \ \ C_{H,t} = \alpha \left( \frac{P_{F,t}}{P_t} \right)^{-\eta}C_t$
+$\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{F,t}}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_t}} = \frac{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}}{\displaystyle U_c(C_t,N_t) } = \frac{P_{F,t}}{P_t} \ \ \Rightarrow \ \ \alpha \frac{C_t}{C_{F,t}}  = \left( \frac{P_{F,t}}{P_t} \right)^\eta  \ \ \Rightarrow \ \ C_{F,t} = \alpha \left( \frac{P_{F,t}}{P_t} \right)^{-\eta}C_t$
 
 
 
-## 4 - Standard problem of the representative consumer 
+## 5 - Standard problem of the representative consumer 
 
 Now we arrive at a standard problem for the representative consumer
 
@@ -181,7 +177,7 @@ with first order conditions (FOCs):
 
 ($N_t$): $\displaystyle \beta^tN_t^{\varphi} = \beta^t \lambda_t W_t \ \ \Rightarrow \ \ N_t^{\varphi} = \lambda_t P_t$
 
-($D_{t+1}$): $\displaystyle \beta^t \lambda_t \mathbb{E} [Q_{t,t+1}] = \beta^{t+1} \mathbb {E}[\lambda_{t+1}]  \ \ \Rightarrow \ \ \frac{\mathbb{E}[\lambda_{t+1}]}{\lambda_t} = \frac{\mathbb{E} [Q_{t,t+1}]}{\beta}$
+($D_{t+1}$): $\displaystyle \beta^t \lambda_t Q_{t,t+1} = \beta^{t+1} \mathbb {E}[\lambda_{t+1}]  \ \ \Rightarrow \ \ \frac{\mathbb{E}[\lambda_{t+1}]}{\lambda_t} = \frac{Q_{t,t+1}}{\beta}$
 
 Dividing ($N_t$) FOC by ($C_t$) FOC, we have the standard equation of intratemporal substitution between consumption and leisure $\displaystyle C_t^{\sigma}N_t^{\varphi} = \frac{W_t}{P_t}$
 
@@ -193,11 +189,11 @@ Dividing the consumption FOC in t+1 by the equation in t and substituting by the
 
 $\displaystyle \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \right] = \mathbb{E} \left[ \frac{\lambda_{t+1} P_{t+1}}{\lambda_t P_t} \right]  \ \ \Rightarrow \ \   \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right]= \frac{\mathbb{E}[Q_{t,t+1}]}{\beta} \ \ \Rightarrow \ \ \beta R_t \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right]= 1$
 
-as $\mathbb{E}[Q_{t,t+1}]$, is the price of a a riskless one-period discount bond in domestic currency with gross return $R_t$.
+as $Q_{t,t+1}$, is the price of a a riskless one-period discount bond in domestic currency with gross return $R_t$.
 
 
 
-## 5 - Log linearization
+## 6 - Log linearization
 
 Log-linearizing $\displaystyle C_t^{\sigma}N_t^{\varphi} = \frac{W_t}{P_t}$ is straight forward: 
 $w_t - p_t = \sigma c_t + \varphi n_t$
@@ -212,7 +208,7 @@ $\displaystyle \Rightarrow \ \ c_t = \mathbb{E} \left[c_{t+1} \right] -\frac{1}{
 
 
 
-## 6 - Terms of trade
+## 7 - Terms of trade
 
 Let's log-linearize the expression for the bilateral terms of trade
 $\displaystyle S_t \equiv \frac{P_{F,t}}{P_{H,t}}= \left( \int_0^1 S_{i,t}^{1-\gamma}di \right)^{\frac{1}{1-\gamma}} \ \ \Rightarrow \ \ S_t^{1-\gamma} = \int_0^1 S_{i,t}^{1-\gamma}di$
@@ -255,6 +251,77 @@ $\Rightarrow \ \  \displaystyle 1 + (1-\gamma)p_{F,t} = \int_0^1 \left[ 1+ (1-\g
 where $\displaystyle e_t \equiv \int_0^1 e_{i,t} \ di$ and $\displaystyle p_t^*\equiv \int_0^1 p_{i,t}^i \ di$. Also, we have that $s_t = p_{F,t}-p_{H,t}=e_t + p_t^*-p_{H,t}$.
 
 Defining the bilateral real exchange rate $\displaystyle \mathcal{Q}_{i,t} \equiv \frac{\mathcal{E}_{i,t}P_{i,t}}{P_t}$ and the (log) effective real exchange rate $\displaystyle q_t \equiv \int_0^1 q_{i,t}di$ we have $\displaystyle q_t = \int_0^1 \ln \left( \frac{\mathcal{E}_{i,t}P_{i,t}}{P_t} \right)di= \int_0^1 \left(e_{i,t}+p_{i,t}-p_t \right)di = e_t+p_t^*-p_t = s_t+p_{H,t}-(p_{H,t}+\alpha s_t) = (1-\alpha)s_t$
+
+
+
+## 8 - International risk sharing
+
+The problem of the representative household in any country is the same, as the economies are all equal. There is, any country has an Euler equation like $\displaystyle \beta \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right]= Q_{t,t+1}$. 
+
+The condition for the clearing of the international market is that $Q_{t,t+1}$ is unique. So the price converted to a common current has to be the same. So, for every foreign country, the Euler equation becomes 
+
+$\displaystyle \beta \mathbb{E} \left[ \left( \frac{C_{t+1}^i}{C_t^i} \right)^{-\sigma} \frac{P_t^i \mathcal{E}_t^i}{P_{t+1}^i \mathcal{E}_{t+1}^i}\right] = Q_{t,t+1}$.
+
+Combining both equations, using the definition of the real exchange rate $\displaystyle \mathcal{Q}_{i,t} \equiv \frac{\mathcal{E}_{i,t}P_{i,t}}{P_t}$ and solving for $C_t$, we have
+
+$\displaystyle \beta \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right] = \beta \mathbb{E} \left[ \left( \frac{C_{t+1}^i}{C_t^i} \right)^{-\sigma} \frac{P_t^i \mathcal{E}_t^i}{P_{t+1}^i \mathcal{E}_{t+1}^i}\right] \ \ \Rightarrow \ \ \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{1}{P_{t+1}}\right] = \mathbb{E} \left[ \left( \frac{C_{t+1}^i}{C_t^i} \right)^{-\sigma} \frac{\mathcal{Q}_{i,t}}{P_{t+1}^i \mathcal{E}_{t+1}^i}\right]$
+
+$\displaystyle  \Rightarrow  \ \ (C_t)^\sigma  = \mathbb{E} \left[ {C_{t+1}}^\sigma \left( C_{t+1}^i \right)^{-\sigma} \frac{P_{t+1}}{P_{t+1}^i \mathcal{E}_{t+1}^i}\right]\mathcal{Q}_{i,t}(C_t^i)^\sigma \ \ \Rightarrow  \ \ C_t = \mathbb{E} \left[ \frac{C_{t+1}}{C_{t+1}^i} (\mathcal{Q}_{i,t+1})^{-\frac{1}{\sigma}}\right] C_t^i \mathcal{Q}_{i,t}^\frac{1}{\sigma}  \ \ \Rightarrow  \ \ C_t = \vartheta_i C_t^i \mathcal{Q}_{i,t}^\frac{1}{\sigma}$, 
+
+where $\displaystyle \vartheta_i = \mathbb{E} \left[ \frac{C_{t+1}}{C_{t+1}^i} (\mathcal{Q}_{i,t+1})^{-\frac{1}{\sigma}}\right]$ is a constant and generally will depend on initial relative net asset positions. Assuming identical conditions for all economies, the net asset position for all of the is zero. In this case, $\vartheta_i = \vartheta = 1$ for all i. As the symmetric foresight steady-state in this condition is shown in the appendix A.
+
+The international market clearing implies that the total goods produced in a country is consumed by domestically or it's exported. The integral represents the sum of the demand for products of the economy analysed by foreign countries. In a case with economies not with measure zero, we need to exclude the economy analysed from the integral do avoid double counting.
+
+$\displaystyle Y=C_H+C_i=(1-\alpha)\left( \frac{P_{H}}{P} \right)^{-\eta}C + \int_0^1 \left( \frac{P_i^i}{P_F} \right)^{-\gamma}C_F di = (1-\alpha)\left( \frac{P_{H}}{P} \right)^{-\eta}C + \alpha \int_0^1 \left( \frac{P_i^i}{P_F^i} \right)^{-\gamma} \left( \frac{P_{F}^i}{P^i} \right)^{-\eta}C^idi$
+
+$\displaystyle Y= (1-\alpha)\left( \frac{P_{H}}{P} \right)^{-\eta}C + \alpha \int_0^1 \left( \frac{P_F^i}{P_i^i} \right)^{\gamma} \left( \frac{P_{F}^i}{P^i} \right)^{-\eta}C^idi= (1-\alpha)\left( \frac{P_{H}}{P} \right)^{-\eta}C + \alpha \int_0^1 \left( \frac{\mathcal{E}_i P_F^i }{P_H} \right)^{\gamma} \left( \frac{P_{F}^i}{P^i} \right)^{-\eta}C^idi$,
+
+where $P_i^i$ is the price in the domestic economy converted to the currency of country i, or $\displaystyle P_i^i = \frac{P_i}{\mathcal{E}_i} = \frac{P_H}{\mathcal{E}_i}$, as the goods have the same price in the international market, after converting to the same currency.  After simplifying, we have
+
+$\displaystyle Y = \left( \frac{P_{H}}{P} \right)^{-\eta} \left[ (1-\alpha)C + \alpha \int_0^1 \left( \frac{ \mathcal{E}_i P_F^i }{P_H} \right)^{\gamma-\eta} \left( \frac{\mathcal{E}_i P_i}{P} \right)^\eta  C^idi \right] =  \left( \frac{P_{H}}{P} \right)^{-\eta} \left[ (1-\alpha)C + \alpha \int_0^1 \left( \frac{ \mathcal{E}_i P_F^i }{P_H} \right)^{\gamma-\eta} Q_i^\eta  C^idi \right]$
+
+Considering that $\displaystyle P = \left[ (1-\alpha) \left( P_H \right)^{1-\eta} + \alpha \left( P_F\right)^{1-\eta} \right]^{\frac{1}{1-\eta}}$ in the steady-state, $\displaystyle P^{1-\eta} =  (1-\alpha) \left( P_H \right)^{1-\eta} + \alpha \left( P_F \right)^{1-\eta}$, as $\displaystyle \mathcal{S}_i \equiv \frac{P_i}{P_H}$. So,
+
+$\displaystyle \left( \frac{P}{P_H} \right)^{1-\eta} =  (1-\alpha)  + \alpha \left( \frac{P_F}{P_H}\right)^{1-\eta} = (1-\alpha)  + \alpha  \mathcal{S}_i^{1-\eta} \ \ \Rightarrow \ \ \frac{P}{P_H}=\left[ (1-\alpha)+\alpha \mathcal{S}^{1-\eta}\right]^{\frac{1}{1-\eta}}= \left[ (1-\alpha) + \alpha \int_0^1(\mathcal{S}_i)^{1-\eta}di \right]^{\frac{1}{1-\eta}} \equiv h(\mathcal{S})$
+
+Defining $\displaystyle \mathcal{S}^i = \frac{\mathcal{E}_i P_F^i}{P_i}$ and using the fact that $\displaystyle C^i=C \mathcal{Q}^{-\frac{1}{\sigma}}$ as $\vartheta_i = 1$ in a symmetric steady-state, we have
+
+$\displaystyle Y =  h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \int_0^1 \left( \frac{ \mathcal{E}_i P_F^i }{P_i} \frac{P_i}{P_H} \right)^{\gamma-\eta} Q_i^{\eta-\frac{1}{\sigma}}  di \right]=  h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}^i \frac{P_F}{P_H} \right)^{\gamma-\eta} Q_i^{\eta-\frac{1}{\sigma}}  di \right]$
+
+As we will work with a first order approximation, the equality below is valid.
+
+$\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}^i  \mathcal{S}_i \right)^{\gamma-\eta} Q_i^{\eta-\frac{1}{\sigma}} di \right] = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \int_0^1 ( \mathcal{S}^i)^{\gamma} di \int_0^1 ( \mathcal{S}_i)^{-\eta} di \int_0^1 Q_i^{\eta-\frac{1}{\sigma}} di \right]$
+
+$\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha  \mathcal{S}^{-\eta} \int_0^1 \left( \frac{P_F^i}{P_H} \right)^{\gamma} di  \int_0^1 \left( \frac{\mathcal{E}_i P_F^i}{P} \right)^{\eta-\frac{1}{\sigma}} di \right]$, 
+
+as if $\displaystyle \mathcal{S}^{1-\gamma}=\int_0^1 \mathcal{S^{1-\gamma}}di$, we can substitute variables $-\eta=1-\gamma$ and we get the result.
+
+$\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha  \mathcal{S}^{-\eta} \left( \frac{1}{P_H} \right)^{\gamma} \int_0^1 \left( P_F^i \right)^{\gamma} di  \int_0^1 \left( \frac{\mathcal{E}_i P_F^i}{P} \right)^{\eta-\frac{1}{\sigma}} di \right]$
+
+$Y= h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha  \mathcal{S}^{-\eta} \left( \frac{1}{P_H} \right)^{\gamma} (P^*)^{\gamma} \int_0^1 \left( \frac{\mathcal{E}_i P_F^i}{P_H} \frac{P_H}{P} \right)^{\eta-\frac{1}{\sigma}} di \right]$, 
+
+using the fact that $\left( P_F^i \right)^{1-\gamma} = \displaystyle \int_0^1 \left( P_i^i \right)^{1-\gamma}di$ and using P* for the international price index of imported goods.
+
+$\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha  \mathcal{S}^{-\eta} \left( \frac{P^*}{P_H} \right)^{\gamma} \int_0^1 \left( \frac{\mathcal{S}^i}{h(\mathcal{S})}  \right)^{\eta-\frac{1}{\sigma}} di \right] =h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha  \mathcal{S}^{-\eta} \mathcal{S}^\gamma \left( \frac{1}{h(\mathcal{S})}  \right)^{\eta-\frac{1}{\sigma}} \int_0^1 ( \mathcal{S}^i )^{\eta-\frac{1}{\sigma}} di \right]$
+
+$\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha  \mathcal{S}^{\gamma-\eta} \left( \frac{1}{h(\mathcal{S})}  \right)^{\eta-\frac{1}{\sigma}}  \mathcal{S} ^{\eta-\frac{1}{\sigma}} \right] = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha  \mathcal{S}^{\gamma-\eta} \left( \frac{\mathcal{S}}{h(\mathcal{S})}  \right)^{\eta-\frac{1}{\sigma}} \right]$, 
+
+which yields the result.
+$\displaystyle Y= h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha  \mathcal{S}^{\gamma-\eta} q(\mathcal{S})^{\eta-\frac{1}{\sigma}} \right]$, where $\displaystyle \mathcal{Q}=\frac{\mathcal{S}}{h(\mathcal{S})} \equiv q(\mathcal{S})$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
