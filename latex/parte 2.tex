@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{bigints}
+
+\newcommand{\Et}{\mathbb{E}_t}
+
+\begin{document}
+
+
+\section{Technology}
+
+A representative firm has a technology with constant returns:
+
+$$Y_t(j) = A_t N_t(j)$$
+
+where $a_t = \ln(A_t)$ follows the AR(1) process $a_t = \rho_a a_{t-1} + \varepsilon_t$. Aggregating across firms and log-linearizing we get that:
+
+$$\int^1_0 Y_t(j) dj = \int^1_0 A_t N_t(j) dj \Rightarrow Y_t = A_t N_t \Rightarrow y_t = a_t + n_t$$
+
+This technology leads to a real marginal cost that does not deppend on the firm or the produced quantity:
+
+$$MC_t = \frac{\partial}{\partial Y_t(j)} \frac{Y_t(j)}{A_t} * \frac{W_t(1-\tau)}{P_{H,t}} =\frac{W_t(1-\tau)}{P_{H,t} A_t}$$
+
+Where $\tau$ is an employment subsidy. Log-linearizing this expression, and setting $\nu \equiv -\ln(1-\tau)$ we get:
+
+$$mc_t(j) = -\nu + w_t - p_{H,t} - a_t$$
+
+If the firm can adjust price at time $t$, we will set its price at $\bar P_{H,t} (j)$ which maximizes the present value of its future profit:
+
+$$\max_{\bar P_{H,t}(j)} \sum^\infty_{k=0} \theta^k \Et \big[ Q_{t, t+k}[Y_{t+k}(j) (\bar P_{H,t}(j) - MC_{t+k} P_{H,t+k})] \big]$$
+
+
+As we get in (xxx) that $C_t(j) = \Big( \frac{P_{H,t}(j)}{P_{H,t}} \Big)^{-\varepsilon} C_{H, t}$ if the price remains unchanged at $\bar P_{H,t}$ until $t+k$ period then: $C_{t+k}(j) = \Big( \frac{\bar P_{H,t}(j)}{P_{H,t+k}}\Big)^{-\varepsilon} C_{H, t+k}$. Similarly the foreign consumption of this domestic good is $C^i_{t+k}(j) = \int^1_0 \Big( \frac{\bar P_{H,t}(j)}{P_{H,t+k}} \Big)^{-\varepsilon} C^i_{H, t+k} di$. Market clearing imposes that:
+
+$$Y_{t+k}(j) = C_{H,t+k}(j) + \int_0^1 C^i_{H, t+k}(j) di = \bigg( \frac{\bar P_{H,t}(j)}{P_{H,t+k}} \bigg)^{-\varepsilon} (C_{H,t} +  \int_0^1 C^i_{H, t+k} di)$$
+
+Calculating the derivated with respect to $\bar P_{H,t}$:
+
+$$\frac{\partial Y_{t+k}(j)}{\bar P_{H,t}} = -\varepsilon \bigg(C_{H,t} +  \int_0^1 C^i_{H, t+k} di \bigg)  \bigg( \frac{1}{P_{H,t+k}}  \bigg)^{-\varepsilon} \bar P_{H,t}(j)^{-\varepsilon -1} = - \varepsilon \frac{Y_{t+k}(j)}{\bar P_{H,t}}$$
+
+First order condition of the maximization implies that:
+
+\begin{equation*}
+    \begin{split}
+        0 &= \sum^\infty_{k=0} \theta^k \Et \bigg[ Q_{t, t+k} \Big[ \frac{\partial Y_{t+k}(j)}{\bar P_{H,t}} (\bar P_{H,t}(j) - MC_{t+k} P_{H,t+k}) + Y_{t+k}(j)  \Big] \bigg]\\
+        0 &= \sum^\infty_{k=0} \theta^k \Et \bigg[ Q_{t, t+k} \Big[ -\varepsilon \frac{Y_{t+k}(j)}{\bar P_{H,t}} \Big(\bar P_{H,t}(j) - MC_{t+k} P_{H,t+k} \Big) + Y_{t+k}(j)  \Big] \bigg]\\
+        0 &= \sum^\infty_{k=0} \theta^k \Et \bigg[ Q_{t, t+k} \Big[ Y_{t+k}(j) \Big(-\varepsilon  + -\varepsilon\frac{MC_{t+k} P_{H,t+k}}{\bar P_{H,t}} +1 \Big) \Big] \bigg] \\
+        0 &= \sum^\infty_{k=0} \theta^k \Et \bigg[ Q_{t, t+k} Y_{t+k}(j) \Big(\bar P_{H,t} - \frac{\varepsilon}{\varepsilon-1} MC_{t+k} P_{H,t+k} \Big) \bigg]
+    \end{split}
+\end{equation*}
+
+
+By consumer Euler equation, we know that $Q_{t, t+k} = \beta^k \Big( \frac{C_{t+k}}{C_t} \Big)^{-\sigma} \Big( \frac{P_{t}}{P_{t+k}} \Big)$, then:
+
+\begin{equation*}
+    \begin{split}
+        0 &= \sum^\infty_{k=0} \theta^k \Et \bigg[ \beta^k \Big( \frac{C_{t+k}}{C_t} \Big)^{-\sigma} \Big( \frac{P_t}{P_{t+k}} \Big) Y_{t+k}(j) \Big(\bar P_{H,t} - \frac{\varepsilon}{\varepsilon-1} MC_{t+k} P_{H,t+k} \Big) \bigg] \\
+        0 &= \sum^\infty_{k=0} (\beta\theta)^k \Et \bigg[ C_{t+k}^{-\sigma} P_{t+k}^{-1}  Y_{t+k}(j) \Big(\bar P_{H,t} - \frac{\varepsilon}{\varepsilon-1} MC_{t+k} P_{H,t+k} \Big) \bigg] \\
+        0 &= \sum^\infty_{k=0} (\beta\theta)^k \Et \bigg[ C_{t+k}^{-\sigma} \frac{P_{H, t-1}}{P_{t+k}}  Y_{t+k}(j) \Big(\frac{\bar P_{H,t}}{P_{H,t-1}} - \frac{\varepsilon}{\varepsilon-1} MC_{t+k} \frac{P_{H,t+k}}{P_{H,t-1}} \Big) \bigg]
+    \end{split}
+\end{equation*}
+
+
+Log-linearizing this expression we get that:
+
+$$\bar p_{H,t} = p_{H,t-1} + \sum^\infty_{k=0} (\beta \theta)^k \Et[\bar p_{H,t+1} - p_{H, t}] + \pi_{H, t} + (1- \beta \theta)(mc_t + \mu)$$
+
+Where $\mu = \ln\big(\frac{\varepsilon}{\varepsilon-1}\big)$ In steady state without price stickness $p_{H,t} = p_{H,t-1}$, $\bar p_{H,t+1} = p_{H, t}$, $\pi_{H, t} = 0$ and $\theta =0$, so we get that $mc_t = -\mu$. Rearranging:
+
+$$\bar p_{H,t} = \mu + (1- \beta \theta) \sum^\infty_{k=0} \Et[mc_{t+k} + p_{H, t+k}]$$
+
+Moreover, after find $\bar P_{H,t}$ we can define the domestic prices dynamics of the economy:
+
+$$P_{H,t} [\theta P_{H, t-1}^{1-\epsilon} + (1-\theta) \bar P_{H, t-1}^{1-\epsilon}]^\frac{1}{1- \epsilon}$$
+
+Which log-linearized is:
+
+$$\pi_{H, t} = (1-\theta)(\bar p_{H,t} - p_{H,t-1})$$
+
+As we already found an expression for $\bar p_{H,t} - p_{H,t-1}$ above, we get (vou explicar melhor):
+
+$$\pi_{H, t} = \beta \Et[\pi_{H, t+1}] + \lambda (mc_t + \mu)$$
+
+Where $\lambda \equiv \frac{(1-\theta)(1 - \beta \theta)}{\theta}$.
+
+\section{Equilibrium}
+
+Market clearing in goods market imposes:
+
+$$Y_{t}(j) = \bigg( \frac{P_{H,t}(j)}{P_{H,t}} \bigg)^{-\varepsilon} (C_{H,t} +  \int_0^1 C^i_{H, t} di)$$
+
+Substituing $C_{H,t} = (1-\alpha) \Big( \frac{P_{H,t}}{P_t} \Big)^{-\eta} C_t$ and $C^i_{H,t} = \alpha \Big( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \Big)^{-\gamma} \Big( \frac{P^i_{F,t}}{P^i_{t}} \Big)^{-\eta} C^i_t$
+
+$$Y_{t}(j) = \bigg( \frac{P_{H,t}(j)}{P_{H,t}} \bigg)^{-\varepsilon} \bigg((1-\alpha) \Big( \frac{P_{H,t}}{P_t} \Big)^{-\eta} C_t +  \alpha \int_0^1 \Big( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \Big)^{-\gamma} \Big( \frac{P^i_{F,t}}{P^i_{t}} \Big)^{-\eta} C^i_t di \bigg)$$
+
+As $Y(t) = [\int^1_0 Y_t(j)^{\frac{\varepsilon-1}{\varepsilon}}]^\frac{\varepsilon}{\varepsilon-1}$
+
+\begin{equation*}
+    \begin{split}
+    Y_{t} &= \Bigg\{ \int^1_0 \Bigg[ \bigg( \frac{P_{H,t}(j)}{P_{H,t}} \bigg)^{-\varepsilon} \bigg((1-\alpha) \Big( \frac{P_{H,t}}{P_t} \Big)^{-\eta} C_t +  \alpha \int_0^1 \Big( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \Big)^{-\gamma} \Big( \frac{P^i_{F,t}}{P^i_{t}} \Big)^{-\eta} C^i_t di \bigg)\Bigg]^{\frac{\varepsilon-1}{\varepsilon}}dj \Bigg\}^\frac{\varepsilon}{\varepsilon-1}\\
+    Y_{t} &= \Bigg\{ \int^1_0 \Big( P_{H,t}(j)^{-\varepsilon} \Big)^{\frac{\varepsilon-1}{\varepsilon}}dj \Bigg\}^\frac{\varepsilon}{\varepsilon-1} \Big(\frac{1}{P_{H,t}}\Big)^{-\epsilon} \bigg((1-\alpha) \Big( \frac{P_{H,t}}{P_t} \Big)^{-\eta} C_t +  \alpha \int_0^1 \Big( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \Big)^{-\gamma} \Big( \frac{P^i_{F,t}}{P^i_{t}} \Big)^{-\eta} C^i_t di \bigg)
+    \end{split}
+\end{equation*}
+
+
+Considering that $\Big[ \int^1_0 \Big( P_{H,t}(j)^{-\varepsilon} \Big)^{\frac{\varepsilon-1}{\varepsilon}}dj \Big]^\frac{\varepsilon}{\varepsilon-1} = \Big[ \int^1_0 P_{H,t}^{1-\varepsilon}(j)  dj \Big]^\frac{\varepsilon}{\varepsilon-1} = P_{H,t}^{-\epsilon}$ we get:
+
+\begin{equation*}
+    \begin{split}
+        Y_{t} &= (1-\alpha) \Big( \frac{P_{H,t}}{P_t} \Big)^{-\eta} C_t +  \alpha \int_0^1 \Big( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \Big)^{-\gamma} \Big( \frac{P^i_{F,t}}{P^i_{t}} \Big)^{-\eta} C^i_t di \\
+        Y_{t} &= \Big( \frac{P_{H,t}}{P_t} \Big)^{-\eta} \bigg[(1-\alpha)  C_t +  \alpha \int_0^1 \Big( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \Big)^{-\gamma}  \Big( \frac{\mathcal{E}_{i,t} P^i_{F,t}}{P_{H,t}} \Big)^{-\eta} \Big(\frac{P_t}{\mathcal E_{i,t} P_t^i} \Big)^{-\eta} C^i_t di \bigg] \\
+        Y_{t} &= C_t \Big( \frac{P_{H,t}}{P_t} \Big)^{-\eta} \bigg[(1-\alpha)  +  \alpha \int_0^1 \Big(\mathcal S^i_t \mathcal S_{i,t} \Big)^{\gamma - \eta} \mathcal Q^{\eta - \frac{1}{\sigma}}_{i,t} di \bigg] 
+    \end{split}
+\end{equation*}
+
+
+Log-linearizing and defining $\omega \equiv \sigma \gamma + (1- \alpha)(\sigma \eta - 1)$ we get that:
+
+$$y_t = c_t + \alpha \gamma s_t + \alpha \bigg( \eta - \frac{1}{\sigma} \bigg) q_t = c_t + \frac{\alpha\omega}{\sigma} s_t$$
+
+The previous expressions holds for any foreign country $y_t^i = c_t^i + \frac{\alpha\omega}{\sigma} s^i_t$, but as $\int^1_0 s^i_t di = 0$ we conclude that $y^*_t = \int_0^1 y^i_t di = \int_0^1 c^i_t di + \frac{\alpha\omega}{\sigma} \int_0^1 s^i_t di =\int_0^1 c^i_t di = c^*_t $. As we already know that $c_t = c^*_t + \frac{1}{\sigma} q_t$ and $q_t = (1-\alpha) s_t$ then, defining $\sigma_\alpha \equiv \frac{\sigma}{(1 - \alpha) + \alpha \omega}$ :
+
+$$y_t = c_t + \frac{\alpha\omega}{\sigma} s_t = c^*_t + \frac{1-\alpha}{\sigma} s_t + \frac{\alpha \omega}{\sigma} = y_t^* + \frac{1}{\sigma_\alpha}s_t \Rightarrow (y_{t+1} - y_{t+1}^*) - (y_{t} - y_{t}^*) = \frac{1}{\sigma_\alpha} \Delta s_{t+1}$$
+
+Using log-linearized Euler equation and that $\pi_t = \pi_{H,t} + \alpha \Delta s_t$, and defining $\Theta = \omega-1$:
+
+\begin{equation*}
+    \begin{split}
+        c_t & = \Et[c_{t+1}] - \frac{1}{\sigma} \Big(r_t - \Et[\pi_{t+1}] - \rho \Big) \Rightarrow\\
+        y_t - \frac{\alpha\omega}{\sigma} s_t &= \Et\Big[y_{t+1} - \frac{\alpha\omega}{\sigma} s_{t+1}\Big] - \frac{1}{\sigma} \Big(r_t - \Et[\pi_{t+1}] - \rho \Big)\\
+        y_t &= \Et[y_{t+1} ] - \frac{1}{\sigma} \Big(r_t - \Et [\pi_{t+1} ] - \rho \Big) - \frac{\alpha\omega}{\sigma} \Et[\Delta s_{t+1}]\\
+        y_t &= \Et[y_{t+1} ] - \frac{1}{\sigma} \Big(r_t - \Et [\pi_{H, t+1} + \alpha \Delta s_{t+1}] - \rho \Big) - \frac{\alpha\omega}{\sigma} \Et[\Delta s_{t+1}]\\
+        y_t &= \Et[y_{t+1}] - \frac{1}{\sigma} \Big(r_t - \Et [\pi_{H, t+1}] - \rho \Big) - \frac{\alpha(\omega-1)}{\sigma} \Et[\Delta s_{t+1}]\\
+        y_t &= \Et[y_{t+1} ] - \frac{1}{\sigma} \Big(r_t - \Et [\pi_{H, t+1}] - \rho \Big) - \frac{\alpha(\omega-1)}{\sigma} \sigma_\alpha \Et[(y_{t+1} - y_{t+1}^*) - (y_{t} - y_{t}^*)]\\
+        y_t &= \Et[y_{t+1}] - \frac{1}{\sigma_\alpha} \Big(r_t - \Et [\pi_{H, t+1}] - \rho \Big) - \alpha \Theta \Et[\Delta y^*_{t+1}]\\
+    \end{split}
+\end{equation*}
+
+
+Combining the previous results of marginal cost: $mc_t(j) = -\nu + w_t - p_{H,t} - a_t$, labor supply: $w_t - p_t = \sigma c_t + \varphi n_t$, firm technology aggregation: $y_t = a_t + n_t$, $p_t - p_{H,t} = \alpha s_t$ and $y_t = y_t^* + \frac{1}{\sigma_\alpha} s_t$:
+
+\begin{equation*}
+    \begin{split}
+    mc_t & = -\nu + (w_t - p_{H, t}) - a_t\\
+    & = -\nu + (w_t - pt) + (p_t - p_{H, t}) - a_t\\
+    & = -\nu + \sigma c_t + \varphi n_t + \alpha s_t - a_t\\
+    & = -\nu + \sigma y_t^* + \varphi + s_t - (1+ \varphi) a_t\\
+    & = -\nu + (\sigma_\alpha + \varphi) y_t + (\sigma - \sigma_\alpha) y_t^* - (1+ \varphi) a_t
+    \end{split}
+\end{equation*}
+
+Defining $\bar y_t$ as the natural level of domestic output (obtained when there is not price stickness, so $mc_t = -\mu$) we get:
+
+$$-\mu = -\nu + (\sigma_\alpha + \varphi) y_t + (\sigma - \sigma_\alpha) y_t^* - (1+ \varphi) a_t \Rightarrow \bar y_t = \Omega + \Gamma a_t + \alpha \Psi y_t^*$$
+
+Where $\Omega \equiv \frac{\nu - \mu}{\sigma_\alpha + \varphi}$, $\Gamma = \frac{1 + \varphi}{\sigma_\alpha + \varphi}$ and $\Psi = -\frac{\Theta \sigma_\alpha}{\sigma_\alpha + \varphi}$. Now, defining $x_t \equiv y_t - \bar y_t$ where $x_t$ as the output gap as the (log) deviation of domestic output from its natural level we can derive the dynamic IS:
+
+\begin{equation*}
+    \begin{split}
+        y_t &= \Et[y_{t+1}] - \frac{1}{\sigma_\alpha} \Big(r_t - \Et [\pi_{H, t+1}] - \rho \Big) - \alpha(\omega-1) \Et[\Delta y^*_{t+1}]\\
+        y_t - \bar y_t &= \Et[y_{t+1} -\bar y_{t+1}] \frac{1}{\sigma_\alpha} \Big(r_t - \Et [\pi_{H, t+1}]  - \rho \Big) - \alpha(\omega-1) \Et[\Delta y^*_{t+1}] + \Gamma(a_{t+1}- a_t)  + \alpha \Psi (y_{t+1}^* - y_t^*)\\
+        x_t & = \Et [x_{t+1}] - \frac{1}{\sigma_\alpha} \Big(r_t - \Et[\pi_{H,t+1} - \rho + \sigma_\alpha \Gamma (1-\rho_a)a_t - \alpha \sigma_\alpha (\Theta + \Psi) \Et[\Delta y_{t+1}^*] \Big)\\
+        x_t & = \Et [x_{t+1}] - \frac{1}{\sigma_\alpha} \Big(r_t - \Et[\pi_{H,t+1} - \bar{rr}_t \Big)
+    \end{split}
+\end{equation*}
+
+Where $\bar{rr}_t = \rho - \sigma_\alpha \Gamma (1-\rho_a)a_t + \alpha \sigma_\alpha (\Theta + \Psi) \Et[\Delta y_{t+1}^*]$ is the small open economy's natural rate of interest.\\
+
+In order to define the New Keynesian Philips Curve we use that $\pi_{H, t} = \beta \Et[\pi_{H, t+1}] + \lambda (mc_t + \mu)$ and use the previous results on $mc_t$:
+
+\begin{equation*}
+    \begin{split}
+        mc_t & = -\nu + (\sigma_\alpha + \varphi) y_t + (\sigma - \sigma_\alpha) y_t^* - (1+ \varphi) a_t \\
+        \mu & = + \nu -(\sigma_\alpha + \varphi) \bar y_t - (\sigma - \sigma_\alpha) y_t^* + (1+ \varphi) a_t\\
+        mc_t + \mu &= (\sigma_\alpha + \varphi)(y_t - \bar y_t) = (\sigma_\alpha + \varphi)x_t\\
+        \pi_{H, t} &= \beta \Et[\pi_{H, t+1}] + \lambda (\sigma_\alpha + \varphi)x_t\\
+        \pi_{H, t} &= \beta \Et[\pi_{H, t+1}] + \kappa_\alpha x_t
+    \end{split}
+\end{equation*}
+
+Where $\kappa_\alpha \equiv \lambda (\sigma_\alpha + \varphi)$.
+
+\section{Monetary Policy}
+
+There are 3 suggested monetary policy rules:
+\begin{itemize}
+    \item DITR: $r_t = \rho + \phi_\pi \pi_{H,t}$
+    \item CITR: $r_t = \rho + \phi_\pi \pi_{t}$
+    \item PEG: $e_t = 0$
+\end{itemize}
+
+Where DITR is domestic inflation-based Taylor Rule, CIPR is CPI inflation-based Taylor Rule and PEG is the exchange rate peg. These polices
+
+\end{document}
