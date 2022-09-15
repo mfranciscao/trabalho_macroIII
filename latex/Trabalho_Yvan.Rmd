@@ -1,0 +1,61 @@
+---
+title: "Small_Open_Economy_Model"
+author: "Catarina Tavella"
+date: "2022-09-06"
+output:
+  pdf_document:
+    keep_tex: yes
+    extra_dependencies: ["bbm", "amsmath"]
+  html_document:
+    df_print: paged
+  word_document: default
+geometry: left=1cm, right=1cm, top=1cm, bottom=1.5cm
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Problem of the consumer:
+
+$\displaystyle \underset{C_t,N_t} {max} \ E_0 \sum_{t=0}^\infty \beta^tU(C_t,N_t) =                     \displaystyle \underset{C_{H,t},C_{F,t},N_t} {max} \ E_0 \sum_{t=0}^\infty \beta^tU \left(\left[ (1-\alpha)^{\frac{1}{\eta}} (C_{H,t})^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} (C_{F,t})^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)$ 
+
+subject to the budget constraint (specified below), where 
+
+$C_{H,t} \equiv \displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\epsilon-1}{\epsilon}}dj \right) ^{\frac{\epsilon}{\epsilon-1}}$,  $C_{F,t} \equiv \displaystyle \left( \int_0^1 (C_{i,t})^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}}$ and $C_{i,t} \equiv \displaystyle \left( \int_0^1 C_{i,t}(j)^{\frac{\epsilon-1}{\epsilon}}dj \right) ^{\frac{\epsilon}{\epsilon-1}}$
+
+Substituting, we get
+
+$\displaystyle \underset{C_{H,t},C_{F,t},N_t} {max} \ E_0 \sum_{t=0}^\infty \beta^tU \left(\left[ (1-\alpha)^{\frac{1}{\eta}} \left [\displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\epsilon-1}{\epsilon}}dj \right) ^{\frac{\epsilon}{\epsilon-1}} \right]^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} \left[ \displaystyle \left( \int_0^1 (C_{F,t})^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}} \right]^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)$ = 
+
+$\displaystyle \underset{C_{H,t},C_{i,t},N_t} {max} \ E_0 \sum_{t=0}^\infty \beta^tU \left(\left[ (1-\alpha)^{\frac{1}{\eta}} \left [\displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\epsilon-1}{\epsilon}}dj \right) ^{\frac{\epsilon}{\epsilon-1}} \right]^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} \left[ \displaystyle \left( \int_0^1 \left( \displaystyle \left( \int_0^1 C_{i,t}(j)^{\frac{\epsilon-1}{\epsilon}}dj \right) ^{\frac{\epsilon}{\epsilon-1}} \right)^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}} \right]^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)$
+
+subject to the budget constraint:
+
+$\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj + \int_0^1\int_0^1 P_{i,t}(j)C_{i,t}(j)dj\ di + \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\} \leq D_t + W_tN_t + Tt$
+
+As the budget constraint is binding, otherwise the consumer could spend more resources on more consumption and would not being optimizing his (or her consumption)
+
+$\mathcal{L} = \displaystyle E_0 \sum_{t=0}^\infty \beta^t \left\lbrace U \left(\left[ (1-\alpha)^{\frac{1}{\eta}} \left [\displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\epsilon-1}{\epsilon}}dj \right) ^{\frac{\epsilon}{\epsilon-1}} \right]^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} \left[ \displaystyle \left( \int_0^1 (C_{i,t})^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}} \right]^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right) + \\ \lambda_t \left(D_t + W_tN_t + Tt \displaystyle - \int_0^1 P_{H,t}(j)C_{H,t}(j)dj - \int_0^1\int_0^1 P_{i,t}(j)C_{i,t}(j)dj\ di - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\}\right)  \right\rbrace$
+
+The first order condition (FOC) for $C_{H,t}(j)$ is:
+
+$\displaystyle U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} (1-\alpha)^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{H,t}\right)^{-\frac{1}{\eta}}\frac{\epsilon}{\epsilon-1}\left(C_{H,t}^{\frac{\epsilon-1}{\epsilon}} \right)^{\frac{\epsilon}{\epsilon-1}-1}\int_0^1 \frac{\epsilon-1}{\epsilon} C_{H,t}(j)^{-\frac{1}{\epsilon}}dj = \lambda_t \int_0^1 P_{H,t}(j)dj$
+
+ 
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
