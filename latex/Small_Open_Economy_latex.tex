@@ -226,7 +226,7 @@ and
 
 \(\displaystyle \int_0^1 P_{i,t}C_{i,t}di = \int_0^1P_{i,t}\left( \frac{P_{i,t}}{P_{F,t}}\right)^{-\gamma}C_{F,t}di = \frac{C_{F,t}}{P_{F,t}^{-\gamma}}\int_0^1 P_{F,t}^{1-\gamma}dj = \frac{C_{F,t}}{P_{F,t}^{-\varepsilon}}P_{F,t}^{1-\varepsilon} = P_{F,t}C_{F,t}\)
 
-With this aggregatio, the budget constraint can be simplified
+With this aggregation, the budget constraint can be simplified
 
 \(\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj + \int_0^1\int_0^1 P_{i,t}(j)C_{i,t}(j)dj\ di + \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\} \leq D_t + W_tN_t + Tt\)
 
@@ -236,7 +236,7 @@ As the total consumption expenditure by the representative consumer is
 with the domestic produts or foreig products, the budget constraint
 becomes:
 
-\(\displaystyle P_t C_t \leq D_t + W_tN_t + Tt - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\}\)
+\(\displaystyle P_t C_t \leq D_t + W_tN_t + T_t - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\}\)
 
 \hypertarget{finding-the-optimal-share-between-the-domestic-and-imported-goods}{%
 \subsection{4 - Finding the optimal share between the domestic and
@@ -486,5 +486,58 @@ which yields the result.
 \(\displaystyle Y= h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \mathcal{S}^{\gamma-\eta} q(\mathcal{S})^{\eta-\frac{1}{\sigma}} \right]\),
 where
 \(\displaystyle \mathcal{Q}=\frac{\mathcal{S}}{h(\mathcal{S})} \equiv q(\mathcal{S})\)
+
+\hypertarget{uncovered-interest-parity-and-the-terms-of-trade}{%
+\subsection{9 - Uncovered interest parity and the terms of
+trade}\label{uncovered-interest-parity-and-the-terms-of-trade}}
+
+As
+\(\displaystyle \mathbb{E}\left[ \mathcal{Q}_{t,t+1} R_t^i \frac{\mathcal{E}_{i,t+1} }{\mathcal{E}_{i,t} }\right] = 1\)
+and
+\(\displaystyle \mathbb{E}\left[ \mathcal{Q}_{t,t+1} R_t \right] = 1\),
+we have that
+
+\(\displaystyle \mathbb{E}\left[ \mathcal{Q}_{t,t+1} R_t^i \frac{\mathcal{E}_{i,t+1} }{\mathcal{E}_{i,t} }\right] = \displaystyle \mathbb{E}\left[ \mathcal{Q}_{t,t+1} R_t \right] \ \ \Rightarrow \ \  \mathbb{E}\left[ \mathcal{Q}_{t,t+1} \left(R_t-R_t^i \left[ \frac{\mathcal{E}_{i,t+1} }{\mathcal{E}_{i,t} } \right] \right) \right] = 0\)
+
+But to log-linearize it's better to do both sides separately.
+
+\(\displaystyle \mathbb{E} \left[\exp \left( \ln \left[ \mathcal{Q}_{t,t+1} R_t^i \frac{\mathcal{E}_{i,t+1} }{\mathcal{E}_{i,t} }\right] \right) \right] \approx\)
+
+\(\displaystyle \mathbb{E} \left[ 1 + \ln\frac{Q R^i \mathcal{E}_{i}}{\mathcal{E}_{i}}+\frac{1}{\mathcal{Q}R^i}R^i \frac{ \mathcal{E}_{i}}{\mathcal{E}_{i}}(\mathcal{Q}_{t,t+1}-\mathcal{Q}) + \frac{1}{QR^i}\mathcal{Q} \frac{ \mathcal{E}_{i}}{\mathcal{E}_{i}}(R_t^i-R^i) - \frac{1}{\mathcal{Q}R^i}\mathcal{Q} \frac{R^i}{\mathcal{E}_{i}}(\mathcal{E}_{i,t+1}-\mathcal{E}_i) + \frac{1}{\mathcal{Q}R^i}\mathcal{Q} \frac{R^i \mathcal{E}_{i}}{\mathcal{E}_{i}^2}(\mathcal{E}_{i,t}-\mathcal{E}_i) \right]\)
+
+\(\displaystyle = 1+ \ln(\mathcal{Q}R^i) + \mathbb{E} \left[ \hat{q_t}+\hat{r_t}^i - \hat{e}_{i,t+1}+\hat{e}_{i,t}\right]\)
+
+\(\displaystyle \mathbb{E} \left[\exp \left( \ln \left[ \mathcal{Q}_{t,t+1} R_t \right] \right) \right] \approx \mathbb{E} \left[ 1 + \ln(\mathcal{Q}R) +\frac{1}{\mathcal{Q}R}R (\mathcal{Q}_{t,t+1}-Q) +\frac{1}{\mathcal{Q}R} \mathcal{Q} (R_t-R)\right]\)
+
+\(\displaystyle 1+ \ln(\mathcal{Q}R^i) + \mathbb{E} \left[ \hat{q}_t+\hat{r}_t^i - \hat{e}_{i,t+1} + \hat{e}_{i,t}\right] = 1 + \ln(\mathcal{Q}R) + \mathbb{E} \left[ \hat{q}_t + \hat{r}_t \right] \ \ \Rightarrow \ \ \hat{r}^i - \mathbb{E} \left[ e_{i,t+1}-e_{i,t}\right] = \hat{r} \ \ \Rightarrow \ \ r_t^i-r_t=\mathbb{E}_t[\Delta e_{i,t+1}]\)
+
+The aggregation comes from the FOC. The uncovered interest rate parity
+allow households to invest both in domestic and foreign assets:
+\(B_t, B_t^*\). The budget constraint can be written as
+
+\(P_t + Q_{t,t+1}D_{t+1}+Q_{t,t+1}^*\mathcal{E}_{t+1}D_{t+1}^* \leq D_t+\mathcal{E}_{t}D_t^*+W_tN_t+T_t\)
+
+an the lagrangean becomes
+
+\(\mathcal{L} = \displaystyle \mathbb{E}_t \sum_{t=0}^\infty \beta^t \left[ \left( \frac{C_t^{1-\sigma}}{1-\sigma}-\frac{N_t^{1+\varphi}}{1+\varphi} \right) + \lambda_t \left(\mathcal{E}_t D_t^* + W_tN_t + T_t - \mathcal{Q}_{t,t+1}^*\mathcal{E}_t D_{t+1}^* - \mathcal{Q}_{t,t+1}D_{t+1} - P_t C_t \right) \right]\)
+
+The FOCs are:
+
+\((C_t)\)
+\(\displaystyle C_t^{-\sigma} = \lambda_tP_t \ \ \Rightarrow \ \ \mathbb{E}[C_{t+1}^{-\sigma}] = \mathbb{E}[\lambda_{t+1}P_{t+1}] \ \ \Rightarrow \ \ \displaystyle \mathbb{E}\left[ \frac{\lambda_{t+1}}{\lambda_t}\right] = \mathbb{E}\left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}}\right]\)
+
+\((D_{t+1}^*)\)
+\(\beta \ \mathbb{E}[\lambda_{t+1} \mathcal{E}_{t+1}] = \lambda_t\mathcal{Q}_{t,t+1}^* \mathcal{E}_t \ \ \Rightarrow \ \ \displaystyle \mathbb{E}\left[ \frac{\lambda_{t+1}}{\lambda_t}\right] = \mathbb{E}\left[ \frac{\mathcal{Q}_{t,t+1}^*\mathcal{E}_t}{\beta \mathcal{E}_{t+1}}\right]\)
+
+Combining both equations, we have
+
+\(\displaystyle \mathbb{E}\left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}}\right] = \mathbb{E}\left[ \frac{\mathcal{Q}_{t,t+1}^*\mathcal{E}_t}{\beta \mathcal{E}_{t+1}}\right] \ \ \Rightarrow \ \ \beta \  \displaystyle \mathbb{E}\left[ \frac{1}{\mathcal{Q}_{t,t+1}^*} \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}} \frac{\mathcal{E}_{t+1}}{\mathcal{E}_{t}} \right]=1\)
+
+Doing the same steps for the domestic bonds, we have
+
+\((D_{t+1}^*)\)
+\(\beta \ \mathbb{E}[\lambda_{t+1} ] = \lambda_t\mathcal{Q}_{t,t+1}\ \ \Rightarrow \ \ \displaystyle \mathbb{E}\left[ \frac{\lambda_{t+1}}{\lambda_t}\right] = \mathbb{E}\left[ \frac{\mathcal{Q}_{t,t+1}}{\beta }\right]\)
+
+\(\displaystyle \mathbb{E}\left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}}\right] = \mathbb{E}\left[ \frac{\mathcal{Q}_{t,t+1}}{\beta }\right] \ \ \Rightarrow \ \ \beta \  \displaystyle \mathbb{E}\left[ \frac{1}{\mathcal{Q}_{t,t+1}} \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}} \right]=1\)
 
 \end{document}
