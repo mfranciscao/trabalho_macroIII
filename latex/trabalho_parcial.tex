@@ -1,0 +1,525 @@
+\documentclass{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{bigints}
+\usepackage{float}
+\usepackage{svg}
+
+\newcommand{\Et}{\mathbb{E}_t}
+\newcommand{\E}{\mathcal{E}}
+
+\begin{document}
+
+\section*{Abstract}
+a
+
+\section{Introduction}
+a
+
+\section{Description of the model}
+
+\subsection{Consumers Problem}
+The model considers a standard representative consumer with separable preferences that maximizes his expected discounted payoff in a infinite time horizon:
+
+\begin{equation}
+    \max E_0 \sum^\infty_{t=0} \beta^t \frac{C_t^{1-\sigma}}{1-\sigma} - \frac{N_t^{\varphi+1}}{\varphi+1} \hspace{1em}  \textrm{ st. } \hspace{1em} \forall t, \hspace{0.8em} P_t C_t + \Et[Q_{t,t+1} D_{t+1}] \leq D_t +  W_t N_t + T_t
+\end{equation}
+
+Where $D_t$ is the nominal payoff in period $t$ of the portfolio held at the end of period $t-1$. The consumer chooses between domestic goods ($C_{H,t}$) and foreign goods ($C_{F,t}$) with $\alpha \in [0,1]$ as the opening index of the economy and elasticity of substitution $\eta > 0$ between domestic and imported goods. The imported goods consumption is divided in goods imported from a continuum of different countries $i$ with elasticity of substitution $\gamma > 0$. Finally, he chooses between goods $j$ made in the same country (domestic or foreign) with elasticity of substitution $\varepsilon > 0$.
+
+\begin{equation}
+    C_t \equiv \left[ (1-\alpha)^{\frac{1}{\eta}} (C_{H,t})^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} (C_{F,t})^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}}
+\end{equation}
+
+\begin{equation}
+    C_{F,t} \equiv \left( \int^1_0 C_{i,t}^{\frac{\gamma-1}{\gamma}} di \right)^{\frac{\gamma}{\gamma-1}}
+\end{equation}
+
+\begin{equation}
+    C_{H,t} \equiv \left( \int^1_0 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}} dj \right)^{\frac{\varepsilon}{\varepsilon-1}}
+\end{equation}
+
+\begin{equation}
+    C_{i,t} \equiv \left( \int^1_0 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}} dj \right)^{\frac{\varepsilon}{\varepsilon-1}}
+\end{equation}
+
+%Moreover, the price indexes of domestic goods ($P_{H,t}$), imported goods ($P_{F,t}$) and goods imported from a specific country $i$ ($P_{i,t}$) are given by:
+
+The detailed solution of the consumer problem is detailed in the appendix A and results are, as usual, the consumer Euler equation and the labour supply:
+
+\begin{equation}
+    \label{euler}
+    \beta R_t \Et\left[\left(\frac{C_{t+1}}{C_t} \right)^{-\sigma} \left(\frac{P_t}{P_{t+1}} \right) \right] = 1
+\end{equation}
+
+\begin{equation}
+    \label{labour_supply}
+    C_t^\sigma N_t^\varphi = \frac{W_t}{P_t}
+\end{equation}
+
+
+\subsection{Terms of trade}
+We define the bilateral terms of trade $S_{i,t}$ between domestic economy and the country $i$ as $S_{i,t} \equiv \frac{P_{i,t}}{P_{H,t}}$. The effective terms of trade given by:
+
+\begin{equation}
+    S_t \equiv \left(\int^1_0 S_{i,t}^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} = \left(\int^1_0 \left(\frac{P_{i,t}}{P_{H,t}}  \right)^{1-\gamma}  di \right)^{\frac{1}{1-\gamma}} = \frac{1}{P_{H,t}} \left(\int^1_0 \left(P_{i,t}^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}\right) = \frac{P_{F,t}}{P_{H,t}}
+\end{equation}
+
+Using the that price level are given by $P_t^{1-\eta} = (1-\alpha) P_{H,t}^{1-\eta} + \alpha P_{F,t}^{1-\eta}$ we get:
+
+\begin{equation}
+    \label{tot_level}
+    P_t^{1-\eta} = (1-\alpha) P_{H,t}^{1-\eta} + \alpha \left( P_{H,t}^{1-\eta} S_{t}^{1-\eta} \right) = P_{H,t}^{1-\eta} \left[(1-\alpha) + \alpha S_t^{1-\eta} \right] \Rightarrow P_t = P_{H,t} \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}} 
+\end{equation}
+
+Dividing $P_t$ by $P_{t-1}$:
+
+\begin{equation}
+    \label{tot}
+    \frac{P_t}{P_{t-1}} = \frac{P_{H,t} \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}}} {P_{H,t-1} \left[(1-\alpha) + \alpha S_{t-1}^{1-\eta} \right]^{\frac{1}{1-\eta}}} \Rightarrow \Pi_t = \Pi_{H,t} \left(\frac{(1-\alpha) + \alpha S_t^{1-\eta}} {(1-\alpha) + \alpha S_{t-1}^{1-\eta}} \right)^{\frac{1}{1-\eta}}
+\end{equation}
+
+\subsection{Exchange Rate}
+We assume that law of one price holds for all goods and all times, defining $\E_{i,t}$ as the bilateral exchange rate between domestic economy and country $i$ and $P^i_{i,t}(j)$ as the price expressed in the producer's currency, then:
+
+\begin{equation}
+    P_{i,t}(j) = \E_{i,t} P^i_{i,t}(j) \Rightarrow \left( \int^1_0 \left(P_{i,t}(j) \right)^{1-\epsilon} dj \right)^{\frac{1}{1-\epsilon}} = \left( \int^1_0 \left(\E_{i,t} P^i_{i,t}(j) \right)^{1-\epsilon} dj \right)^{\frac{1}{1-\epsilon}} \Rightarrow P_{i,t} = \E_{i,t} P^i_{i,t}
+\end{equation}
+
+
+Aggregating for all countries $i$
+
+\begin{equation}
+    \left( \int^1_0 \left(P_{i,t} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} = \left( \int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} \Rightarrow S_t P_{H,t} = \left( \int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}
+\end{equation}
+
+Dividing $S_t P_{H,t}$ by $S_{t-1} P_{H,t-1}$ we get :
+
+\begin{equation}
+    \label{fx}
+    \frac{S_t P_{H,t}}{S_{t-1} P_{H,t-1}} = \frac{\left( \int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}}{\left( \int^1_0 \left(\E_{i,t-1} P^i_{i,t-1} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}} \Rightarrow \frac{S_t}{S_{t-1}}\Pi_{H,t} = \left(\frac{\int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di }{\int^1_0 \left(\E_{i,t-1} P^i_{i,t-1} \right)^{1-\gamma} di} \right)^{\frac{1}{1-\gamma}}
+\end{equation}
+
+Which defines implicitly $\E_{t} \equiv \left( \int^1_0 \E_{i,t}^{\frac{\gamma-1}{\gamma}} di \right)^{\frac{\gamma}{\gamma-1}}$ as the nominal effective exchange rate \footnote{Log-linearizing we get $\pi_{H,t} + \alpha s_{t+1} - \alpha s_t = \pi^*_t + \Delta e_t$, where $e_t \equiv \int^1_0 e_{i,t}$, $p_t^* \equiv \int^1_0 p^i_{i,t}$ and $\pi^*_t \equiv p_t^* - p_{t-1}^*$. The baseline model of the paper assumes $p_t^* = p^* = 0$, implying that $\pi_{H,t} + \alpha s_{t+1} - \alpha s_t = \Delta e_t$}.
+
+The bilateral real exchange rate with country $i$ is defined as $\mathcal{Q}_{i,t} \equiv \frac{\E_{i,t} P^i_{i,t}}{P_t}$ and using that $P_{i,t} = \E_{i,t} P^i_{i,t}$ then:
+
+\begin{equation}
+\label{real_rate}
+\begin{split}
+\mathcal{Q}_{i,t} & = \frac{\E_{i,t} P^i_{i,t}}{P_t} = \frac{P_{i,t}}{P_t} \Rightarrow \left( \int^1_0 \mathcal Q_{i,t}^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} = \left( \int^1_0 \left(\frac{P_{i,t}}{P_t}\right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} = \frac{1}{P_t}\left( \int^1_0 P_{i,t}^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} \\
+\mathcal{Q}_{t} & = \frac{P_{F,t}}{P_t} = \frac{P_{H,t} S_t}{P_t} = \frac{P_{H,t} S_t}{P_{H,t} \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}}} = \left[(1-\alpha)S_t^{\eta-1} + \alpha \right]^{\frac{1}{\eta-1}}
+\end{split}
+\end{equation}
+
+
+\subsection{Firms Problem}
+A representative firm has a technology with constant returns:
+
+\begin{equation}
+    \label{technology}
+    Y_t(j) = A_t N_t(j) \Rightarrow \int^1_0 Y_t(j) dj = \int^1_0 A_t N_t(j) dj \Rightarrow Y_t = A_t N_t
+\end{equation}
+
+\begin{equation}
+    \label{tfp}
+    A_{t+1} = {A_t}^{\rho_a}\exp( \varepsilon^a_t)
+\end{equation}
+
+Where $A_t$ is such that $a_t \equiv \ln(A_t)$ follows an AR(1) process and in steady state we normalize $A = 1$.\\
+
+The model assume sticky prices following Calvo (1983): at each period a random selected measure $\theta$ of firms have to keep their prices unchanged from the previous period, while the remaining $1-\theta$ firms can reset them. If a firm could adjust price at time $t$, we will set its price at $\bar P_{H,t}$ which maximizes the present value of its future profit:
+
+\begin{equation}
+    \bar P_{H,t} = \max_{\bar P_{H,t}} \sum^\infty_{k=0} \theta^k \Et \left[ Q_{t, t+k}[Y_{t+k}(j) (\bar P_{H,t} - MC_{t+k} P_{H,t+k})] \right]
+\end{equation}
+
+Where $MC_t$ is the real marginal cost. Combining the first order of this problem with the price dynamics (detailed solution is in appendix B) and defining $\widehat{MC}_t = \frac{MC_t}{1/ \mathcal M}$ as the marginal cost deviation from steady state we get:
+
+\begin{equation}
+    \label{nkpc}
+    \Pi_{H,t} = \left[ \theta + \frac{(1-\theta)}{P_{H,t-1}^{1-\varepsilon}} \left(\frac{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}}\tilde C_{H,t+k} P_{H,t+k} \widehat{MC}_{t+k}\right] }{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}} \tilde C_{H,t+k}  \right]} \right)^{1-\varepsilon}\right]^\frac{1}{1-\varepsilon}
+\end{equation}
+
+Finally, due to constant returns to scale, the real marginal cost does not depend on quantities. Using the consumers labor supply (\ref{labour_supply}), the technology (\ref{technology}) and (\ref{tot_level}) we can derive the marginal cost deviation from its steady state:
+
+\begin{equation}
+    \label{marginal_cost}
+    \widehat{MC}_t = \mathcal M MC_t = \frac{W_t (1 - \tau) \mathcal M}{P_{H,t}A_t} = \frac{C_t^\sigma N_t^\varphi P_t (1 - \tau)\mathcal M}{P_{H,t}A_t} = \frac{C_t^\sigma Y_t^\varphi \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M}{A_t^{1+\varphi}}
+\end{equation}
+
+Where $\tau$ is an employment subsidy \footnote{See appendix C for discussion on optimal subsidy}.\\
+
+\subsection{Rest of the world}
+Given the small domestic economy, we assume the rest of the world's output $Y_t^*$ can be taken as exogenous and such that $y_t^* = \ln(Y^*_t)$ follows and AR(1) process:
+
+\begin{equation}
+    \label{y_row}
+    Y^*_{t+1} = {Y^*_t}^{\rho_y}\exp( \varepsilon^*_t)
+\end{equation}
+
+Consumer's Euler equations also holds for a representative consumer in any other country:
+
+$$\beta \left( \frac{C^i_{t+1}}{C_t^i} \right) \left( \frac{P_t^i}{P^i_{t+1}} \right) \left( \frac{\E^i_t}{\E^i_{t+1}} \right) = Q^i_{t, t+1}$$
+
+The model assumes complete markets, then there are perfect domestic and international risk sharing, implying that $Q^i_{t, t+1} = Q_{t,t+1}$:
+
+\begin{equation}
+\begin{array}{cc}
+     &\beta \left( \frac{C^i_{t+1}}{C_t^i} \right)^{-\sigma} \left( \frac{P_t^i \E^i_t}{P^i_{t+1} \E^i_{t+1}} \right) = \beta \left( \frac{C_{t+1}}{C_t^i} \right)^{-\sigma} \left( \frac{P_t}{P_{t+1}} \right) \Rightarrow \left( \frac{C_{t+1}}{C_t^i} \right) = \left( \frac{C^i_{t+1}}{C_t^i} \right) \left(\frac{\frac{\E_{i,t+1} P^i_{t+1}}{P_{t+1}}}{\frac{\E_{i,t} P^i_{t}}{P_{t}}} \right)^{\frac{1}{\sigma}} = \\
+     &\left( \frac{C_{t+1}}{C_t} \right) = \left( \frac{C^i_{t+1}}{C_t^i} \right) \left(\frac{\mathcal{Q}_{i,t+1}}{\mathcal{Q}_{i,t}} \right)^{\frac{1}{\sigma}} \Rightarrow \left[\frac{C_{t+1}}{C^i_{t+1} \mathcal Q_{i,t+1}^{\frac{1}{\sigma}}}\right] =  \left[\frac{C_t}{C^i_t \mathcal Q_{i,t}^{\frac{1}{\sigma}}} \right] \\
+\end{array}
+\end{equation}
+
+Defining $t = 0$ and iterating we get that, for all period $t$
+
+\begin{equation}
+    \left[\frac{C_{t}}{C^i_{t} \mathcal Q_{i,t}^{\frac{1}{\sigma}}}\right] =  \left[\frac{C_0}{C^i_0 \mathcal Q_{i,0}^{\frac{1}{\sigma}}} \right] \equiv v_{i, 0} \Rightarrow C_t = v_{i,0} C^i_t \mathcal Q_{i,t}^{\frac{1}{\sigma}}
+\end{equation}
+
+Where $v_{i,0}$ depends on initial conditions, which the model assumes be symmetric, then $v_{i,0} = 1$ for all $i$. Aggregating over all countries:
+
+\begin{equation}
+    \label{consumption}
+    \left(\int^1_0 C_t^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} = C_t = \left(\int^1_0  \left(C_t^i \mathcal Q_{i,t}^{\frac{1}{\sigma}}\right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}
+\end{equation}
+
+
+\subsection{Market clearing}
+For each domestic good, the total production is equal to domestic + external demands. Substituting the expressions obtained in the consumer problem and aggregating for all domestic goods (detailed steps are in appendix D) we obtain:
+
+\begin{equation}
+    \label{output_st}
+    Y_{t} = C_t \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{\eta}{1-\eta}} \left[(1-\alpha)  +  \alpha \int_0^1 \left(\mathcal S^i_t \mathcal S_{i,t} \right)^{\gamma - \eta} \mathcal Q^{\eta - \frac{1}{\sigma}}_{i,t} di \right] 
+\end{equation}
+
+
+
+As we are considering the country as a small open economy, for the rest of the world the domestic consumption and production are insignificant and can be ignored, so market clearing implies:
+
+\begin{equation}
+    \label{world_equilibrium}
+    C_t^* = Y_t^*
+\end{equation}
+
+\section{Equilibrium conditions}
+The equilibrium conditions (without a monetary policy equation) are given by equations (\ref{euler}), (\ref{tot}), (\ref{fx}), (\ref{real_rate}), (\ref{technology}), (\ref{tfp}), (\ref{marginal_cost}), (\ref{nkpc}), (\ref{y_row}), (\ref{consumption}), (\ref{output_st}) and (\ref{world_equilibrium}) obtained above:
+
+\begin{subequations}
+    \label{se}
+    \begin{align}
+        &\beta R_t \Et\left[\left(\frac{C_{t+1}}{C_t} \right)^{-\sigma} \left(\frac{P_t}{P_{t+1}} \right) \right] = 1\\
+        &\Pi_t = \Pi_{H,t} \left(\frac{(1-\alpha) + \alpha S_t^{1-\eta}} {(1-\alpha) + \alpha S_{t-1}^{1-\eta}} \right)^{\frac{1}{1-\eta}}\\
+        &\frac{S_t}{S_{t-1}}\Pi_{H,t} = \left(\frac{\int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di }{\int^1_0 \left(\E_{i,t-1} P^i_{i,t-1} \right)^{1-\gamma} di} \right)^{\frac{1}{1-\gamma}}\\
+        &\mathcal{Q}_{t}  = \left[(1-\alpha)S_t^{\eta-1} + \alpha \right]^{\frac{1}{\eta-1}}\\
+        &Y_t = A_t N_t\\
+        &A_{t+1} = {A_t}^{\rho_a}\exp( \varepsilon^a_t)\\
+        &\widehat{MC}_t  = \frac{C_t^\sigma Y_t^\varphi \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M}{A_t^{1+\varphi}}\\
+        &\Pi_{H,t} = \left[ \theta + \frac{(1-\theta)}{P_{H,t-1}^{1-\varepsilon}} \left(\frac{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}}\tilde C_{H,t+k} P_{H,t+k} \widehat{MC}_{t+k}\right] }{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}} \tilde C_{H,t+k}  \right]} \right)^{1-\varepsilon}\right]^\frac{1}{1-\varepsilon}\\
+        &Y^*_{t+1} = {Y^*_t}^{\rho_y}\exp( \varepsilon^*_t)\\
+        &C_t = \left(\int^1_0  \left(C_t^i \mathcal Q_{i,t}^{\frac{1}{\sigma}}\right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}\\
+        &Y_{t} = C_t \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{\eta}{1-\eta}} \left[(1-\alpha)  +  \alpha \int_0^1 \left(\mathcal S^i_t \mathcal S_{i,t} \right)^{\gamma - \eta} \mathcal Q^{\eta - \frac{1}{\sigma}}_{i,t} di \right] \\
+        & C_t^* = Y_t^*
+    \end{align}
+\end{subequations}
+
+The log-linear approximation of these equations around the steady state is \footnote{Lower case letters represent the neperian logarithm of the original variables. We define $\rho \equiv \beta^{-1} -1$,  $\nu \equiv -ln(1-\tau)$, $\mu \equiv \ln(\mathcal M)$, $\omega \equiv \sigma \gamma + (1-\alpha)(\sigma \eta - 1)$, $\sigma_\alpha \equiv \frac{\sigma}{(1-\alpha) + \alpha \omega}$, $\Omega \equiv \frac{\nu - \mu}{\sigma_\alpha + \varphi}$, $\Gamma \equiv \frac{1 + \varphi}{\sigma_\alpha + \varphi}$, $\Psi \equiv \frac{(1-\omega) \alpha}{\sigma_\alpha + \varphi}$}:
+
+\begin{subequations}
+\label{sistema_loglin}
+    \begin{align}
+        &c_t = \Et[c_{t+1}] - \frac{1}{\sigma} (r_t - \Et[\pi_{t+1}] - \rho)\\
+        &\pi_t = \pi_{H,t} + \alpha s_t - \alpha s_{t-1}\\
+        &s_{t} - s_{t-1} + \pi_{H,t} = \Delta e_t \\
+        &q_t = (1-\alpha) s_t\\
+        &y_t = a_t +  n_t\\
+        &a_{t+1} = \rho_a a_t + \varepsilon^a_t\\
+        &\hat{mc}_{t} = -\nu + \sigma c_t + \varphi y_t + \alpha s_t - (1+ \varphi )a_t + \mu\\
+        & \pi_{H,t} = \beta \Et[\pi_{H,t+1}] + \lambda \hat{mc}_t\\
+        &y^*_{t+1} = \rho_y y^*_t + \varepsilon^*_t\\
+        &c_t = c_t^* + \frac{1}{\sigma} q_t\\
+        &y_t = c_t + \alpha \gamma s_t + \alpha \left( \eta - \frac{1}{\sigma} \right) q_t\\
+        &c_t^* = y_t^*
+    \end{align}
+\end{subequations}
+
+To these equations we also adds a definition of potential output $\bar y_t$ obtained from (\ref{sistema_loglin}g) when $\hat{mc_t} = 0$ (and manipulating to be a function only of exogenous variables) and a definition of (log) output gap given by output deviation from its potential:
+
+\begin{subequations}
+    \begin{align}
+        &\bar y_t = \Omega + \Gamma a_t - \alpha \Psi y_t^* \tag{\ref{sistema_loglin}m}\\
+        &x_t = y_t - \bar y_t \tag{\ref{sistema_loglin}n}
+    \end{align}
+\end{subequations}
+
+To complete the model its necessary to include a last equation, relative to monetary policy. The paper suggests 3 different monetary rules and a optimal monetary rule benchmark\footnote{See appendix E for details} and estimates the model in each case:
+
+\begin{itemize}
+    \item Optimal Monetary Policy: $r_t = \bar{rr}_t + \phi_\pi \pi_{H, t}$
+    \item Domestic Inflation Taylor Rule: $r_t = \rho + \phi_\pi \pi_{H, t}$
+    \item CPI Inflation Taylor Rule: $r_t = \rho + \phi_\pi \pi_{t}$
+    \item Exchange Rate Peg\footnote{The paper defines Peg as $e_t = 0$ but as the nominal variables are not determined in equilibrium, depending on the initial conditions (only their variations like inflation rates and $\Delta e_t$ are determined) we considered peg as $\Delta e_t = 0$, imposing an initial condition $e_0 = 0$ which implies in $e_t = 0$}: $\Delta e_t = 0$.
+\end{itemize}
+
+Where $\bar{rr}_t = \rho + \sigma_\alpha \Gamma (1 - \rho_a) a_t + \alpha \sigma_\alpha (\Theta + \Psi)(\Et[y_{t+1}^*] - y_t^*)$ is the natural interest rate.
+
+
+\section{Calibration}
+The paper assumes the following calibration for the structural parameters:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{clc}
+        \hline
+        \textbf{Parameter} & \textbf{Description} & \textbf{Value}\\
+        \hline
+        \multicolumn{3}{l}{\textit{Common to Real Business Cycles Model}}\\
+        $\beta$ & Intertemporal discount factor & $0.99$\\
+        $\sigma$ & Inverse elasticity of intertemporal subsititution & $1$\\
+        $\varphi$ & Inverse Frisch elasticity of labour supply & $3$\\
+        $\rho_a$ & Productivity shock smoothing & $0.66$\\
+        $\sigma_a$ & Standard deviation of the productivity shocks & $0.0071$ \\
+        \multicolumn{3}{l}{\textit{Common to New Keynesian Model}}\\
+        $\varepsilon$ & Substitutability between varieties (from the same country) & $6$\\
+        $\theta$ & Calvo price stickiness & $0.75$\\
+        $\phi_\pi$ & Taylor rule response to inflation & $1.5$ \\
+        \multicolumn{3}{l}{\textit{Specific to Galí and Monacelli Model}}\\
+        $\alpha$ & Opening index of the economy  & $0.4$\\
+        $\eta$ & Substitutability between domestic and imported goods & $1$\\
+        $\gamma$ & Substitutability between goods from different foreign countries & $1$\\
+        $\rho_{y^*}$ & World GDP shock smoothing & $0.86$\\
+        $\sigma_{y^*}$ & Standard deviation of the world GDP shocks & $0.0078$ \\
+        $\rho_{ay^*}$ & Correlation between prod. and world GDP shocks & $0.3$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+In the paper's text and tables the parameter $\rho_a$ is defined as $0.66$, however the IRFs charts are compatible with value $0.90$ (authors reused the charts from an working paper version which $\rho_a = 0.90$ without update the figure or inform the different parameter in the text). We use this same value in the charts to be comparable with original ones in the paper.
+
+\section{Steady State Properties}
+In the steady state: (i) Purchasing Power Parity holds symmetrically for all other countries (then $\mathcal Q_i = \mathcal Q$, $S_i = S$, $S^i=1$ and $C^i = C^*$), (ii) all the stationary variables are constant and (iii) there is not uncertainty ($\varepsilon^* = \varepsilon^a = 0$).  Using the equilibrium conditions showed in (\ref{se}) immediately by (f), (i) and (l) we obtain that $A = Y^* = C^* = 1$. The equation (a) defines $R = \beta^{-1}$. From (c) and (b) we have $\Pi = \Pi_H = 1$. Using (h) we find $\widehat{MC} = 1$. The remaining system (composed by equations (d), (e), (j) and (k)) is:
+
+\begin{subequations}
+    \label{ser}
+    \begin{align}
+        &\mathcal{Q} = \left[(1-\alpha)S^{\eta-1} + \alpha \right]^{\frac{1}{\eta-1}}\\
+        &Y =  N\\
+        &1 = C^\sigma Y^\varphi \left[(1-\alpha) + \alpha S^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M\\
+        &C = \mathcal Q^{\frac{1}{\sigma}}\\
+        &Y = C \left[(1-\alpha) + \alpha S^{1-\eta} \right]^{\frac{\eta}{1-\eta}} \left[(1-\alpha)  +  \alpha \mathcal S^{\gamma - \eta} \mathcal Q^{\eta - \frac{1}{\sigma}} \right]
+    \end{align}
+\end{subequations}
+
+This system cannot be solved analytically in the general case, however, using the values showed in calibration for $\alpha, \sigma, \eta, \gamma, \epsilon$ and $\varphi$ and defining the optimal subsidy ($ 1-\tau = \frac{1}{(1-\alpha)\mathcal M}  $), as showed in appendix C, we obtain the following steady state values:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{clc}
+        \hline
+        \textbf{Variable} & \textbf{Description} & \textbf{Value}\\
+        \hline
+        $Y$ & Output & 1.13622 \\
+        $C$ & Consumption & 1.07964 \\
+        $C/Y$ & Consumption-to-GDP Ratio & 0.95020 \\
+        $S$ & Terms of trade & 1.13622 \\
+        $NX/Y$ & New exports in terms of domestic output & $0$\\
+        $(R^4 -1)$ & Real annual interest rate &  0.04102\\
+        \hline
+    \end{tabular}
+\end{table}
+
+Note that consumption-to-GDP ratio is lower than 1 while net exports is zero, showing an apparent contradiction. However it is justified as domestic output and domestic consumption uses different prices indexes ($P_H$ and $P$, respectively), then net exports in terms of domestic output is given by $\frac{NX}{Y} = \frac{(Y - C \frac{P}{P_H})}{Y} = 1 - \frac{C}{Y} \frac{P}{P_H} = 1 - \frac{C}{Y} S^{0.4} = 0 $.
+
+\section{Dynamic Properties}
+
+Simulating 1000 samples with 201 periods each we obtained the following dynamic properties:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcccc}
+        \hline
+        & Optimal & DI Taylor & CPI Taylor & Peg\\
+        & sd\% & sd\% & sd\% & sd\% \\
+        \hline
+        Output & 0.93 & 0.67 & 0.70 & 0.84 \\
+        Domestic inflation & 0.00 & 0.27 & 0.26 & 0.35 \\
+        CPI inflation & 0.38 & 0.41 & 0.27 & 0.21 \\
+        Nominal int. rate & 0.32 & 0.40 & 0.40 & 0.21 \\
+        Terms of trade & 1.50 & 1.42 & 1.33 & 1.08 \\
+        Nominal depr. rate & 0.95 & 0.85 & 0.52 & 0.00 \\
+        \hline
+        \multicolumn{5}{l}{\textit{Note: } Sd denotes standard deviation in \%}
+    \end{tabular}
+\end{table}
+
+The contribution to welfare losses are:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcccc}
+        \hline
+        &  DI Taylor & CPI Taylor & Peg\\
+        \hline
+        \multicolumn{4}{c}{Benchmark $\mu = 1.2$, $\varphi = 3$}\\
+        Var(Domestic infl.) & 0.0151 & 0.0142 & 0.0261 \\
+        Var(Output gap) & 0.0009 & 0.0019 & 0.0052 \\
+        Total & 0.0160 & 0.0161 & 0.0313 \\
+        \multicolumn{4}{c}{Low steady state markup $\mu = 1.1$, $\varphi = 10$}\\
+        Var(Domestic infl.) & 0.0278 & 0.0262 & 0.0478 \\
+        Var(Output gap) & 0.0009 & 0.0019 & 0.0052 \\
+        Total & 0.0286 & 0.0281 & 0.0529 \\
+        \multicolumn{4}{c}{Low elasticity of labour supply $\mu = 1.2$, $\varphi = 3$}\\
+        Var(Domestic infl.) & 0.0225 & 0.0230 & 0.0551 \\
+        Var(Output gap) & 0.0005 & 0.0005 & 0.0063 \\
+        Total & 0.0230 & 0.0250 & 0.0614 \\
+        \multicolumn{4}{c}{Low markup and elasticity of labour supply $\mu = 1.1$, $\varphi = 10$}\\
+        Var(Domestic infl.) & 0.0414 & 0.0422 & 0.1013 \\
+        Var(Output gap) & 0.0005 & 0.0020 & 0.0063 \\
+        Total & 0.0419 & 0.0419 & 0.1076 \\
+        \hline
+        \multicolumn{4}{l}{\textit{Note: } Values are percentage units of steady state consumption}
+    \end{tabular}
+\end{table}
+
+\section{Impulse Response Functions}
+We show the IRFs relative to both shocks present in the model (TFP and world output shocks) in output gap, domestic and total inflation, terms of trade, nominal exchange rate, nominal interest rate and dometic and total price levels (same charts showed in the original paper).
+
+\begin{figure}[H]
+\centering
+\includesvg[inkscapelatex=false, width=0.9\textwidth]{img/figure1.svg}
+\includesvg[inkscapelatex=false, width=0.9\textwidth]{img/figure2.svg}
+\end{figure}
+
+\section{Modification}
+a
+
+\section{The new implications for the static and dynamics properties of the model}
+a
+
+
+\section{Conclusion}
+a
+
+
+
+\appendix
+\section{Consumer problem}
+Consumer problem solution.
+
+\section{Labor subsidy definition}
+a
+
+\section{Optimal price setting}
+The firms optimal price setting problem is given by:
+
+\begin{equation}
+    \bar P_{H,t} = \max_{\bar P_{H,t}} \sum^\infty_{k=0} \theta^k \Et \left[ Q_{t, t+k}[Y_{t+k}(j) (\bar P_{H,t} - MC_{t+k} P_{H,t+k})] \right]
+\end{equation}
+
+The domestic demand for a specific variety is $C_{H,t}(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon} C_{H, t}$ if the price remains unchanged at $\bar P_{H,t}$ until $t+k$ period then: $C_{t+k}(j) = \left( \frac{\bar P_{H,t}(j)}{P_{H,t+k}}\right)^{-\varepsilon} C_{H, t+k}$. Similarly the foreign consumption of this domestic good is $C^i_{t+k}(j) = \int^1_0 \left( \frac{\bar P_{H,t}(j)}{P_{H,t+k}} \right)^{-\varepsilon} C^i_{H, t+k} di$. Market clearing imposes that:
+
+\begin{equation}
+    Y_{t+k}(j) = C_{H,t+k}(j) + \int_0^1 C^i_{H, t+k}(j) di = \left( \frac{\bar P_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \left(C_{H,t+k} +  \int_0^1 C^i_{H, t+k} di \right) \equiv \left( \frac{\bar P_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \tilde C_{H,t+k}
+\end{equation}
+
+Substituting $Q_{t, t+k}$ for the expression obtained in the consumer problem and $Y_{t+k}(j)$ for the expression above in the firms problem:
+
+\begin{equation}
+    \label{}
+    \bar P_{H,t} = \max_{\bar P_{H,t}} \sum^\infty_{k=0} \theta^k \Et \left[ \beta^k \left( \frac{C_{t+k}}{C_t} \right)^{-\sigma} \left( \frac{P_{t}}{P_{t+k}} \right) \left( \frac{\bar P_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \tilde C_{H,t+k} (\bar P_{H,t} - MC_{t+k} P_{H,t+k})  \right]
+\end{equation}
+
+Calculating the first order condition with respect to $\bar P_{H,t}$ and rearranging we get:
+
+\begin{equation}
+    \bar P_{H,t} =  \frac{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}}\tilde C_{H,t+k} P_{H,t+k} MC_{t+k} \mathcal M \right] }{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}} \tilde C_{H,t+k}  \right]}
+\end{equation}
+
+In the zero inflation steady state $\bar P_{H,t} = P_{H,t} = P_{t} = P_H$, implying that, by the previous formula, $MC_{t}  = \frac{1}{\mathcal M} \equiv \frac{\varepsilon-1}{\varepsilon}$. Thus we define $\widehat{MC}_t = \frac{MC_t}{1/ \mathcal M}$ as the marginal cost deviation from steady state. Now using the price dynamics:
+
+\begin{equation}
+    P_{H,t} = [ \theta P_{H,t-1}^{1-\varepsilon} + (1-\theta) \bar P_{H,t}^{1-\varepsilon}]^\frac{1}{1-\varepsilon} \Rightarrow \Pi_{H,t} = \frac{P_{H,t}}{P_{H,t-1}} =  \frac{\left[ \theta P_{H,t}^{1-\varepsilon} + (1-\theta) \bar P_{H,t}^{1-\varepsilon}\right]^\frac{1}{1-\varepsilon}}{P_{H,t-1}} 
+\end{equation}
+
+\begin{equation}
+    P_{H,t} = [ \theta P_{H,t-1}^{1-\varepsilon} + (1-\theta) \bar P_{H,t}^{1-\varepsilon}]^\frac{1}{1-\varepsilon} \Rightarrow \Pi_{H,t} = \frac{P_{H,t}}{P_{H,t-1}} =  \left[ \theta + (1-\theta) \frac{\bar P_{H,t}^{1-\varepsilon}}{P_{H,t-1}^{1-\varepsilon}} \right]^\frac{1}{1-\varepsilon} 
+\end{equation}
+
+Substituing $\bar P_{H,t}$ we reach:
+
+\begin{equation}
+    \Pi_{H,t} = \left[ \theta + \frac{(1-\theta)}{P_{H,t-1}^{1-\varepsilon}} \left(\frac{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}}\tilde C_{H,t+k} P_{H,t+k} \widehat{MC}_{t+k}\right] }{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}} \tilde C_{H,t+k}  \right]} \right)^{1-\varepsilon}\right]^\frac{1}{1-\varepsilon}
+\end{equation}
+
+
+Log-linearizing we get:
+
+\begin{equation}
+    \frac{\pi_{H,t} + p_{H,t-1}}{(1-\theta)(1-\beta \theta) } = \sum^\infty_{k=0} (\beta \theta)^k \Et[\hat{mc}_{t+k} + p_{t+k}] 
+\end{equation}
+
+To obtain a recursive form, subtract for the same expression in $t+1$ multiplied by $\beta$, apply the Law of Iterated Expectations and rearrange:
+
+\begin{equation}
+    \frac{\pi_{H,t} - \beta \Et[\pi_{H,t+1}]}{(1-\theta)(1-\beta \theta) } = \sum^\infty_{k=0} (\beta \theta)^k \Et[\hat{mc}_t + p_{t+k}]  - \beta \Et \sum^\infty_{k=0} (\beta \theta)^k  \mathbb E[\hat{mc}_{t+1+k} + p_{t+k+1}] 
+\end{equation}
+
+
+\begin{equation}
+    \pi_{H,t} = \beta \Et[\pi_{H,t+1}] + \lambda \hat{mc}_t
+\end{equation}
+
+Where $\lambda \equiv \frac{(1-\theta) (1 - \beta \theta)}{\theta}$.
+
+\section{Goods market clearing}
+Market clearing in goods market imposes that, for each domestic good, the total production is equal to domestic + external demands:
+
+\begin{equation}
+    Y_{t}(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon} C_{H,t} + \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon} \int_0^1 C^i_{H, t} di
+\end{equation}
+
+Substituing $C_{H,t} = (1-\alpha) \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} C_t$ and $C^i_{H,t} = \alpha \left( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \right)^{-\gamma} \left( \frac{P^i_{F,t}}{P^i_{t}} \right)^{-\eta} C^i_t$
+
+\begin{equation}
+    Y_{t}(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon} \left((1-\alpha) \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} C_t +  \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \right)^{-\gamma} \left( \frac{P^i_{F,t}}{P^i_{t}} \right)^{-\eta} C^i_t di \right)
+\end{equation}
+
+As $Y_t = \left[\int^1_0 Y_t(j)^{\frac{\varepsilon-1}{\varepsilon}} \right]^\frac{\varepsilon}{\varepsilon-1}$
+
+\begin{equation}
+    \label{}
+    \begin{split}
+    Y_{t} &= \left\{ \int^1_0 \left[ \left( \frac{P_{H,t}(j)}{P_{H,t}} \right)^{-\varepsilon} \left((1-\alpha) \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} C_t +  \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \right)^{-\gamma} \left( \frac{P^i_{F,t}}{P^i_{t}} \right)^{-\eta} C^i_t di \right)\right]^{\frac{\varepsilon-1}{\varepsilon}}dj \right\}^\frac{\varepsilon}{\varepsilon-1}\\
+    Y_{t} &= \left\{ \int^1_0 \left( P_{H,t}(j)^{-\varepsilon} \right)^{\frac{\varepsilon-1}{\varepsilon}}dj \right\}^\frac{\varepsilon}{\varepsilon-1} \left(\frac{1}{P_{H,t}}\right)^{-\epsilon} \left((1-\alpha) \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} C_t +  \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \right)^{-\gamma} \left( \frac{P^i_{F,t}}{P^i_{t}} \right)^{-\eta} C^i_t di \right)
+    \end{split}
+\end{equation}
+
+
+Considering that $\left[ \int^1_0 \left( P_{H,t}(j)^{-\varepsilon} \right)^{\frac{\varepsilon-1}{\varepsilon}}dj \right]^\frac{\varepsilon}{\varepsilon-1} = \left[ \int^1_0 P_{H,t}^{1-\varepsilon}(j)  dj \right]^\frac{\varepsilon}{\varepsilon-1} = P_{H,t}^{-\epsilon}$ we get:
+
+\begin{equation}
+    \begin{split}
+        Y_{t} &= (1-\alpha) \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} C_t +  \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \right)^{-\gamma} \left( \frac{P^i_{F,t}}{P^i_{t}} \right)^{-\eta} C^i_t di \\
+        Y_{t} &= \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} \left[(1-\alpha)  C_t +  \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t} P^i_{F,t}} \right)^{-\gamma}  \left( \frac{\mathcal{E}_{i,t} P^i_{F,t}}{P_{H,t}} \right)^{-\eta} \left(\frac{P_t}{\mathcal E_{i,t} P_t^i} \right)^{-\eta} C^i_t di \right]
+    \end{split}
+\end{equation}
+
+\begin{equation}
+    Y_{t} = C_t \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} \left[(1-\alpha)  +  \alpha \int_0^1 \left(\mathcal S^i_t \mathcal S_{i,t} \right)^{\gamma - \eta} \mathcal Q^{\eta - \frac{1}{\sigma}}_{i,t} di \right] 
+\end{equation}
+
+And finally, using (\ref{tot_level}) we obtain:
+
+\begin{equation}
+    Y_{t} = C_t \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{\eta}{1-\eta}} \left[(1-\alpha)  +  \alpha \int_0^1 \left(\mathcal S^i_t \mathcal S_{i,t} \right)^{\gamma - \eta} \mathcal Q^{\eta - \frac{1}{\sigma}}_{i,t} di \right] 
+\end{equation}
+
+\section{Optimal Monetary Policy and Welfare Losses}
+a
+
+
+
+\end{document}

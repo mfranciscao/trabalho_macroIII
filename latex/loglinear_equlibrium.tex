@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{bigints}
+
+\newcommand{\Et}{\mathbb{E}_t}
+
+\begin{document}
+
+Log-linear equilibrium\\
+
+\begin{subequations}
+\begin{align}
+    \Et[c_{t+1}] + \frac{1}{\sigma} \Et[\pi_{t+1}] & = c_t + \frac{1}{\sigma}r_t - \frac{\rho}{\sigma} \\
+    \beta \Et[\pi_{H,t+1}] & = \pi_{H,t} - \lambda \hat{mc}_t  \\
+    & taylor \\
+    a_{t+1} & = \rho_a a_t + \varepsilon^a_t\\
+    y^*_{t+1} & = \rho_y y_t^* + \varepsilon^*_t\\
+    \bar y_{t+1} - \Gamma a_{t+1} - \alpha \Psi y^*_{t+1} & = \Omega\\
+    x_{t+1} - y_t + \bar y_{t+1} & = 0\\
+    -c^*_{t+1} +y^*_{t+1} & = 0\\
+    c^*_{t+1} - c_{t+1} - \frac{1}{\sigma} q_{t+1} & = 0\\
+    q_{t+1} - (1 - \alpha) s_{t+1} & = 0\\
+    y_{t+1} - c_{t+1} - \alpha \gamma s_{t+1} - \alpha \bigg(\eta - \frac{1}{\sigma} \bigg) q_{t+1} & = 0\\
+    -\pi_{t+1} + \pi_{H,t+1} + \alpha s_{t+1} & = \alpha s_t\\
+    s_{t+1} - \Delta e_{t+1} + \pi_{H,t+1} & = s_t\\
+    -\hat{mc}_{t+1} + (\sigma_\alpha + \varphi) y_{t+1} + (\sigma - \sigma_\alpha) y_{t+1}^* - (1+\varphi) a_{t+1} & =0\\
+    -y_{t+1} + a_{t+1} + n_{t+1} & = 0
+\end{align}
+\end{subequations}
+
+Endogenous variables\\
+\begin{tabular}{ccccccccccccccccc} $x_t$ & $y_t^*$ & $\pi_{H,t}$ & $a_t$ & $r_t$ & $\bar y_t$ & $y_t$ & $c_t^*$ & $s_t$ & $q_t$ & $c_t$ & $\pi_t$ & $\Delta e_t$ & $\hat{mc}_t$ & $n_t$ \end{tabular}\\
+
+
+\end{document}

@@ -88,7 +88,7 @@ def gensys(G0, G1, PSI, PI, C=None, DIV=1 + 1e-8,
         RC[1] = 1
     else:
         pass
-        # print("Indeterminancy")
+        print("Indeterminancy")
 
     deta = np.diag(1.0 / deta)
     deta1 = np.diag(deta1)
@@ -106,22 +106,17 @@ def gensys(G0, G1, PSI, PI, C=None, DIV=1 + 1e-8,
 
     usix = list(range(n - nunstab, n))
 
-    if len(usix) ==1:
-        c = -G0i @ np.vstack([-tmat.dot(Q).dot(C), np.linalg.inv([BB[usix, usix] - AA[usix, usix]]) @ Qunstab @ C])
-    else:
-        c = -G0i @ np.vstack([-tmat.dot(Q).dot(C), np.linalg.inv(BB[usix, usix] - AA[usix, usix]) @ Qunstab @ C])
-
+    c = G0i @ np.concatenate((tmat.dot(Q).dot(C), np.linalg.inv(AA[usix][:, usix] - BB[usix][:, usix]) @ Qunstab @ C))
     impact = G0i.dot(np.r_[tmat.dot(Q).dot(
         PSI), np.zeros((nunstab, PSI.shape[1]))])
 
     G1 = np.real(Z.dot(G1).dot(Z.conjugate().T))
     impact = np.real(Z.dot(impact))
     c = np.real(Z.dot(c))
+
     if return_everything:
         GZ = -np.linalg.inv(BB22).dot(Qunstab).dot(PSI)
         GY = Z.dot(G0i[:, -nunstab:])
-
         return G1, impact, M, GZ, GY, RC, c
-
     else:
         return G1, impact, RC, c
