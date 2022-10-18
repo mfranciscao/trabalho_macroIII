@@ -1,0 +1,1273 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[left=1cm, right=1cm, top=1cm, bottom=1.5cm]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{bbm}
+\usepackage{amsmath}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Small Open Economy Model},
+  pdfauthor={Anna Catarina Tavella e Matheus Franciscão},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Small Open Economy Model}
+\author{Anna Catarina Tavella e Matheus Franciscão}
+\date{2022-xx-xx}
+
+\begin{document}
+\maketitle
+
+\hypertarget{problem-of-the-consumer-for-reference}{%
+\subsection{1 - Problem of the consumer (for
+reference)}\label{problem-of-the-consumer-for-reference}}
+
+\(\displaystyle {max} \ \mathbb{E}_0 \sum_{t=0}^\infty \beta^tU(C_t,N_t) = \displaystyle {max} \ E_0 \sum_{t=0}^\infty \beta^tU \left(\left[ (1-\alpha)^{\frac{1}{\eta}} (C_{H,t})^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} (C_{F,t})^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)\)
+
+subject to the budget constraint (specified below), where
+
+\(C_{H,t} \equiv \displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}}\),
+\(C_{F,t} \equiv \displaystyle \left( \int_0^1 (C_{i,t})^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}}\),
+\(C_{i,t} \equiv \displaystyle \left( \int_0^1 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}}\)
+
+and
+\(C_t \equiv \left[ (1-\alpha)^{\frac{1}{\eta}} (C_{H,t})^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} (C_{F,t})^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}}\)
+
+Substituting, we get
+
+\(\displaystyle {max} \ \mathbb{E}_0 \sum_{t=0}^\infty \beta^tU \left(\left[ (1-\alpha)^{\frac{1}{\eta}} \left [\displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right]^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} \left[ \displaystyle \left( \int_0^1 (C_{F,t})^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}} \right]^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)\)
+=
+
+\(\displaystyle {max} \ \mathbb{E}_0 \sum_{t=0}^\infty \beta^tU \left(\left[ (1-\alpha)^{\frac{1}{\eta}} \left [\displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right]^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} \left[ \displaystyle \left( \int_0^1 \left( \displaystyle \left( \int_0^1 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right)^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}} \right]^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)\)
+
+subject to the budget constraint:
+
+\(\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj + \int_0^1\int_0^1 P_{i,t}(j)C_{i,t}(j)dj\ di + \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\} \leq D_t + W_tN_t + Tt\)
+
+\(\mathcal{L} = \displaystyle \mathbb{E}_t \sum_{t=0}^\infty \beta^t U \left(\left[ (1-\alpha)^{\frac{1}{\eta}} \left [\displaystyle \left( \int_0^1 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right]^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} \left[ \displaystyle \left( \int_0^1 \left( \displaystyle \left( \int_0^1 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj \right) ^{\frac{\varepsilon}{\varepsilon-1}} \right)^{\frac{\gamma-1}{\gamma}}di \right) ^{\frac{\gamma}{\gamma-1}} \right]^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}},N_t \right)\)
+
+\(+ \lambda_t \left(D_t + W_tN_t + Tt \displaystyle - \int_0^1 P_{H,t}(j)C_{H,t}(j)dj - \int_0^1\int_0^1 P_{i,t}(j)C_{i,t}(j)dj\ di - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\}\right)\)
+
+\hypertarget{finding-the-demand-function-for-each-specific-good}{%
+\subsection{2 - Finding the demand function for each specific
+good}\label{finding-the-demand-function-for-each-specific-good}}
+
+\(\displaystyle C_{H,t}(j)= \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}C_{H,t}\),
+\(\displaystyle C_{i,t}(j)= \left( \frac{P_{i,t}(j)}{P_{i,t}}\right)^{-\varepsilon}C_{i,t}\)
+and
+\(\displaystyle C_{i,t}= \left( \frac{P_{i,t}}{P_{F,t}}\right)^{-\gamma}C_{F,t}\)
+
+It's easier by calculating the MRS (marginal rate of substitution)
+between \(C_{H,t}(j)\) and \(C_{H,t}\), as by the optimal allocation, it
+has to be the rate of prices in every period of time (otherwise the
+consumer could by a little less of the product with relative higher
+price and buy another with relative lower price, increasing his
+utility).
+
+\(\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{H,t}(j)} = U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} (1-\alpha)^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{H,t}\right)^{-\frac{1}{\eta}}\frac{\varepsilon}{\varepsilon-1}\left(C_{H,t}^{\frac{\varepsilon-1}{\varepsilon}} \right)^{\frac{\varepsilon}{\varepsilon-1}-1}\int_0^1 \frac{\varepsilon-1}{\varepsilon} C_{H,t}(j)^{-\frac{1}{\varepsilon}}dj\)
+
+After simplifying, we get
+
+\(\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{H,t}(j)} = U_c(C_t,N_t) (1-\alpha)^{\frac{1}{\eta}} C_t^{\frac{1}{\eta}}\left( C_{H,t}\right)^{-\frac{1}{\eta}}C_{H,t}^{\frac{1}{\varepsilon}} \int_0^1 C_{H,t}(j)^{-\frac{1}{\varepsilon}}dj = U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}} \int_0^1 \left[\frac{C_{H,t}}{C_{H,t}(j)}\right]^{\frac{1}{\varepsilon}}dj\)
+
+Similarly,
+
+\(\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{H,t}} = U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} (1-\alpha)^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{H,t}\right)^{-\frac{1}{\eta}} = U_c(C_t,N_t) (1-\alpha)^{\frac{1}{\eta}} C_t^{\frac{1}{\eta}}\left( C_{H,t}\right)^{-\frac{1}{\eta}} = U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}}\)
+
+\(\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{H,t}(j)}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_{H,t}}} = \frac{\displaystyle U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}} \int_0^1 \left[\frac{C_{H,t}}{C_{H,t}(j)}\right]^{\frac{1}{\varepsilon}}dj}{\displaystyle U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}}} = \frac{\displaystyle \int_0^1P_{H,t}(j)dj}{P_{H,t}}\)
+
+After simplifying again, the expression is almost the demand function we
+want.
+
+\(\displaystyle \int_0^1 \left[\frac{C_{H,t}}{C_{H,t}(j)}\right]^{\frac{1}{\varepsilon}}dj = \displaystyle \int_0^1 \frac{P_{H,t}(j)}{P_{H,t}}dj\)
+
+As the interval of both integrals are the same and the variable being
+integrated is also the same, what is inside the integral in both sides
+have also to be the same. So,
+
+\(\displaystyle \left[\frac{C_{H,t}}{C_{H,t}(j)}\right]^{\frac{1}{\varepsilon}} = \frac{P_{H,t}(j)}{P_{H,t}} \Rightarrow \left[\frac{C_{H,t}(j)}{C_{H,t}}\right]^{-\frac{1}{\varepsilon}} = \frac{P_{H,t}(j)}{P_{H,t}} \Rightarrow C_{H,t}(j)= \left[ \frac{P_{H,t}(j)}{P_{H,t}} \right]^{-\varepsilon}C_{H,t}\)
+
+Calculating now the MRS (marginal rate of substitution) between
+\(C_{i,t}(j)\) and \(C_{i,t}\), which is also equal the rate of the
+prices.
+
+\(\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}(j)} =\)
+
+\(\displaystyle U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} \alpha^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{F,t}\right)^{-\frac{1}{\eta}}\frac{\gamma}{\gamma-1}\left(C_{H,t}^{\frac{\gamma-1}{\gamma}} \right)^{\frac{\gamma}{\gamma-1}-1}\int_0^1 \frac{\gamma-1}{\gamma} C_{i,t}^{-\frac{1}{\gamma}}\left[ \frac{\varepsilon}{\varepsilon-1}\left(C_{i,t}^{\frac{\varepsilon-1}{\varepsilon}} \right)^{\frac{\varepsilon}{\varepsilon-1}-1}\int_0^1 \frac{\varepsilon-1}{\varepsilon} C_{i,t}(j)^{-\frac{1}{\varepsilon}}dj \right]di\)
+
+After simplifying, we get
+
+\(\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}(j)} = U_c(C_t,N_t) \alpha^{\frac{1}{\eta}} C_t^{\frac{1}{\eta}}\left( C_{F,t}\right)^{-\frac{1}{\eta}}C_{F,t}^{\frac{1}{\gamma}} \int_0^1 C_{i,t}^{-\frac{1}{\gamma}} \left[ C_{i,t}^\frac{1}{\varepsilon} \int_0^1 C_{i,t}(j)^{-\frac{1}{\varepsilon}}dj \right] di\)
+
+\(\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}(j)} = U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}} \int_0^1 \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \int_0^1 \left[\frac{C_{i,t}}{C_{i,t}(j)}\right]^{\frac{1}{\varepsilon}}dj \ di\)
+
+\(\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}} = U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} \alpha^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{F,t}\right)^{-\frac{1}{\eta}}\frac{\gamma}{\gamma-1}\left(C_{H,t}^{\frac{\gamma-1}{\gamma}} \right)^{\frac{\gamma}{\gamma-1}-1}\int_0^1 \frac{\gamma-1}{\gamma} C_{i,t}^{-\frac{1}{\gamma}}di\)
+
+\(\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{i,t}} = U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}} \int_0^1 \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} di\)
+
+Calculating the MRS we have
+
+\(\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{i,t}(j)}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_{i,t}}} = \frac{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}} \int_0^1 \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \int_0^1 \left[\frac{C_{i,t}}{C_{i,t}(j)}\right]^{\frac{1}{\varepsilon}}dj \ di }{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}} \int_0^1 \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} di} = \frac{\displaystyle \int_0^1P_{i,t}(j)dj}{P_{i,t}}\)
+
+As before, we can simplify again. Also, as there's a continuum of firms,
+we can consider that the price of each product \(P_{i,t}(j)\) is only
+correlated with its specific demand function and not with the demand
+function of other in its country or another country, it follows that
+each specific price is uncorrelated with \(C_{F,t}\) and \(C_{i,t}\).
+Also, as each firm is very small, we can consider that it has negligible
+influence on the aggregate index price of its country (\(P_{i,t}\)).
+Whith these independence assumption, the joint distribution is equal to
+the product of the marginal distributions.
+
+\(\displaystyle \int_0^1 \int_0^1 \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \left[\frac{C_{i,t}}{C_{i,t}(j)}\right]^{\frac{1}{\varepsilon}}dj \ di = \int_0^1 \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} di \int_0^1 \frac{\displaystyle P_{i,t}(j)}{P_{i,t}}dj = \int_0^1 \int_0^1 \frac{\displaystyle P_{i,t}(j)}{P_{i,t}} \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} dj \ di\)
+
+Now, as before, the integrand in both sides needs to be the same. The we
+get the second demand equation.
+
+\(\displaystyle \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \left[\frac{C_{i,t}}{C_{i,t}(j)}\right]^{\frac{1}{\varepsilon}} = \frac{\displaystyle P_{i,t}(j)}{P_{i,t}} \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} \Rightarrow \left[\frac{C_{i,t}(j)}{C_{i,t}}\right]^{-\frac{1}{\varepsilon}} = \frac{\displaystyle P_{i,t}(j)}{P_{i,t}} \Rightarrow C_{i,t}(j) = \left[ \frac{\displaystyle P_{i,t}(j)}{P_{i,t}} \right]^{-\varepsilon}C_{i,t}\)
+
+To find the aggregate demand for each country, in terms of total foreign
+demand, we proceed by calculating the MRS between the aggregate
+consumption for the country and the aggregate consumption of foreign
+goods, which the optimal allocation resulting from the rate between the
+prices, as before.
+
+\(\displaystyle \frac{\partial U(C_t,N_t)}{\partial C_{F,t}} = U_c(C_t,N_t)\frac{\eta}{1-\eta}\left( C_t^{\frac{\eta-1}{\eta}} \right)^{\frac{\eta}{\eta-1}-1} \alpha^{\frac{1}{\eta}}\frac{\eta-1}{\eta}\left( C_{F,t}\right)^{-\frac{1}{\eta}} = U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}\)
+
+\(\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{i,t}}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_{F,t}}} = \frac{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}} \int_0^1 \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} di }{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}} } = \frac{\displaystyle \int_0^1P_{i,t}di}{P_{F,t}}\)
+
+As \(P_{F,t}\) doesn't depend on a specific i, we can put it inside the
+integral. Then we get again two integrans which have to be the same for
+the equality to hold.
+
+\(\displaystyle \left[\frac{C_{F,t}}{C_{i,t}}\right]^{\frac{1}{\gamma}} = \frac{P_{i,t}}{P_{F,t}} \Rightarrow \left[\frac{C_{i,t}}{C_{F,t}}\right]^{-\frac{1}{\gamma}} = \frac{P_{i,t}}{P_{F,t}} \ \ \Rightarrow \ \ C_{i,t} = \left[ \frac{P_{i,t}}{P_{F,t}} \right]^{-\gamma}C_{F,t}\)
+
+\hypertarget{aggregating-the-expenditure}{%
+\subsection{3 - Aggregating the
+expenditure}\label{aggregating-the-expenditure}}
+
+Now that we have the demand functions
+
+\(\displaystyle C_{H,t}(j)= \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}C_{H,t}\),
+\(\displaystyle C_{i,t}(j)= \left( \frac{P_{i,t}(j)}{P_{i,t}}\right)^{-\varepsilon}C_{i,t}\)
+and
+\(\displaystyle C_{i,t}= \left( \frac{P_{i,t}}{P_{F,t}}\right)^{-\gamma}C_{F,t}\)
+
+let's prove that
+
+\(\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj = P_{H,t}C_{H,t}\) ,
+\(\displaystyle \int_0^1 P_{i,t}(j)C_{i,t}(j)dj = P_{i,t}C_{i,t}\) and
+\(\displaystyle \int_0^1 P_{i,t}C_{i,t}dj = P_{F,t}C_{F,t}\)
+
+using the definition of the price indexes:
+
+\(\displaystyle P_{H,t} \equiv \left( \int_0^1 P_{H,t}(j)^{1-\varepsilon}dj \right)^{\frac{1}{1-\varepsilon}}\),
+\(\displaystyle P_{i,t} \equiv \left( \int_0^1 P_{i,t}(j)^{1-\varepsilon}dj \right)^{\frac{1}{1-\varepsilon}}\)
+and
+\(\displaystyle P_{F,t} \equiv \left( \int_0^1 P_{i,t}^{1-\gamma}di \right)^{\frac{1}{1-\gamma}}\)
+
+\(\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj = \int_0^1P_{H,t}(j)\left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}C_{H,t}dj = \frac{C_{H,t}}{P_{H,t}^{-\varepsilon}}\int_0^1P_{H,t}(j)^{1-\varepsilon}dj = \frac{C_{H,t}}{P_{H,t}^{-\varepsilon}}P_{H,t}^{1-\varepsilon} = P_{H,t}C_{H,t}\)
+
+\(\displaystyle \int_0^1 P_{i,t}(j)C_{i,t}(j)dj = \int_0^1P_{i,t}(j)\left( \frac{P_{i,t}(j)}{P_{i,t}}\right)^{-\varepsilon}C_{i,t}dj = \frac{C_{i,t}}{P_{i,t}^{-\varepsilon}}\int_0^1 P_{i,t}(j)^{1-\varepsilon}dj = \frac{C_{i,t}}{P_{i,t}^{-\varepsilon}}P_{i,t}^{1-\varepsilon} = P_{i,t}C_{i,t}\)
+
+\(\displaystyle \int_0^1 P_{i,t}C_{i,t}di = \int_0^1P_{i,t}\left( \frac{P_{i,t}}{P_{F,t}}\right)^{-\gamma}C_{F,t}di = \frac{C_{F,t}}{P_{F,t}^{-\gamma}}\int_0^1 P_{F,t}^{1-\gamma}dj = \frac{C_{F,t}}{P_{F,t}^{-\varepsilon}}P_{F,t}^{1-\varepsilon} = P_{F,t}C_{F,t}\)
+
+With this aggregation, the budget constraint can be simplified
+
+\(\displaystyle \int_0^1 P_{H,t}(j)C_{H,t}(j)dj + \int_0^1\int_0^1 P_{i,t}(j)C_{i,t}(j)dj\ di + \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\} \leq D_t + W_tN_t + Tt\)
+
+\(\displaystyle P_{H,t}C_{H,t} + \int_0^1P_{i,t}C_{i,t}di = P_{H,t}C_{H,t} + P_{F,t}C_{F,t} \leq D_t + W_tN_t + Tt - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\}\)
+
+As the total consumption expenditure by the representative consumer is
+with the domestic produts or foreig products, the budget constraint
+becomes:
+
+\(\displaystyle P_t C_t \leq D_t + W_tN_t + T_t - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\}\)
+
+\hypertarget{finding-the-optimal-share-between-the-domestic-and-imported-goods}{%
+\subsection{4 - Finding the optimal share between the domestic and
+imported
+goods}\label{finding-the-optimal-share-between-the-domestic-and-imported-goods}}
+
+Now we will calculate the MRS between the domestic products and the
+total consumption, which has to be equal to the rate of prices. After,
+we will do the same for the foreign products.
+
+\(\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{H,t}}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_t}} = \frac{\displaystyle U_c(C_t,N_t) \left[ (1-\alpha) \frac{C_t}{C_{H,t}} \right]^{\frac{1}{\eta}}}{\displaystyle U_c(C_t,N_t) } = \frac{P_{H,t}}{P_t} \ \ \Rightarrow \ \ (1-\alpha) \frac{C_t}{C_{H,t}} = \left( \frac{P_{H,t}}{P_t} \right)^\eta \ \ \Rightarrow \ \ C_{H,t} = (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t\)
+
+\(\displaystyle \frac{\displaystyle \frac{\partial U(C_t,N_t)}{\displaystyle \partial C_{F,t}}}{\frac{\displaystyle \partial U(C_t,N_t)}{\displaystyle \partial C_t}} = \frac{\displaystyle U_c(C_t,N_t) \left[ \alpha \frac{C_t}{C_{F,t}} \right]^{\frac{1}{\eta}}}{\displaystyle U_c(C_t,N_t) } = \frac{P_{F,t}}{P_t} \ \ \Rightarrow \ \ \alpha \frac{C_t}{C_{F,t}} = \left( \frac{P_{F,t}}{P_t} \right)^\eta \ \ \Rightarrow \ \ C_{F,t} = \alpha \left( \frac{P_{F,t}}{P_t} \right)^{-\eta}C_t\)
+
+\hypertarget{standard-problem-of-the-representative-consumer}{%
+\subsection{5 - Standard problem of the representative
+consumer}\label{standard-problem-of-the-representative-consumer}}
+
+Now we arrive at a standard problem for the representative consumer
+
+\(\displaystyle \underset{C_t,N_t,D_{t+1}} {max} \ \mathbb{E}_0 \sum_{t=0}^\infty \beta^t U(C_t,N_t) = \displaystyle \underset{C_t,N_t} {max} \ E_0 \sum_{t=0}^\infty \beta^t \left( \frac{C_t^{1-\sigma}}{1-\sigma}-\frac{N_t^{1+\varphi}}{1+\varphi} \right)\)
+
+subject to
+\(\displaystyle D_t + W_tN_t + Tt - \mathbb{E}_t\{ Q_{t,t+1}D_{t+1}\} - P_t C_t = 0\),
+as an optimal condition.
+
+using the separable utility function specified as
+\(\displaystyle U(C_t,N_t)=\frac{C_t^{1-\sigma}}{1-\sigma}-\frac{N_t^{1+\varphi}}{1+\varphi}\)
+
+\(\mathcal{L} = \displaystyle \mathbb{E}_t \sum_{t=0}^\infty \beta^t \left[ \left( \frac{C_t^{1-\sigma}}{1-\sigma}-\frac{N_t^{1+\varphi}}{1+\varphi} \right) + \lambda_t \left( D_t + W_tN_t + Tt - Q_{t,t+1}D_{t+1} - P_t C_t \right) \right]\)
+
+with first order conditions (FOCs):
+
+(\(C_t\)):
+\(\displaystyle \beta^t U_C(C_t,N_t)= \beta^tC_t^{-\sigma} = \beta^t \lambda_t P_t \ \ \Rightarrow \ \ C_t^{-\sigma} = \lambda_t P_t\)
+
+(\(N_t\)):
+\(\displaystyle -\beta^t U_n(C_t,N_t)=\beta^tN_t^{\varphi} = \beta^t \lambda_t W_t \ \ \Rightarrow \ \ N_t^{\varphi} = \lambda_t W_t\)
+
+(\(D_{t+1}\)):
+\(\displaystyle \beta^t \lambda_t Q_{t,t+1} = \beta^{t+1} \mathbb {E}[\lambda_{t+1}] \ \ \Rightarrow \ \ \frac{\mathbb{E}[\lambda_{t+1}]}{\lambda_t} = \frac{Q_{t,t+1}}{\beta}\)
+
+Dividing (\(N_t\)) FOC by (\(C_t\)) FOC, we have the standard equation
+of intratemporal substitution between consumption and leisure
+\(\displaystyle -\frac{U_C(C_t,N_t)}{U_N(C_t,N_t)} =C_t^{\sigma}N_t^{\varphi} = \frac{W_t}{P_t}\)
+
+Advancing one period for the consumption FOC, we have
+\(\mathbb{E} [C_{t+1}^{-\sigma}] = \mathbb{E}[\lambda_{t+1}P_{t+1}]\)
+
+As the model will be log-linearized and an approximation of the first
+order will be used to solve it, we can ignore the Jensen's inequality
+where there is an expectation operator. Up to first order approximation,
+\(\mathbb{E}[xy] \approx \mathbb{E}[x] \mathbb{E}[y]\).
+
+Dividing the consumption FOC in t+1 by the equation in t and
+substituting by the \(\mathbb{E}[\lambda_{t+1}]/\lambda_t\) in the
+\(D_{t+1}\) FOC, we get the Euler equation
+
+\(\displaystyle \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \right] = \mathbb{E} \left[ \frac{\lambda_{t+1} P_{t+1}}{\lambda_t P_t} \right] \ \ \Rightarrow \ \  \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right]= \frac{\mathbb{E}[Q_{t,t+1}]}{\beta} \ \ \Rightarrow \ \ \beta R_t \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right]= 1\)
+
+as \(Q_{t,t+1}\), is the price of a a riskless one-period discount bond
+in domestic currency with gross return \(R_t\).
+
+Log-linearizing
+\(\displaystyle C_t^{\sigma}N_t^{\varphi} = \frac{W_t}{P_t}\) is
+straight forward: \(w_t - p_t = \sigma c_t + \varphi n_t\)
+
+To log-linerize the Euler equation, we'll use the Taylor expansion:
+\(f(x) \approx f(x_0) + f'(x_o)(x-x_0)\). When expanding the exponential
+function around 0, we get \(e^x=e^0+e^0(x-0)=1+x\)
+
+\(\mathbb{E} \left[ \exp \left( \ln \left[ \beta R_t \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}} \right] \right) \right] = \mathbb{E} \left[ \exp \left( \ln(\beta) + r_t -\sigma(c_{t+1}-c_t) + p_t - p_{t+1} \right) \right] = 1 \ \ \Rightarrow\)
+
+\(\displaystyle 1 + \ln(\beta) + r_t -\sigma(\mathbb{E} \left[c_{t+1} \right]-c_t) - \mathbb{E} \left[ \pi_{t+1} \right] = 1 \ \ \Rightarrow \ \ \sigma c_t = \sigma \mathbb{E} \left[c_{t+1} \right] + \mathbb{E} \left[ \pi_{t+1} \right] - r_t - \ln(\beta)\)
+\(\displaystyle \Rightarrow \ \ c_t = \mathbb{E} \left[c_{t+1} \right] -\frac{1}{\sigma} \left( r_t - \mathbb{E} \left[ \pi_{t+1} \right] -\rho\right)\)
+as \(\rho \equiv \frac{1-\beta}{\beta} \approx -\ln(\beta)\)
+
+\hypertarget{terms-of-trade}{%
+\subsection{6 - Terms of trade}\label{terms-of-trade}}
+
+Let's log-linearize the expression for the bilateral terms of trade
+\(\displaystyle S_t \equiv \frac{P_{F,t}}{P_{H,t}}= \left( \int_0^1 S_{i,t}^{1-\gamma}di \right)^{\frac{1}{1-\gamma}} \ \ \Rightarrow \ \ S_t^{1-\gamma} = \int_0^1 S_{i,t}^{1-\gamma}di\)
+
+\(\displaystyle \exp \left(\ln \left[ S_t^{1-\gamma}\right] \right) = \int_0^1 \exp \left(\ln \left[ S_{i,t}^{1-\gamma}\right] \right)di \ \ \Rightarrow \ \ \exp[(1-\gamma)s_t]=\int_0^1 \exp[(1-\gamma)s_{i,t}]di\)
+
+Applying the exponential Taylor expansion (\(e^x = 1 + x\)) in both
+sides, we get
+\(\displaystyle 1+(1+\gamma)s_t = 1 + (1+\gamma) \int_0^1 s_{i,t}di \ \ \Rightarrow \ \ s_t = \int_0^1 s_{i,t}di\)
+
+To log-linearize the CPI formula, considering that it is a symmetric
+steady-state, we have \(P_{H,t}=P_{F,t}=P_t\). Now, taking logs in both
+sides and using the Taylor expansion for a vector of two variables we
+have
+\(\displaystyle f(x,y) \approx f(x_0,y_0)+\frac{\partial f(x,y)}{\partial x} \biggr|_{x_0,y_0}(x-x_0)+\frac{\partial f(x,y)}{\partial y} \biggr|_{x_0,y_0}(y-y_0)\)
+So,
+\(\displaystyle (P_t)^{\eta-1} = (1-\alpha)(P_{H,t})^{1-\eta} + \alpha(P_{F,t})^{1-\eta}\)
+
+By the CPI definition, we have
+\(\displaystyle P_t \equiv \left[ (1-\alpha)(P_{H,t})^{1-\eta} + \alpha(P_{F,t})^{1-\eta} \right]^{\frac{1}{1-\eta}} \ \ \Rightarrow \ \ (P_t)^{1-\eta} = (1-\alpha)(P_{H,t})^{1-\eta} + \alpha(P_{F,t})^{1-\eta}\)
+
+Taking logs, we have
+\((1-\eta)\ln(P_t) = \ln\left[ (1-\alpha)(P_{H,t})^{1-\eta} + \alpha(P_{F,t})^{1-\eta} \right]=f(P_{H,t},P_{F,t})\)
+
+Applying the Taylor expansion on the right side using \(x = P_{H,t}\),
+\(y = P_{F,t}\) and \(x_0 = y_0 = P_t\),
+
+\(\displaystyle (1-\eta)p_t \approx \ln \left[ (1-\alpha)(P_t)^{1-\eta} + \alpha(P_t)^{1-\eta} \right]+ \frac{(1-\alpha)(1-\eta)P_t^{-\eta}}{P_t^{1-\eta}}(P_{H,t}-P_t) + \frac{\alpha(1-\eta)P_t^{-\eta}}{P_t^{1-\eta}}(P_{F,t}-P_t)\)
+
+\(\displaystyle (1-\eta)p_t = \ln(P_t^{1-\eta}) + (1-\alpha)(1-\eta)\frac{P_{H,t}-P_t}{P_t} + \alpha(1-\eta)\frac{P_{F,t}-P_t}{P_t}\).
+
+\(p_t \approx p_t + (1-\alpha)[\ln(P_{H,t})-\ln(P_t)] + \alpha[\ln(P_{F,t})-\ln(P_t)] \ \ \Rightarrow \ \  p_t = (1-\alpha)p_{H,t}+\alpha \ p_{F,t}\),
+as defined in the paper.
+
+As \(s_t \equiv p_{F,t}-p_{H,t}\),
+\(p_t=(1-\alpha)P_{H,t}+\alpha (s_t+p_{H,t}) = p_{H,t} + \alpha s_t\)
+
+The domestic inflation rate is defined as
+\(\displaystyle \pi_{H,t} \equiv p_{H,t}-p_{H,t-1}\), taking the
+difference between the equation between t and t-1, we have
+\(p_t-p_{t-1}=p_{H,t}-p_{H,t-1}+\alpha(s_t-s_{t-1}) \ \ \Rightarrow \ \ \pi_t = \pi_{H,t}+\alpha \Delta s_t\).
+
+Assuming that the law of one price is valid in all times (the same goods
+produced in different countries have the same price when converting to
+the domestic currency, using the nominal interest rate), we have
+\(P_{i,t}(j) = \mathcal{E}_{i,t}P_{i,t}^i(j)\) for all
+\(i, j \in [0,1]\).
+
+As
+\(P_{i,t}^i \equiv \displaystyle \left( \int_0^1 P_{i,t}^i(j)^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}}\),
+we have
+\(\displaystyle \mathcal{E}_{i,t}P_{i,t}^i = \mathcal{E}_{i,t} \left( \int_0^1 P_{i,t}^i(j)^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}} = \left( (\mathcal{E}_{i,t})^{1-\varepsilon} \int_0^1 P_{i,t}^i(j)^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}}\)
+
+\(\displaystyle = \left( \int_0^1 \left( \mathcal{E}_{i,t}P_{i,t}^i(j)\right) ^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}} = \left( \int_0^1 P_{i,t}(j)^{{1-\varepsilon}}dj \right) ^{\frac{1}{1-\varepsilon}} = P_{i,t}\)
+
+Now, we have
+\(\displaystyle P_{F,t}= \left( \int_0^1 P_{i,t}^{{1-\gamma}}di \right) ^{\frac{1}{1-\gamma}} = \left( \int_0^1 \left( \mathcal{E}_{i,t}P_{i,t}^i \right)^{{1-\gamma}}di \right)^{\frac{1}{1-\gamma}} \ \ \Rightarrow \ \ P_{F,t}^{1-\gamma} = \int_0^1 \left( \mathcal{E}_{i,t}P_{i,t}^i \right)^{{1-\gamma}}di\)
+
+Log-linearizing the last expression, we get
+\(\displaystyle \exp \left[(1-\gamma)\ln P_{F,t} \right] = \int_0^1 \exp \left[(1-\gamma) \ln \left( \mathcal{E}_{i,t}P_{i,t}^i \right) \right]di\)
+
+\(\Rightarrow \ \  \displaystyle 1 + (1-\gamma)p_{F,t} = \int_0^1 \left[ 1+ (1-\gamma)(e_{i,t}+p_{i,t}^i)\right]di \ \ \Rightarrow \ \ p_{F,t} = \int_0^1 (e_{i,t}+p_{i,t}^i)di=e_t+p_t^*\),
+
+where \(\displaystyle e_t \equiv \int_0^1 e_{i,t} \ di\) and
+\(\displaystyle p_t^*\equiv \int_0^1 p_{i,t}^i \ di\). Also, we have
+that \(s_t = p_{F,t}-p_{H,t}=e_t + p_t^*-p_{H,t}\).
+
+Defining the bilateral real exchange rate
+\(\displaystyle \mathcal{Q}_{i,t} \equiv \frac{\mathcal{E}_{i,t}P_{i,t}}{P_t}\)
+and the (log) effective real exchange rate
+\(\displaystyle q_t \equiv \int_0^1 q_{i,t}di\) we have
+\(\displaystyle q_t = \int_0^1 \ln \left( \frac{\mathcal{E}_{i,t}P_{i,t}}{P_t} \right)di= \int_0^1 \left(e_{i,t}+p_{i,t}-p_t \right)di = e_t+p_t^*-p_t = s_t+p_{H,t}-(p_{H,t}+\alpha s_t) = (1-\alpha)s_t\)
+
+\hypertarget{international-risk-sharing}{%
+\subsection{7 - International risk
+sharing}\label{international-risk-sharing}}
+
+The problem of the representative household in any country is the same,
+as the economies are all equal. There is, any country has an Euler
+equation like
+\(\displaystyle \beta \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right]= Q_{t,t+1}\).
+
+The condition for the clearing of the international market is that
+\(Q_{t,t+1}\) is unique. So the price converted to a common current has
+to be the same. So, for every foreign country, the Euler equation
+becomes
+
+\(\displaystyle \beta \mathbb{E} \left[ \left( \frac{C_{t+1}^i}{C_t^i} \right)^{-\sigma} \frac{P_t^i \mathcal{E}_t^i}{P_{t+1}^i \mathcal{E}_{t+1}^i}\right] = Q_{t,t+1}\).
+
+Combining both equations, using the definition of the real exchange rate
+\(\displaystyle \mathcal{Q}_{i,t} \equiv \frac{\mathcal{E}_{i,t}P_{i,t}}{P_t}\)
+and solving for \(C_t\), we have
+
+\(\displaystyle \beta \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{P_t}{P_{t+1}}\right] = \beta \mathbb{E} \left[ \left( \frac{C_{t+1}^i}{C_t^i} \right)^{-\sigma} \frac{P_t^i \mathcal{E}_t^i}{P_{t+1}^i \mathcal{E}_{t+1}^i}\right] \ \ \Rightarrow \ \ \mathbb{E} \left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma} \frac{1}{P_{t+1}}\right] = \mathbb{E} \left[ \left( \frac{C_{t+1}^i}{C_t^i} \right)^{-\sigma} \frac{\mathcal{Q}_{i,t}}{P_{t+1}^i \mathcal{E}_{t+1}^i}\right]\)
+
+\(\displaystyle \Rightarrow \ \ (C_t)^\sigma = \mathbb{E} \left[ {C_{t+1}}^\sigma \left( C_{t+1}^i \right)^{-\sigma} \frac{P_{t+1}}{P_{t+1}^i \mathcal{E}_{t+1}^i}\right]\mathcal{Q}_{i,t}(C_t^i)^\sigma \ \ \Rightarrow \ \ C_t = \mathbb{E} \left[ \frac{C_{t+1}}{C_{t+1}^i} (\mathcal{Q}_{i,t+1})^{-\frac{1}{\sigma}}\right] C_t^i \mathcal{Q}_{i,t}^\frac{1}{\sigma} \ \ \Rightarrow \ \ C_t = \vartheta_i C_t^i \mathcal{Q}_{i,t}^\frac{1}{\sigma}\),
+
+where
+\(\displaystyle \vartheta_i = \mathbb{E} \left[ \frac{C_{t+1}}{C_{t+1}^i} (\mathcal{Q}_{i,t+1})^{-\frac{1}{\sigma}}\right]\)
+is a constant and generally will depend on initial relative net asset
+positions. Assuming identical conditions for all economies, the net
+asset position for all of the is zero. In this case,
+\(\vartheta_i = \vartheta = 1\) for all i. As the symmetric foresight
+steady-state in this condition is shown in the appendix A.
+
+The international market clearing implies that the total goods produced
+in a country is consumed by domestically or it's exported. The integral
+represents the sum of the demand for products of the economy analysed by
+foreign countries. In a case with economies not with measure zero, we
+need to exclude the economy analysed from the integral do avoid double
+counting.
+
+\(\displaystyle Y=C_H+C_i=(1-\alpha)\left( \frac{P_{H}}{P} \right)^{-\eta}C + \int_0^1 \left( \frac{P_i^i}{P_F} \right)^{-\gamma}C_F di = (1-\alpha)\left( \frac{P_{H}}{P} \right)^{-\eta}C + \alpha \int_0^1 \left( \frac{P_i^i}{P_F^i} \right)^{-\gamma} \left( \frac{P_{F}^i}{P^i} \right)^{-\eta}C^idi\)
+
+\(\displaystyle Y= (1-\alpha)\left( \frac{P_{H}}{P} \right)^{-\eta}C + \alpha \int_0^1 \left( \frac{P_F^i}{P_i^i} \right)^{\gamma} \left( \frac{P_{F}^i}{P^i} \right)^{-\eta}C^idi= (1-\alpha)\left( \frac{P_{H}}{P} \right)^{-\eta}C + \alpha \int_0^1 \left( \frac{\mathcal{E}_i P_F^i }{P_H} \right)^{\gamma} \left( \frac{P_{F}^i}{P^i} \right)^{-\eta}C^idi\),
+
+where \(P_i^i\) is the price in the domestic economy converted to the
+currency of country i, or
+\(\displaystyle P_i^i = \frac{P_i}{\mathcal{E}_i} = \frac{P_H}{\mathcal{E}_i}\),
+as the goods have the same price in the international market, after
+converting to the same currency. After simplifying, we have
+
+\(\displaystyle Y = \left( \frac{P_{H}}{P} \right)^{-\eta} \left[ (1-\alpha)C + \alpha \int_0^1 \left( \frac{ \mathcal{E}_i P_F^i }{P_H} \right)^{\gamma-\eta} \left( \frac{\mathcal{E}_i P_i}{P} \right)^\eta C^idi \right] = \left( \frac{P_{H}}{P} \right)^{-\eta} \left[ (1-\alpha)C + \alpha \int_0^1 \left( \frac{ \mathcal{E}_i P_F^i }{P_H} \right)^{\gamma-\eta} Q_i^\eta C^idi \right]\)
+
+Considering that
+\(\displaystyle P = \left[ (1-\alpha) \left( P_H \right)^{1-\eta} + \alpha \left( P_F\right)^{1-\eta} \right]^{\frac{1}{1-\eta}}\)
+in the steady-state,
+\(\displaystyle P^{1-\eta} = (1-\alpha) \left( P_H \right)^{1-\eta} + \alpha \left( P_F \right)^{1-\eta}\),
+as \(\displaystyle \mathcal{S}_i \equiv \frac{P_i}{P_H}\). So,
+
+\(\displaystyle \left( \frac{P}{P_H} \right)^{1-\eta} = (1-\alpha) + \alpha \left( \frac{P_F}{P_H}\right)^{1-\eta} = (1-\alpha) + \alpha \mathcal{S}_i^{1-\eta} \ \ \Rightarrow \ \ \frac{P}{P_H}=\left[ (1-\alpha)+\alpha \mathcal{S}^{1-\eta}\right]^{\frac{1}{1-\eta}}= \left[ (1-\alpha) + \alpha \int_0^1(\mathcal{S}_i)^{1-\eta}di \right]^{\frac{1}{1-\eta}} \equiv h(\mathcal{S})\)
+
+Defining
+\(\displaystyle \mathcal{S}^i = \frac{\mathcal{E}_i P_F^i}{P_i}\) and
+using the fact that
+\(\displaystyle C^i=C \mathcal{Q}^{-\frac{1}{\sigma}}\) as
+\(\vartheta_i = 1\) in a symmetric steady-state, we have
+
+\(\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \int_0^1 \left( \frac{ \mathcal{E}_i P_F^i }{P_i} \frac{P_i}{P_H} \right)^{\gamma-\eta} Q_i^{\eta-\frac{1}{\sigma}} di \right]= h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}^i \frac{P_F}{P_H} \right)^{\gamma-\eta} Q_i^{\eta-\frac{1}{\sigma}} di \right]\)
+
+As we will work with a first order approximation, the equality below is
+valid.
+
+\(\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}^i \mathcal{S}_i \right)^{\gamma-\eta} Q_i^{\eta-\frac{1}{\sigma}} di \right] = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \int_0^1 ( \mathcal{S}^i)^{\gamma} di \int_0^1 ( \mathcal{S}_i)^{-\eta} di \int_0^1 Q_i^{\eta-\frac{1}{\sigma}} di \right]\)
+
+\(\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \mathcal{S}^{-\eta} \int_0^1 \left( \frac{P_F^i}{P_H} \right)^{\gamma} di \int_0^1 \left( \frac{\mathcal{E}_i P_F^i}{P} \right)^{\eta-\frac{1}{\sigma}} di \right]\),
+
+as if
+\(\displaystyle \mathcal{S}^{1-\gamma}=\int_0^1 \mathcal{S}^{1-\gamma}di\),
+we can substitute variables \(-\eta=1-\gamma\) and we get the result.
+
+\(\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \mathcal{S}^{-\eta} \left( \frac{1}{P_H} \right)^{\gamma} \int_0^1 \left( P_F^i \right)^{\gamma} di \int_0^1 \left( \frac{\mathcal{E}_i P_F^i}{P} \right)^{\eta-\frac{1}{\sigma}} di \right]\)
+
+\(\displaystyle Y= h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \mathcal{S}^{-\eta} \left( \frac{1}{P_H} \right)^{\gamma} (P^*)^{\gamma} \int_0^1 \left( \frac{\mathcal{E}_i P_F^i}{P_H} \frac{P_H}{P} \right)^{\eta-\frac{1}{\sigma}} di \right]\),
+
+using the fact that
+\(\left( P_F^i \right)^{1-\gamma} = \displaystyle \int_0^1 \left( P_i^i \right)^{1-\gamma}di\)
+and using P* for the international price index of imported goods.
+
+\(\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \mathcal{S}^{-\eta} \left( \frac{P^*}{P_H} \right)^{\gamma} \int_0^1 \left( \frac{\mathcal{S}^i}{h(\mathcal{S})} \right)^{\eta-\frac{1}{\sigma}} di \right] =h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \mathcal{S}^{-\eta} \mathcal{S}^\gamma \left( \frac{1}{h(\mathcal{S})} \right)^{\eta-\frac{1}{\sigma}} \int_0^1 ( \mathcal{S}^i )^{\eta-\frac{1}{\sigma}} di \right]\)
+
+\(\displaystyle Y = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \mathcal{S}^{\gamma-\eta} \left( \frac{1}{h(\mathcal{S})} \right)^{\eta-\frac{1}{\sigma}} \mathcal{S} ^{\eta-\frac{1}{\sigma}} \right] = h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \mathcal{S}^{\gamma-\eta} \left( \frac{\mathcal{S}}{h(\mathcal{S})} \right)^{\eta-\frac{1}{\sigma}} \right]\),
+
+which yields the result.
+\(\displaystyle Y= h(\mathcal{S})^{\eta}C \left[ (1-\alpha) + \alpha \mathcal{S}^{\gamma-\eta} q(\mathcal{S})^{\eta-\frac{1}{\sigma}} \right]\),
+where
+\(\displaystyle \mathcal{Q}=\frac{\mathcal{S}}{h(\mathcal{S})} \equiv q(\mathcal{S})\)
+
+Substituting \(\displaystyle C = C^*q(\mathcal{S})^\frac{1}{\sigma}\) in
+the expression above, we have
+
+\(\displaystyle Y= (1-\alpha)h(\mathcal{S})^{\eta}C + \alpha h(\mathcal{S})^{\eta} \mathcal{S}^{\gamma-\eta} q(\mathcal{S})^{\eta-\frac{1}{\sigma}} = (1-\alpha)h(\mathcal{S})^{\eta} C^*q(\mathcal{S})^\frac{1}{\sigma} + \alpha h(\mathcal{S})^{\eta} \mathcal{S}^{\gamma-\eta} q(\mathcal{S})^{\eta-\frac{1}{\sigma}} C^*q(\mathcal{S})^\frac{1}{\sigma}\)
+
+Imposing market clearing \(C^*=Y^*\), we have
+
+\(\displaystyle Y=\left[ (1-\alpha)h(\mathcal{S})^{\eta} q(\mathcal{S})^\frac{1}{\sigma} + \alpha \mathcal{S}^{\gamma-\eta} h(\mathcal{S})^{\eta} q(\mathcal{S})^{\eta} \right]Y^* = \left[ (1-\alpha)h(\mathcal{S})^{\eta} q(\mathcal{S})^\frac{1}{\sigma} + \alpha \mathcal{S}^{\gamma} h(\mathcal{S})^{-\eta} q(\mathcal{S})^{-\eta} h(\mathcal{S})^{\eta} q(\mathcal{S})^{\eta} \right]Y^*\)
+
+\(\displaystyle Y= \left[ (1-\alpha)h(\mathcal{S})^{\eta} q(\mathcal{S})^\frac{1}{\sigma} + \alpha \mathcal{S}^{\gamma} \right]Y^* = \left[ (1-\alpha)h(\mathcal{S})^{\eta} q(\mathcal{S})^\frac{1}{\sigma} + \alpha q(\mathcal{S})^{\gamma} h(\mathcal{S})^{\gamma} \right]Y^* \equiv v (\mathcal{S})Y^*\),
+
+where \(v (\mathcal{S})>0\), \(v' (\mathcal{S})>0\) and \(v (1)=1\)
+
+The clearing of labour market in steady-state implies (the derivation of
+the two equations below are in the firm's equations)
+
+\(\displaystyle C^\sigma \left( \frac{Y}{A} \right)^\varphi= \frac{W}{P}\);
+
+\(\displaystyle\displaystyle C^\sigma \left( \frac{Y}{A} \right)^\varphi= \frac{W}{P}\)
+\(\displaystyle MC_t = \frac{W_t(1-\tau)}{P_{H,t} A_t} \ \ \Rightarrow \ \  MC = \frac{W(1-\tau)}{P_{H} A}\)
+
+From the Taylor expansion in the price-setting problem of the firm, we
+have
+
+\(\displaystyle \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ 1-\frac{\varepsilon}{\varepsilon-1} MC \right\}=0 \ \ \Rightarrow \ \ MC=1-\frac{1}{\varepsilon}\)
+
+\(\displaystyle MC = \frac{W(1-\tau)}{P_{H} A} = 1-\frac{1}{\varepsilon} \ \ \Rightarrow \ \ \frac{W}{P}=A \frac{1-\frac{1}{\varepsilon}}{1-\tau} \frac{P_H}{P}=A \frac{1-\frac{1}{\varepsilon}}{1-\tau} \frac{1}{h (\mathcal{S})}\)
+
+\(\displaystyle C^\sigma \left( \frac{Y}{A} \right)^\varphi = A \frac{1-\frac{1}{\varepsilon}}{1-\tau} \frac{1}{h (\mathcal{S})} \ \ \Rightarrow \ \ \left( C^*\mathcal{Q}^\frac{1}{\sigma} \right)^\frac{\sigma}{\varphi} \left( \frac{Y}{A} \right) = \left(A \frac{1-\frac{1}{\varepsilon}}{1-\tau} \frac{1}{h (\mathcal{S})} \right)^\frac{1}{\varphi}\)
+
+\(\displaystyle Y=A^{1+\frac{1}{\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{(1-\tau)(C^*)^\sigma} \frac{1}{ h (\mathcal{S})\mathcal{Q}} \right)^\frac{1}{\varphi} = A^{\frac{1+\varphi}{\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{(1-\tau)(Y^*)^\sigma \mathcal{S}} \right)^\frac{1}{\varphi}\)
+
+Substituting
+\(\displaystyle Y=Y^*=A^{\frac{1+\varphi}{\sigma+\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right)^{\frac{1}{\sigma+\varphi}}\)
+and solving for \(\mathcal{S}\), we have
+
+\(\displaystyle A^{\frac{1+\varphi}{\sigma+\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right)^{\frac{1}{\sigma+\varphi}}=A^{\frac{1+\varphi}{\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{(1-\tau)(Y^*)^\sigma \mathcal{S}} \right)^\frac{1}{\varphi} \ \ \Rightarrow \ \ A^{\frac{\varphi({1+\varphi})}{\sigma+\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right)^{\frac{\varphi}{\sigma+\varphi}}=A^{1+\varphi} \frac{1-\frac{1}{\varepsilon}}{(1-\tau)(Y^*)^\sigma \mathcal{S}}\)
+
+\(\displaystyle A^{\frac{\varphi+\varphi^2-\sigma-\varphi -\sigma\varphi-\varphi^2}{\sigma+\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right)^{\frac{\varphi-\sigma-\varphi}{\sigma+\varphi}} = \frac{1}{(Y^*)^\sigma \mathcal{S}} \ \ \Rightarrow \ \  A^{\frac{-\sigma(1+\varphi)}{\sigma+\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right)^{\frac{-\sigma}{\sigma+\varphi}} = \frac{1}{\left[A^{\frac{1+\varphi}{\sigma+\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right)^{\frac{1}{\sigma+\varphi}} \right]^\sigma \mathcal{S}}\)
+
+\(\displaystyle A^{-\frac{1+\varphi}{\sigma+\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right)^{-\frac{1}{\sigma+\varphi}} = \frac{1}{\left[A^{\frac{1+\varphi}{\sigma+\varphi}} \left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right)^{\frac{1}{\sigma+\varphi}} \right] \mathcal{S}^{\frac{1}{\sigma}}} \ \ \Rightarrow \ \ A^{-(1+\varphi)} \left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right)^{-1} = \frac{1}{\left[A^{1+\varphi}\left( \frac{1-\frac{1}{\varepsilon}}{1-\tau} \right) \right] \mathcal{S}^{\frac{\sigma+\varphi}{\sigma}}} \ \ \Rightarrow \ \ \mathcal{S}^{\frac{\sigma+\varphi}{\sigma}}=1\),
+
+which gives the result \(\mathcal{S}=1\), which in turn implies
+\(\mathcal{S}_i=1\) for all \(i\) (purchasing parity holds).
+
+\hypertarget{uncovered-interest-parity-and-the-terms-of-trade}{%
+\subsection{8 - Uncovered interest parity and the terms of
+trade}\label{uncovered-interest-parity-and-the-terms-of-trade}}
+
+As
+\(\displaystyle \mathbb{E}\left[ \mathcal{Q}_{t,t+1} R_t^i \frac{\mathcal{E}_{i,t+1} }{\mathcal{E}_{i,t} }\right] = 1\)
+and
+\(\displaystyle \mathbb{E}\left[ \mathcal{Q}_{t,t+1} R_t \right] = 1\),
+we have that
+
+\(\displaystyle \mathbb{E}\left[ \mathcal{Q}_{t,t+1} R_t^i \frac{\mathcal{E}_{i,t+1} }{\mathcal{E}_{i,t} }\right] = \displaystyle \mathbb{E}\left[ \mathcal{Q}_{t,t+1} R_t \right] \ \ \Rightarrow \ \  \mathbb{E}\left[ \mathcal{Q}_{t,t+1} \left(R_t-R_t^i \left[ \frac{\mathcal{E}_{i,t+1} }{\mathcal{E}_{i,t} } \right] \right) \right] = 0\)
+
+But to log-linearize it's better to do both sides separately.
+
+\(\displaystyle \mathbb{E} \left[\exp \left( \ln \left[ \mathcal{Q}_{t,t+1} R_t^i \frac{\mathcal{E}_{i,t+1} }{\mathcal{E}_{i,t} }\right] \right) \right] \approx\)
+
+\(\displaystyle \mathbb{E} \left[ 1 + \ln\frac{Q R^i \mathcal{E}_{i}}{\mathcal{E}_{i}}+\frac{1}{\mathcal{Q}R^i}R^i \frac{ \mathcal{E}_{i}}{\mathcal{E}_{i}}(\mathcal{Q}_{t,t+1}-\mathcal{Q}) + \frac{1}{QR^i}\mathcal{Q} \frac{ \mathcal{E}_{i}}{\mathcal{E}_{i}}(R_t^i-R^i) - \frac{1}{\mathcal{Q}R^i}\mathcal{Q} \frac{R^i}{\mathcal{E}_{i}}(\mathcal{E}_{i,t+1}-\mathcal{E}_i) + \frac{1}{\mathcal{Q}R^i}\mathcal{Q} \frac{R^i \mathcal{E}_{i}}{\mathcal{E}_{i}^2}(\mathcal{E}_{i,t}-\mathcal{E}_i) \right]\)
+
+\(\displaystyle = 1+ \ln(\mathcal{Q}R^i) + \mathbb{E} \left[ \hat{q_t}+\hat{r_t}^i - \hat{e}_{i,t+1}+\hat{e}_{i,t}\right]\)
+
+\(\displaystyle \mathbb{E} \left[\exp \left( \ln \left[ \mathcal{Q}_{t,t+1} R_t \right] \right) \right] \approx \mathbb{E} \left[ 1 + \ln(\mathcal{Q}R) +\frac{1}{\mathcal{Q}R}R (\mathcal{Q}_{t,t+1}-Q) +\frac{1}{\mathcal{Q}R} \mathcal{Q} (R_t-R)\right]\)
+
+\(\displaystyle 1+ \ln(\mathcal{Q}R^i) + \mathbb{E} \left[ \hat{q}_t+\hat{r}_t^i - \hat{e}_{i,t+1} + \hat{e}_{i,t}\right] = 1 + \ln(\mathcal{Q}R) + \mathbb{E} \left[ \hat{q}_t + \hat{r}_t \right] \ \ \Rightarrow \ \ \hat{r}^i - \mathbb{E} \left[ e_{i,t+1}-e_{i,t}\right] = \hat{r} \ \ \Rightarrow \ \ r_t^i-r_t=\mathbb{E}_t[\Delta e_{i,t+1}]\)
+
+The aggregation comes from the FOC. The uncovered interest rate parity
+allow households to invest both in domestic and foreign assets:
+\(B_t, B_t^*\). The budget constraint can be written as
+
+\(P_t + Q_{t,t+1}D_{t+1}+Q_{t,t+1}^*\mathcal{E}_{t+1}D_{t+1}^* \leq D_t+\mathcal{E}_{t}D_t^*+W_tN_t+T_t\)
+
+an the lagrangean becomes
+
+\(\mathcal{L} = \displaystyle \mathbb{E}_t \sum_{t=0}^\infty \beta^t \left[ \left( \frac{C_t^{1-\sigma}}{1-\sigma}-\frac{N_t^{1+\varphi}}{1+\varphi} \right) + \lambda_t \left(\mathcal{E}_t D_t^* + W_tN_t + T_t - Q_{t,t+1}^*\mathcal{E}_t D_{t+1}^* - Q_{t,t+1}D_{t+1} - P_t C_t \right) \right]\)
+
+The FOCs are:
+
+\((C_t)\)
+\(\displaystyle C_t^{-\sigma} = \lambda_tP_t \ \ \Rightarrow \ \ \mathbb{E}[C_{t+1}^{-\sigma}] = \mathbb{E}[\lambda_{t+1}P_{t+1}] \ \ \Rightarrow \ \ \displaystyle \mathbb{E}\left[ \frac{\lambda_{t+1}}{\lambda_t}\right] = \mathbb{E}\left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}}\right]\)
+
+\((D_{t+1}^*)\)
+\(\beta \ \mathbb{E}[\lambda_{t+1} \mathcal{E}_{t+1}] = \lambda_t Q_{t,t+1}^* \mathcal{E}_t \ \ \Rightarrow \ \ \displaystyle \mathbb{E}\left[ \frac{\lambda_{t+1}}{\lambda_t}\right] = \mathbb{E}\left[ \frac{Q_{t,t+1}^*\mathcal{E}_t}{\beta \mathcal{E}_{t+1}}\right]\)
+
+\((D_{t+1}^*)\)
+\(\beta \ \mathbb{E}[\lambda_{t+1} ] = \lambda_t Q_{t,t+1}\ \ \Rightarrow \ \ \displaystyle \mathbb{E}\left[ \frac{\lambda_{t+1}}{\lambda_t}\right] = \mathbb{E}\left[ \frac{Q_{t,t+1}}{\beta }\right]\)
+
+\((N_t)\) \(N_t^\varphi=\lambda_t W_t\)
+
+Combining the consumption FOC and the foreign bond's FOC we have
+
+\(\displaystyle \mathbb{E}\left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}}\right] = \mathbb{E}\left[ \frac{Q_{t,t+1}^*\mathcal{E}_t}{\beta \mathcal{E}_{t+1}}\right] \ \ \Rightarrow \ \ \beta \  \displaystyle \mathbb{E}\left[ \frac{1}{Q_{t,t+1}^*} \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}} \frac{\mathcal{E}_{t+1}}{\mathcal{E}_{t}} \right]=1\)
+
+Doing the same steps for the domestic bonds, we have
+
+\(\displaystyle \mathbb{E}\left[ \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}}\right] = \mathbb{E}\left[ \frac{Q_{t,t+1}}{\beta }\right] \ \ \Rightarrow \ \ \beta \  \displaystyle \mathbb{E}\left[ \frac{1}{Q_{t,t+1}} \left( \frac{C_{t+1}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+1}} \right]=1\)
+
+Dividing the equation for foreign bonds by the equation for domestic
+bonds, we have
+
+\(\displaystyle \mathbb{E} \left[ \frac{Q_{t,t+1}}{Q_{t,t+1}^*} \frac{\mathcal{E}_{t+1}}{\mathcal{E}_{t}} \right]=1 \ \ \Rightarrow \ \ \frac{Q_{t,t+1}}{Q_{t,t+1}^*} = \mathbb{E} \left[ \frac{\mathcal{E}_{t+1}}{\mathcal{E}_{t}} \right] \ \ \Rightarrow \ \ \ln(Q_{t,t+1})-\ln(Q_{t,t+1}^*) \approx \mathbb{E}[\ln{\mathcal{E}_{t+1} }-\ln \mathcal{E}_{t}] \ \ \Rightarrow \ \ r_t-r_t^*=\mathbb{E}[\Delta e_{t+1}]\)
+
+From the definition of the log terms of trade, we have
+\(s_t = e_t + p_t^* - p_{H,t}\) and
+\(\mathbb{E}[s_{t+1}] = \mathbb{E}[e_{t+1} + p_{t+1}^* - p_{H,t+1}]\).
+Subtracting the first by the second, we get
+
+\(s_t - \mathbb{E}[s_{t+1}] = e_t + p_t^* - p_{H,t} - \mathbb{E}[e_{t+1}] - \mathbb{E}[p_{t+1}^*] - \mathbb{E}[p_{H,t+1}] \ \ \Rightarrow \ \ s_t = \mathbb{E}[s_{t+1}]-\mathbb{E}[\Delta e_{t+1}] -\mathbb{E}[\pi_{t+1}^*]-\mathbb{E}[\pi_{H,t+1}]=r_t^*-\mathbb{E}[\pi_{t+1}^*] - (r_t-\mathbb{E}[\pi_{H,t+1}])+\mathbb{E}[s_{t+1}]\)
+
+\hypertarget{firms}{%
+\subsection{9 Firms}\label{firms}}
+
+\(\displaystyle N_t \equiv \int_0^1 N_t(j)dj = \int_0^1\frac{Y_t(j)}{A_t}dj=\int_0^1\frac{Y_t(j)}{A_t}\frac{Y_t}{Y_t}dj=\int_0^1\frac{Y_t(j)}{Y_t}dj\frac{Y_t}{A_t}=\frac{Y_t Z_t}{A_t}\),
+where \(\displaystyle Z_t \equiv \int_0^1\frac{Y_t(j)}{Y_t}dj\)
+
+The marginal cost is the same for all firms because of constant returns
+to scale. In this case, the quantity produced is determined by the cost
+function. For each additional worker, the firm has to pay \(W_t\) and
+produces \(\displaystyle \frac{Y_t(j)}{A_t}\) and receives \(P_t\) by
+product.
+
+So, abstracting from the subsidy, the marginal cost is
+\(\displaystyle MC_t = \frac{W_t}{P_{H,t} A_t}\) If we include the
+subsidy, it's as the firm pays a smaller salary. So, the marginal cost
+becomes \(\displaystyle MC_t = \frac{W_t(1-\tau)}{P_{H,t} A_t}\)
+
+Combining the consumption FOC and the labor FOC int he steady-state, we
+have
+
+\(\displaystyle \frac{C^{-\sigma}}{P} = \lambda = N^{\varphi}=\left( \frac{Y}{A} \right)^\varphi\ \ \Rightarrow \ \ C^\sigma \left( \frac{Y}{A} \right)^\varphi=\frac{W}{P}\)
+
+Also, we know that
+\(\displaystyle Y_t^{\frac{\varepsilon-1}{\varepsilon}} = \int_0^1Y_t(j)^{\frac{\varepsilon-1}{\varepsilon}}dj\),
+so
+\(\displaystyle Y_{t+k}^{\frac{\varepsilon-1}{\varepsilon}} = \int_0^1Y_{t+k}(j)^{\frac{\varepsilon-1}{\varepsilon}}dj\)
+and
+
+\(\displaystyle Y_{t+k}(j) \leq \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \left( C_{H,t+k}+\int_0^1C_{H,t+k}^i di\right)\)
+
+Then maximizing, the restriction above is binding (otherwise part of the
+production would have been wasted, which contradicts the hypothesis of
+optimization when the costs are not null). The total demand is
+
+\(\displaystyle Y_{t+k}^{\frac{\varepsilon-1}{\varepsilon}} = \int_0^1 \left[ \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \left( C_{H,t+k}+\int_0^1C_{H,t+k}^i di\right) \right]^{\frac{\varepsilon-1}{\varepsilon}} dj\)
+
+As nothing in the RHS of the above expression depends on (j), we can
+take everything out of the integral.
+
+\(\displaystyle Y_{t+k}^{\frac{\varepsilon-1}{\varepsilon}} = \left[ \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \left( C_{H,t+k}+\int_0^1C_{H,t+k}^i di\right) \right]^{\frac{\varepsilon-1}{\varepsilon}} \int_0^1 dj\)
+and
+
+\(\displaystyle Y_{t+k} = \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \left( C_{H,t+k}+\int_0^1C_{H,t+k}^i di\right)\)
+
+The problem of the firm (price setting) is:
+
+\[\displaystyle \underset{\bar{P}_{H,t}} \max \sum_{k=0}^\infty \theta^kE_t \left\{\beta^k \left( \frac{C_{H,t+k}}{C_{H,t}} \right)^{-\sigma} \left( \frac{P_{H,t}}{P_{H,t+k}} \right) \left[ \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \left( C_{H,t+k}+\int_0^1C_{H,t+k}^i di\right) (\bar{P}_{H,t}-MC_{t+k}^n) \right] \right\}\]
+
+\(\displaystyle \underset{\bar{P}_{H,t}} \max \sum_{k=0}^\infty \theta^kE_t \left\{\beta^k \left( \frac{C_{H,t+k}}{C_{H,t}} \right)^{-\sigma} \left( C_{H,t+k}+\int_0^1C_{H,t+k}^i di\right) \left( \frac{P_{H,t}}{P_{H,t+k}} \right) \left[\frac{\bar{P}_{H,t}^{1-\varepsilon}}{P_{H,t+k}^{-\varepsilon}} -\left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} MC_{t+k}^n) \right] \right\}\)
+
+, which yields, after deriving
+
+\(\displaystyle \underset{\bar{P}_{H,t}} \max \sum_{k=0}^\infty \theta^kE_t \left\{\beta^k \left( \frac{C_{H,t+k}}{C_{H,t}} \right)^{-\sigma} \left( C_{H,t+k}+\int_0^1C_{H,t+k}^i di\right) \left( \frac{P_{H,t}}{P_{H,t+k}} \right) \left[(1-\varepsilon)\frac{\bar{P}_{H,t}^{-\varepsilon}}{P_{H,t+k}^{-\varepsilon}} +\varepsilon \frac{\bar{P}_{H,t}^{-\varepsilon-1}}{P_{H,t+k}^{-\varepsilon}} MC_{t+k}^n) \right] \right\}=0\)
+
+Under flexible prices,
+
+\(\displaystyle (1-\varepsilon)+\varepsilon\frac{MC_{t}^n}{\bar{P}_{H,t}}=0 \ \ \Rightarrow \ \ \bar{P}_{H,t} =\frac{\varepsilon}{\varepsilon-1}MC_{t}^n\)
+
+From appendix B,
+\(\displaystyle \underset{\bar{P}_{H,t}} \max \sum_{k=0}^\infty \theta^kE_t \left\{ Q_{t,t+k} Y_{t+k} \left[ \bar{P}_{H,t}-MC_{t+k}^n\right] \right\}\)
+subject to the demand constraints
+
+\(\displaystyle Y_{t+k} \leq \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \left( C_{H,t+k}+\int_0^1 C_{H,t+k}^idi\right)\)
+
+Because there's monopolistic competition, the demand depends on the
+price set. Substituting the restriction in the maximization problem we
+have
+
+\[\displaystyle \underset{\bar{P}_{H,t}} \max \sum_{k=0}^\infty \theta^kE_t \left\{ Q_{t,t+k} \left[   \left( \frac{\bar{P}_{H,t}(j)}{P_{H,t+k}(j)} \right)^{-\varepsilon} \left( C_{H,t+k}+\int_0^1 C_{H,t+k}^idi\right) \right] \left[ \bar{P}_{H,t}-MC_{t+k}^n\right]\right\}\]
+
+Calculating the CPO, we have:
+
+\(\displaystyle \sum_{k=0}^\infty \theta^kE_t \Bigg\{ Q_{t,t+k} \Bigg[ (-\varepsilon) \left( \frac{\bar{P}_{H,t}^{-\varepsilon-1} }{P_{H,t+k}^{-\varepsilon} } \right)\left( C_{H,t+k}+\int_0^1 C_{H,t+k}^idi \right) \left[ \bar{P}_{H,t}-MC_{t+k}^n\right] \Bigg] + Y_{t+k} \Bigg\} = 0\)
+
+\(\displaystyle \sum_{k=0}^\infty \theta^kE_t \Bigg\{ Q_{t,t+k} \Bigg[ \frac{(-\varepsilon)}{\bar{P}_{H,t}} \left( \frac{\bar{P}_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \left( C_{H,t+k}+\int_0^1 C_{H,t+k}^idi \right) \left[ \bar{P}_{H,t}-MC_{t+k}^n\right] \Bigg] + Y_{t+k} \Bigg\} = 0\)
+
+\(\displaystyle \sum_{k=0}^\infty \theta^kE_t \Bigg\{ Q_{t,t+k} \Bigg[ \frac{(-\varepsilon)}{\bar{P}_{H,t}} Y_{t+k } \left[ \bar{P}_{H,t}-MC_{t+k}^n\right] \Bigg] + Y_{t+k} \Bigg\} = 0\)
+
+As \(\varepsilon\) and \(\bar{P}_{H,t}\) don't depend on k and the
+expression is equal zero, we can do the following operation
+
+\(\displaystyle \sum_{k=0}^\infty \theta^kE_t \Bigg\{ Q_{t,t+k} \Bigg[ Y_{t+k } \left[ -\varepsilon+\varepsilon \frac{MC_{t+k}^n}{\bar{P}_{H,t}} \right] \Bigg] + Y_{t+k} \Bigg\} = 0 \ \ \Rightarrow \ \ \sum_{k=0}^\infty \theta^kE_t \Bigg\{ Q_{t,t+k} Y_{t+k } \left[ (1-\varepsilon)+\varepsilon \frac{MC_{t+k}^n}{\bar{P}_{H,t}} \right] \frac{\bar{P}_{H,t}}{1-\varepsilon} \Bigg\} = 0\)
+
+\(\displaystyle \sum_{k=0}^\infty \theta^kE_t \bigg\{ Q_{t,t+k} Y_{t+k } \left[ \bar{P}_{H,t}-\frac{\varepsilon}{\varepsilon-1} MC_{t+k}^n \right] \bigg\} = 0\)
+
+Using the fact that
+\(\displaystyle Q_{t,t+k}=\beta^k \left( \frac{C_{t+k}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+k}}\),
+we have
+
+\(\displaystyle \sum_{k=0}^\infty \theta^kE_t \left\{ \beta^k \left( \frac{C_{t+k}}{C_t} \right)^{-\sigma}\frac{P_t}{P_{t+k}} Y_{t+k } \left[ \bar{P}_{H,t}-\frac{\varepsilon}{\varepsilon-1} MC_{t+k}^n \right] \right\} = 0\)
+
+As \(P_t\) and \(C_t\) doesn't depend on k, we can put it out of
+summation and ignore (as the expression equals zero)
+
+\(\displaystyle \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ C_{t+k}^{-\sigma}P_{t+k}^{-1} Y_{t+k } \left[ \bar{P}_{H,t}-\frac{\varepsilon}{\varepsilon-1} MC_{t+k}^n \right] \right\} = 0\)
+
+\(\displaystyle \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ C_{t+k}^{-\sigma} Y_{t+k } \frac{P_{H,t-1}}{P_{t+k}} \left[ \frac{\bar{P}_{H,t}}{P_{H,t-1}}-\frac{\varepsilon}{\varepsilon-1}\frac{P_{H,t+k}}{P_{H,t-1}} \frac{MC_{t+k}^n}{P_{H,t+k}} \right] \right\} = 0\)
+
+\(\displaystyle \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ C_{t+k}^{-\sigma} Y_{t+k } \frac{P_{H,t-1}}{P_{t+k}} \left[ \frac{\bar{P}_{H,t}}{P_{H,t-1}}-\frac{\varepsilon}{\varepsilon-1}\Pi_{t-1,t+k}^H MC_{t+k}\right] \right\} = 0\)
+where \(\displaystyle \Pi_{t-1,t+k}^H = \frac{P_{H,t+k}}{P_{H,t-1}}\)
+and \(\displaystyle MC_{t+k} = \frac{MC_{t+k}^n}{P_{H,t+k}}\)
+
+As we will use a first-order approximation, we can ignore the Jensen's
+inequality. To make the multivariate Taylor expansion, we can use
+\(f(x+\Delta x) \approx f(x)+ \Delta x^T \nabla f|_x(\Delta x)\), where
+x is the vector of variables in the steady-state.
+
+\(\displaystyle \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ C_{t+k}^{-\sigma} Y_{t+k } \frac{P_{H,t-1}}{P_{t+k}} \left[ \frac{\bar{P}_{H,t}}{P_{H,t-1}}-\frac{\varepsilon}{\varepsilon-1}\Pi_{t-1,t+k}^H MC_{t+k}\right] \right\} = \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ C^{-\sigma} Y \frac{P_{H}}{P} \left[ \frac{\bar{P}_{H}}{P_{H}}-\frac{\varepsilon}{\varepsilon-1} MC \right] \right\}\)
+
+\(\displaystyle + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ -\sigma C^{-\sigma-1} Y \frac{P_{H}}{P} \left[ 1-\frac{\varepsilon}{\varepsilon-1} MC \right](C_{t+k}-C) \right\} + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ C^{-\sigma} \frac{P_{H}}{P} \left[ 1-\frac{\varepsilon}{\varepsilon-1} MC \right](Y_{t+k}-Y) \right\}\)
+
+\(\displaystyle + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ \left( C^{-\sigma} Y \frac{1}{P} \left[ 1-\frac{\varepsilon}{\varepsilon-1} MC \right] + C^{-\sigma}Y \frac{P_H}{P} \left[ -\frac{1}{P_H} \right] \right)(P_{H,t-1}-P_H) \right\}\)
+
+\(\displaystyle + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ -C^{-\sigma} Y \frac{P_{H}}{P^2} \left[ 1-\frac{\varepsilon}{\varepsilon-1} MC \right](P_{t+k}-P) \right\} + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ C^{-\sigma} Y \frac{P_{H}}{P} \left[ \frac{1}{P_H} \right](\bar{P}_{H,t}-P_H) \right\}\)
+
+\(\displaystyle + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ C^{-\sigma} Y \frac{P_{H}}{P} \left[ -\frac{\varepsilon}{\varepsilon-1} MC \right](\Pi_{t-1,t+k}^H-\Pi^H) \right\} + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ C^{-\sigma} Y \frac{P_{H}}{P} \left[ -\frac{\varepsilon}{\varepsilon-1} \Pi^H \right](MC_{t+k}-MC) \right\}=0\)
+
+As \(C^{-\sigma}, Y, P_H, P\) don't depend on k, we have
+
+\(\displaystyle \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ 1-\frac{\varepsilon}{\varepsilon-1} MC \right\} + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ -\sigma \left[ 1-\frac{\varepsilon}{\varepsilon-1} MC \right]\hat{c}_{t+k} \right\} + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ \left[ 1-\frac{\varepsilon}{\varepsilon-1} MC \right]\hat{y}_{t+k} \right\}\)
+
+\(\displaystyle + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ \left(-\frac{\varepsilon}{\varepsilon-1} MC \right)\hat{p}_{H,t-1} \right\} + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ - \left[ 1-\frac{\varepsilon}{\varepsilon-1} MC \right](\hat{p}_{t+k}) \right\} + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ (\hat{\bar{p}}_{H,t}) \right\}\)
+
+\(\displaystyle + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ \left[ -\frac{\varepsilon}{\varepsilon-1} MC \right]\pi_{t-1,t+k} \right\} + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ MC \left[ -\frac{\varepsilon}{\varepsilon-1} \right]\widehat{mc}_{t+k} \right\}=0\)
+
+\(\displaystyle \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ \left(1-\frac{\varepsilon}{\varepsilon-1} MC \right)(1-\sigma \hat{c}_{t+k} + \hat{y}_{t+k} + \hat{p}_{H,t-1} -\hat{p}_{t+k} + \pi_{t-1,t+k} + \widehat{mc}_{t+k}) -\hat{p}_{H,t-1} +\hat{\bar{p}}_{H,t}-\pi_{t-1,t+k} - \widehat{mc}_{t+k} \right\}\)
+
+As the Taylor approximation is around zero (we are assuming regularity
+conditions to all functions),
+
+\(\displaystyle \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ 1-\frac{\varepsilon}{\varepsilon-1} MC \right\}=0\)
+, we have
+
+\(\displaystyle \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ -\hat{p}_{H,t-1} +\hat{\bar{p}}_{H,t}-\pi_{t-1,t+k} - \widehat{mc}_{t+k} \right\}=0\)
+
+\(\displaystyle \frac{1}{1-\beta \theta}(\bar{p}_{H,t}-p_{H}) + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ -(p_{H,t-1}-p_{H}) -(p_{H,t+k}-p_{H,t-1}) - \widehat{mc}_{t+k} \right\}=0\)
+
+\(\displaystyle \frac{1}{1-\beta \theta}(\bar{p}_{H,t}-p_{H,t-1}) + \sum_{k=0}^\infty (\beta \theta)^kE_t \left\{ -p_{H,t+k}+p_{H,t}-p_{H,t}+p_{H,t-1} - \widehat{mc}_{t+k} \right\}=0\)
+
+\(\displaystyle \bar{p}_{H,t} = p_{H,t-1} + \pi_{H,t}+ \sum_{k=0}^\infty (\beta \theta)^k E_t \{\pi_{H,t+k} \} -\beta \theta\sum_{k=0}^\infty (\beta \theta)^k E_t \{\pi_{H,t+k} \} + (1-\beta \theta)\sum_{k=0}^\infty (\beta \theta)^k E_t \{\widehat{mc}_{t+k} \}\)
+
+\(\displaystyle \bar{p}_{H,t} = p_{H,t-1} + \sum_{k=0}^\infty (\beta \theta)^k E_t \{\pi_{H,t+k} \} + (1-\beta \theta)\sum_{k=0}^\infty (\beta \theta)^k E_t \{\widehat{mc}_{t+k} \}\)
+
+Rational expectations imply that the difference between the actual
+inflation and the future expectations is the steady-state inflation,
+which is zero. This expression can also be written as (it's easy to see
+when trying to iterate forward).
+
+\(\bar{p}_{H,t}-p_{H,t-1}=\beta \theta E_t \{ \bar{p}_{H,t+1}-p_{H,t} + \pi_{H,t}+(1-\beta \theta)\widehat{mc}_t\}\)
+
+Substituting \(\widehat{mc}_t = mc_t^n-p_{H,t}+\mu\), we have
+
+\(\bar{p}_{H,t}-p_{H,t-1}=\beta \theta E_t \{ \bar{p}_{H,t+1}-p_{H,t} + \pi_{H,t}+(1-\beta \theta)(mc_t^n-p_{H,t}+\mu)\}\)
+
+\(\bar{p}_{H,t}-p_{H,t-1} = E_t \{ \beta \theta\bar{p}_{H,t+1}-\beta \theta p_{H,t} + p_{H,t}- p_{H,t-1} +mc_t^n-p_{H,t}+\mu - \beta \theta mc_t^n + \beta \theta p_{H,t} - \beta \theta \mu \}\)
+
+\(\bar{p}_{H,t} = E_t \{ \beta \theta\bar{p}_{H,t+1} +mc_t^n +\mu - \beta \theta mc_t^n - \beta \theta \mu \}\)
+
+which can also be written as
+\(\displaystyle p_{H,t}=\mu + (1-\beta \theta)\sum_{k=0}^\infty(\beta \theta)^kE_t \{ mc_{t+k}^n\}\)
+
+The price-setting equation is
+\(\displaystyle P_H \equiv \left[ \theta (P_{H,t-1})^{1-\varepsilon} + (1-\theta)(\bar{P}_{H,t})^{1-\varepsilon}\right]^{\frac{1}{1-\varepsilon}}\)
+
+Log-linearizing the equation above around the steady-state with the
+Taylor expansion gives
+
+\(\displaystyle P_{H,t} \approx [\theta(P_H)^{1-\varepsilon} + (1-\theta)(P_H)^{1-\varepsilon}]^{\frac{1}{1-\varepsilon}} + \frac{1}{1-\varepsilon} \left[ (P_H)^{1-\varepsilon} \right]^{\frac{1}{1-\varepsilon}-1} \theta(1-\varepsilon) P_H^{-\varepsilon} (P_{H,t-1}-P_H)\)
+
+\(\displaystyle + \frac{1}{1-\varepsilon} \left[ (P_H)^{1-\varepsilon} \right]^{\frac{\varepsilon}{1-\varepsilon}} (1-\theta)(1-\varepsilon) P_H^{-\varepsilon} (\bar{P}_{H,t}-P_H)\)
+
+\(\displaystyle P_{H,t} \approx P_H + \theta(P_H)^{\varepsilon}(P_H)^{-\varepsilon} (P_{H,t-1}-P_H) + (1-\theta)(P_H)^{\varepsilon}(P_H)^{-\varepsilon} (\bar{P}_{H,t}-P_H)=P_H+\theta P_{H,t-1} -\theta P_H +\bar{P}_{H,t}-P_H - \theta \bar{P}_{H,t} + \theta P_H\)
+
+\(\displaystyle P_{H,t} = \theta P_{H,t-1} + (1-\theta) \bar{P}_{H,t} \ \ \Rightarrow \ \ \frac{P_{H,t}-P_{H,t-1}}{P_H} = \frac{\theta P_{H,t-1} - P_{H,t-1} + (1-\theta) \bar{P}_{H,t}}{P_H} \ \ \Rightarrow \ \ \pi_{H,t}=(1-\theta)(\bar{p}_{H,t}-p_{H,t-1})\)
+
+Substituting \(\bar{p}_{H,t}-p_{H,t-1}\) we have
+
+\(\displaystyle \pi_{H,t}=(1-\theta)(\beta \theta E_t \{ \bar{p}_{H,t+1}-p_{H,t} + \pi_{H,t}+(1-\beta \theta)\widehat{mc}_t\}) = (1-\theta) \left(\beta \theta E_t \left\{ \frac{\pi_{H,t+1}}{1-\theta} + \pi_{H,t}+(1-\beta \theta)\widehat{mc}_t \right\} \right)\)
+
+\(\displaystyle \theta \pi_{H,t} = \beta \theta E_t \left\{ \pi_{H,t+1}\right\} +(1-\theta) (1-\beta \theta)\widehat{mc}_t \ \ \Rightarrow \ \  \pi_{H,t} = \beta E_t \left\{ \pi_{H,t+1}\right\} +\frac{(1-\theta) (1-\beta \theta)}{\theta}\widehat{mc}_t\)
+
+which gives
+\(\pi_{H,t} = \beta E_t \left\{ \pi_{H,t+1}\right\}+ \lambda\widehat{mc}_t\)
+where
+\(\displaystyle \lambda = \frac{(1-\theta) (1-\beta \theta)}{\theta}\)
+
+\hypertarget{equilibrium}{%
+\subsection{10 - Equilibrium}\label{equilibrium}}
+
+Good market clearing in the representative small open economy (``home'')
+requires that the total produced inside the small economy is consumed
+either by the households of this economy or imported (from the small
+economy, subscript H) from households of any other country (superscript
+i).
+
+\(\displaystyle Y_t(j) = C_{H,t}(j)+\int_0^1 C_{H,t}^i(j)di = \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}C_{H,t} + \int_0^1 \displaystyle \left( \frac{P_{H,t}^i(j)}{P_{H,t}^i}\right)^{-\varepsilon}C_{H,t}^i di\)
+
+\(\displaystyle Y_t(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon} (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \int_0^1 \left( \frac{P_{H,t}^i(j)}{P_{H,t}^i}\right)^{-\varepsilon} \left( \frac{P_{H,t}^i}{P_{F,t}^i}\right)^{-\gamma}C_{F,t}^i di\)
+
+\(\displaystyle Y_t(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon} (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \int_0^1 \left( \frac{P_{H,t}^i(j)}{P_{H,t}^i}\right)^{-\varepsilon} \left( \frac{P_{H,t}}{\mathcal{E}_{i,t}P_{F,t}^i}\right)^{-\gamma} \alpha \left( \frac{P_{F,t}^i}{P_t^i} \right)^{-\eta} C_t^i di\)
+
+Assuming symmetric preferences across countries, the home country will
+sell the variety of good j for the same price, independently of which
+country is buying, which implies
+\(\displaystyle \frac{P_{H,t}^i (j)}{P_{H,t}^i}=\frac{P_{H,t} (j)}{P_{H,t}}\)
+
+Thus,
+\(\displaystyle Y_t(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon} \left[ (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t}P_{F,t}^i}\right)^{-\gamma} \left( \frac{P_{F,t}^i}{P_t^i} \right)^{-\eta} C_t^i di \right]\)
+
+Plugging on the definition of aggregate domestic output
+\(\displaystyle Y_t^{\frac{\varepsilon-1}{\varepsilon}}= \int_0^1Y_t(j)^{\frac{\varepsilon-1}{\varepsilon}}dj\)
+we have
+
+\(\displaystyle Y_t^{\frac{\varepsilon-1}{\varepsilon}} = \int_0^1 \left( \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon} \left[ (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t}P_{F,t}^i}\right)^{-\gamma} \left( \frac{P_{F,t}^i}{P_t^i} \right)^{-\eta} C_t^i di \right] \right)^{\frac{\varepsilon-1}{\varepsilon}}dj\)
+
+\(\displaystyle Y_t^{\frac{\varepsilon-1}{\varepsilon}} = \left[ (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t}P_{F,t}^i}\right)^{-\gamma} \left( \frac{P_{F,t}^i}{P_t^i} \right)^{-\eta} C_t^i di \right]^{\frac{\varepsilon-1}{\varepsilon}} \left( \frac{1}{P_{H,t}}\right)^{1-\varepsilon} \int_0^1 P_{H,t}(j) ^{1-\varepsilon} dj\)
+
+By the definition of price index,
+\(\displaystyle P_H^{1-\varepsilon} = \int_0^1 P_{H,t}(j)^{1-\varepsilon}dj\),
+we have
+
+\(\displaystyle Y_t^{\frac{\varepsilon-1}{\varepsilon}} = \left[ (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t}P_{F,t}^i}\right)^{-\gamma} \left( \frac{P_{F,t}^i}{P_t^i} \right)^{-\eta} C_t^i di \right]^{\frac{\varepsilon-1}{\varepsilon}} \left( \frac{1}{P_{H,t}}\right)^{1-\varepsilon} P_H^{1-\varepsilon}\)
+
+\(\displaystyle Y_t^{\frac{\varepsilon-1}{\varepsilon}} = \left[ (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t}P_{F,t}^i}\right)^{-\gamma} \left( \frac{P_{F,t}^i}{P_t^i} \right)^{-\eta} C_t^i di \right]^{\frac{\varepsilon-1}{\varepsilon}}\)
+
+\(\displaystyle Y_t = (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \alpha \int_0^1 \left( \frac{P_{H,t}}{\mathcal{E}_{i,t}P_{F,t}^i}\right)^{-\gamma} \left( \frac{P_{F,t}^i}{P_t^i} \right)^{-\eta} C_t^i di\)
+
+Using the fact that
+\(\displaystyle \mathcal{Q}_{i,t}= \frac{\mathcal{E}_{i,t} P_t^i}{P_t}\)
+
+\(\displaystyle Y_t = (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \alpha \int_0^1 \left( \frac{\mathcal{E}_{i,t}P_{F,t}^i}{P_{H,t}}\right)^{\gamma} \left( P_{F,t}^i \right)^{-\eta} \left( \frac{\mathcal{Q}_{i,t}P_t}{\mathcal{E}_{i,t}} \right)^\eta C_t^i di = \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} \left[ (1-\alpha)C_t + \alpha \int_0^1 \left( \frac{\mathcal{E}_{i,t}P_{F,t}^i}{P_{H,t}}\right)^{\gamma-\eta} \mathcal{Q}^\eta C_t^i di \right]\)
+
+Considering that
+\(\displaystyle \mathcal{S}_{i,t}=\frac{P_{i,t}}{P_{H,t}}\),
+\(\displaystyle \mathcal{S}_t^i=\frac{\mathcal{E}_{i,t} P_{F,t}^i}{P_{i,t}}\),
+and \(C_{t}^i=C_t \mathcal{Q}^{-\frac{1}{\sigma}}\) we have
+
+\(\displaystyle Y_t = \left( \frac{P_{H,t}}{P_t} \right)^{-\eta} \left[ (1-\alpha)C_t + \alpha \int_0^1 \left( \frac{P_{i,t}}{P_{H,t}} \frac{\mathcal{E}_{i,t}P_{F,t}^i}{P_{i,t}}\right)^{\gamma-\eta} \mathcal{Q}^\eta \mathcal{Q}^{-\frac{1}{\sigma}} C_t di \right] = \left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}_{i,t} \mathcal{S}_t^i\right)^{\gamma-\eta} \mathcal{Q}^{\eta-\frac{1}{\sigma}} di \right]\)
+
+If \(\sigma=\eta=\gamma=1\), then
+
+\(\displaystyle Y_t = \left( \frac{P_{H,t}}{P_t} \right)^{-1} C_t \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}_{i,t} \mathcal{S}_t^i\right)^{0} \mathcal{Q}^{0} di \right] = \frac{P_{t}}{P_{H,t}} C_t=C_t \mathcal{S}_t^\alpha\)
+
+as if \(\eta=1\), the CPI takes the form
+\(P_t=(P_{H,t})^{1-\alpha}(P_{F,t})^\alpha\) implying
+\(\displaystyle \frac{P_t}{P_{H,t}}=\left( \frac{P_{F,t}}{P_{H,t}} \right)^\alpha=\mathcal{S}^\alpha\)
+
+Log-linearizing the equation (25) using the Taylor expansion around the
+symmetric steady-state, we have
+
+\(\displaystyle Y_t \approx Y + (-\eta)\left( P_H \right)^{-\eta-1}\left( \frac{1}{P} \right)^{-\eta}C \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}_{i} \mathcal{S}^i\right)^{\gamma-\eta} \mathcal{Q}_i^{\eta-\frac{1}{\sigma}} di \right](P_{H,t}-P_H)\)
+
+\(\displaystyle + \eta\left( P_H \right)^{-\eta}\left( \frac{1}{P} \right)^{-\eta+1}C \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}_{i} \mathcal{S}^i\right)^{\gamma-\eta} \mathcal{Q}_i^{\eta-\frac{1}{\sigma}} di \right](P_t-P) +\left( \frac{P_H}{P} \right)^{-\eta} \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}_{i} \mathcal{S}^i\right)^{\gamma-\eta} \mathcal{Q}_i^{\eta-\frac{1}{\sigma}} di \right](C_{t}-C)\)
+
+\(\displaystyle +\left( \frac{P_H}{P} \right)^{-\eta} C \left[\alpha \int_0^1 (\gamma-\eta) \left( \mathcal{S}_{i} \right)^{\gamma-\eta-1} \left( \mathcal{S}^i\right)^{\gamma-\eta} \mathcal{Q}_i^{\eta-\frac{1}{\sigma}} (\mathcal{S}_{i,t}-\mathcal{S}_{i}) di \right] +\left( \frac{P_H}{P} \right)^{-\eta} C \left[\alpha \int_0^1 (\gamma-\eta) \left( \mathcal{S}_{i} \right)^{\gamma-\eta} \left( \mathcal{S}^i\right)^{\gamma-\eta-1} \mathcal{Q}_i^{\eta-\frac{1}{\sigma}} (\mathcal{S}_{t}^i-\mathcal{S}^i) di \right]\)
+
+\(\displaystyle +\left( \frac{P_H}{P} \right)^{-\eta} C \left[\alpha \int_0^1 \left(\eta-\frac{1}{\sigma} \right) \left( \mathcal{S}_{i} \mathcal{S}^i\right)^{\gamma-\eta} \mathcal{Q}_i^{\eta-\frac{1}{\sigma}-1} (\mathcal{Q}_{i,t}-\mathcal{Q}_i) di \right]\)
+
+As shown in appendix A (and above, in the international risk sharing
+section), in a symmetric steady-state
+\(\mathcal{Q}_i=\mathcal{S}_i=\mathcal{S}^i=1\) for all i (purchasing
+parity holds). Thus
+
+\(\displaystyle Y_t-Y = \left( \frac{P_H}{P} \right)^{-\eta}C \left[ -\eta \frac{P_{H,t}-P_H}{P_H} +\eta \frac{P_{t}-P}{P} + \frac{C_t-C}{C} \right]\)
+
+\(\displaystyle +\left( \frac{P_H}{P} \right)^{-\eta} C \left[\alpha \int_0^1 (\gamma-\eta) \left[ \frac{ \mathcal{S}_{t}^i-\mathcal{S}^i }{\mathcal{S}^i} + \frac{ \mathcal{S}_{i,t}-\mathcal{S}_i }{\mathcal{S}_i}\right] + \left(\eta-\frac{1}{\sigma} \right) \frac{\mathcal{Q}_{i,t}-\mathcal{Q}_i}{\mathcal{Q}_i} di \right]\)
+
+As
+\(\displaystyle \left( \frac{P}{P_H} \right)^{1-\eta}=(1-\alpha)+\alpha \int_o^1(\mathcal{S}_i)^{1-\eta}di =1\)
+(from international risk sharing section) in a symmetric steady-state
+and \(C=Y\) in the international market clearing, we have
+
+\(\displaystyle \frac{Y_t-Y}{Y} = -\eta \hat{p}_{H,t} +\eta \hat{p}_t + \hat{c_t} + \left[\alpha (\gamma-\eta) \int_0^1 s_t^i di + \alpha (\gamma-\eta) \int_0^1 s_{i,t}di + \alpha\left(\eta-\frac{1}{\sigma} \right) \int_0^1 q_{i,t} di \right]\)
+
+Considering that \(p_t-p_{H,t}=\alpha s_t\) and recalling that
+\(\displaystyle \int_0^1s_t^idi=0\),
+\(\displaystyle s_t= \int_0^1s_{i,t}di\) and
+\(\displaystyle q_t \equiv \int_0^1 q_{i,t}di\), we have
+
+\(\displaystyle y_t-y = \eta \alpha s_t +c_t-c + \alpha (\gamma-\eta) s_t + \alpha\left(\eta-\frac{1}{\sigma} \right) q_{i,t} \ \ \Rightarrow \ \ y_t=c_t+ \alpha \gamma s_t + \alpha\left(\eta-\frac{1}{\sigma} \right) q_{i,t}\)
+
+As \(q_t = (1-\alpha)s_t\), derived in the section domestic inflation
+and CPI inflation, we have
+
+\(\displaystyle y_t=c_t+ \alpha \gamma s_t + \alpha\left(\eta-\frac{1}{\sigma} \right) (1-\alpha)s_t=c_t+\frac{\alpha}{\sigma}\left[ \sigma \gamma + (\sigma \eta - 1)(1-\alpha) \right] s_t = c_t+\frac{\alpha \omega}{\sigma}s_t\)
+
+where \(\omega \equiv \sigma \gamma + (\sigma \eta - 1)(1-\alpha)\)
+
+As this equation holds for all countries, from a generic country we have
+
+\(\displaystyle y_t^i=c_t^i+ \frac{\alpha \omega}{\sigma} s_t^i\)
+
+Aggregating over all countries we have the world market clearing
+condition. The equatily follows from the fact that
+\(\int_0^1 s_t^i di =0\)
+
+\(y_t^* \equiv \int_0^1y_t^idi = \int_0^1c_t^idi \equiv c_t^*\)
+
+As
+\(\displaystyle c_t = c_t^* + \left(\frac{1-\alpha}{\sigma} \right)s_t\),
+we have that
+
+\(\displaystyle y_t - \frac{\alpha \omega}{\sigma}s_t = c_t^* + \left(\frac{1-\alpha}{\sigma} \right)s_t \ \ \Rightarrow \ \ y_t = y_t^* + \left(\frac{1-\alpha}{\sigma} + \frac{\alpha \omega}{\sigma} \right)s_t \ \ \Rightarrow \ \ y_t = y_t^* + \frac{1}{\sigma_\alpha}s_t\)
+
+where
+\(\displaystyle \sigma_\alpha \equiv \frac{\sigma}{(1-\alpha)+ \alpha \omega}\)
+
+Recalling that
+\(\displaystyle c_t=E_t\{c_{t+1}\}-\frac{1}{\sigma}(r_t-E_t\{\pi_{t+1}\}-\rho)\),
+we have
+
+\(\displaystyle y_t - \frac{\alpha \omega}{\sigma}s_t = E_t\{c_{t+1}\}-\frac{1}{\sigma}(r_t-E_t\{\pi_{t+1}\}-\rho) \ \ \Rightarrow \ \ y_t = \frac{\alpha \omega}{\sigma}s_t + E_t\{y_{t+1}\} - \frac{\alpha \omega}{\sigma}E_t\{s_{t+1}\} -\frac{1}{\sigma}(r_t-E_t\{\pi_{t+1}\}-\rho)\)
+
+\(\displaystyle y_t = E_t\{y_{t+1}\} -\frac{1}{\sigma}(r_t-E_t\{\pi_{t+1}\}-\rho)- \frac{\alpha \omega}{\sigma}E_t\{\Delta s_{t+1}\}\)
+
+As \(\pi_t = \pi_{H,t}+\alpha\Delta s_t\), we have
+
+\(\displaystyle y_t = E_t\{y_{t+1}\} -\frac{1}{\sigma}(r_t-E_t\{\pi_{H,t+1}\}-\alpha E_t\{\Delta s_{t+1} \} -\rho)- \frac{\alpha \omega}{\sigma}E_t\{\Delta s_{t+1}\} = E_t\{y_{t+1}\} -\frac{1}{\sigma}(r_t-E_t\{\pi_{H,t+1}\} -\rho)- \frac{\alpha (\omega-1)}{\sigma}E_t\{\Delta s_{t+1}\}\)
+
+\(\displaystyle y_t = E_t\{y_{t+1}\} -\frac{1}{\sigma}(r_t-E_t\{\pi_{H,t+1}\} -\rho)- \frac{\alpha \Theta}{\sigma}E_t\{\Delta s_{t+1}\}\),
+
+where
+\(\Theta = \omega-1 = \sigma \gamma + (\sigma \eta - 1)(1-\alpha)-1=(\sigma \gamma-1) + (\sigma \eta - 1)(1-\alpha)\)
+
+As \(\Delta s_t= \sigma_\alpha (\Delta y_t - \Delta y_t^*)\)
+
+\(\displaystyle y_t = E_t\{y_{t+1}\} -\frac{1}{\sigma}(r_t-E_t\{\pi_{H,t+1}\} -\rho)- \frac{\alpha \Theta}{\sigma}E_t\{\sigma_\alpha (\Delta y_{t+1} - \Delta y_{t+1}^*)\}\)
+
+\(\displaystyle \sigma y_t = \sigma E_t\{y_{t+1}\} -(r_t-E_t\{\pi_{H,t+1}\} -\rho)- \alpha \Theta \sigma_\alpha (E_t\{ \Delta y_{t+1} \} - E_t\{\Delta y_{t+1}^*\})\)
+
+\(\displaystyle \sigma y_t=\sigma E_t\{y_{t+1}\} -(r_t-E_t\{\pi_{H,t+1}\} -\rho)- \alpha (\omega-1) \frac{\sigma}{(1-\alpha)+\alpha \omega} (E_t\{ y_{t+1} \} -y_t - E_t\{\Delta y_{t+1}^*\})\)
+
+\(\displaystyle \frac{\sigma y_t -\alpha \sigma y_t + \sigma \alpha \omega y_t -\sigma \alpha \omega y_t + \alpha \sigma y_t}{(1-\alpha)+\alpha \omega}= \frac{\sigma E_t\{y_{t+1}\} -\alpha \sigma E_t\{y_{t+1}\} + \sigma \alpha \omega E_t\{y_{t+1}\} -\sigma \alpha \omega E_t\{y_{t+1}\} + \alpha \sigma E_t\{y_{t+1}\}}{(1-\alpha)+\alpha \omega}\)
+
+\(\displaystyle -(r_t-E_t\{\pi_{H,t+1}\} -\rho)+ \alpha (\omega-1) \frac{\sigma}{(1-\alpha)+\alpha \omega} E_t\{\Delta y_{t+1}^*\}\)
+
+\(\displaystyle \frac{\sigma y_t}{(1-\alpha)+\alpha \omega}= \frac{\sigma E_t\{y_{t+1}\} }{(1-\alpha)+\alpha \omega}-(r_t-E_t\{\pi_{H,t+1}\} -\rho)+ \alpha \Theta \sigma_\alpha E_t\{\Delta y_{t+1}^*\}\)
+
+\(\displaystyle \sigma_\alpha y_t= \sigma_\alpha E_t\{y_{t+1}\} -(r_t-E_t\{\pi_{H,t+1}\} -\rho)+ \alpha \Theta \sigma_\alpha E_t\{\Delta y_{t+1}^*\} \ \ \Rightarrow \ \  y_t= E_t\{y_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-E_t\{\pi_{H,t+1}\} -\rho)+ \alpha \Theta E_t\{\Delta y_{t+1}^*\}\)
+
+\hypertarget{trade-balance}{%
+\subsection{Trade balance}\label{trade-balance}}
+
+Defining net exports in terms of domestic output
+\(\displaystyle nx_t \equiv \frac{1}{Y}\left( Y_t - \frac{P_t}{P_{H,t}}C_t \right)\),
+defined as a fraction of steady-state output. If
+\(\sigma=\eta=\gamma=1\),
+
+\(\displaystyle Y_t = \left( \frac{P_{H,t}}{P_t} \right)^{-1} C_t \left[ (1-\alpha) + \alpha \int_0^1 \left( \mathcal{S}_{i,t} \mathcal{S}_t^i\right)^{0} \mathcal{Q}^{0} di \right] = \frac{P_{t}}{P_{H,t}} C_t=C_t \mathcal{S}_t^\alpha\)
+
+\(\displaystyle Y_t = \frac{P_{t}}{P_{H,t}} C_t \ \ \Rightarrow \ \ Y_t P_{H,t}=P_tC_t\),
+implying a balanced trade.
+
+Log-linearizing \(Y_t=C_t \mathcal{S}_t^\alpha\), we have
+\(y_t = c_t + \alpha s_t\)
+
+A first-order approximation for \(nx_t\) is (noting that nx is zero in
+the steady-state), recalling that in the steady-state, \(P_H=P\) and
+\(Y=C\)
+
+\(\displaystyle nx_t = \frac{1}{Y} \left( (Y_t-Y)-\frac{C}{P}(P_t-P)+\frac{C}{P}(P_{H,t}-P) - (C_t-C) \right)=y_t-p_t+p_{H,t}-c_t\)
+
+As \(p_t-p_{H,t}=\alpha s_t\) and
+\(\displaystyle y_t = c_t+\frac{\alpha \omega}{\sigma}\), we have
+\(\displaystyle nx_t=y_t-c_t-\alpha s_t= \frac{\alpha \omega}{\sigma}s_t - \alpha s_t \ \ \Rightarrow \ \ nx_t = \alpha \left(\frac{\omega}{\sigma} - 1 \right) s_t\)
+
+In this model, \(nx_t\) iz zero if
+\(\displaystyle \frac{\omega}{\sigma} - 1=0\), or
+\(\displaystyle \frac{\sigma \gamma + (\sigma \eta - 1)(1-\alpha)}{\sigma}=1\),
+which means that \(\sigma (\gamma-1) + (1-\alpha)(\sigma \eta - 1)=0\)
+
+\hypertarget{marginal-cost-and-inflation-dynamics-in-the-small-open-economy}{%
+\subsection{Marginal cost and inflation dynamics in the small open
+economy}\label{marginal-cost-and-inflation-dynamics-in-the-small-open-economy}}
+
+The two relations below were derived in the section ``Firms''
+
+\(\pi_{H,t} = \beta E_t \{ \pi_{H,t+1}\} + \lambda \widehat{mc}_t\)
+where
+\(\displaystyle \lambda \equiv \frac{(1-\beta \theta)(1-\theta)}{\theta}\)
+
+The log-linearized equation of marginal cost is
+\(mc_t = -\nu+w_t-p_{H,t}-a_t\) where \(\nu\equiv -\ln(1-\tau)\) and
+\(\tau\) is the subsidy. Thus,
+\(mc_t= -\nu + (w_t-p_t) - (p_{H,t}-p_t)-a_t\)
+
+From the log-linearized FOC, we have
+\(w_t-p_t=\sigma c_t + \varphi n_t\)
+
+Thus, \(mc_t= -\nu + \sigma c_t + \varphi n_t + \alpha s_t -a_t\)
+
+Using
+\(\displaystyle c_t=c_t^*+ \left( \frac{1-\alpha}{\sigma} \right)s_t\)
+and \(y_t = a_t + n_t\), we have
+
+\(\displaystyle mc_t= -\nu + \sigma \left[ c_t^*+ \left( \frac{1-\alpha}{\sigma} \right)s_t \right] + \varphi (y_t-a_t) + \alpha s_t -a_t=-\nu + \sigma c_t^*+ ( 1-\alpha )s_t + \varphi (y_t-a_t) + \alpha s_t -a_t\)
+
+As the world consumption is equal to its production,
+
+\(\displaystyle mc_t =-\nu + \sigma y_t^*+ \varphi y_t+ s_t -(1+\varphi)a_t\)
+
+Using \(\displaystyle y_t = y_t^* + \frac{1}{\sigma_\alpha}s_t\) we can
+substitute for \(s_t\) in the expression above
+
+\(\displaystyle mc_t =-\nu + \sigma y_t^*+ \varphi y_t+ \sigma_\alpha(y_t-y_t^*) -(1+\varphi)a_t \ \ \Rightarrow \ \ mc_t = -\nu + (\sigma_\alpha+\varphi)y_t + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t\)
+
+\hypertarget{equilibrium-dynamics}{%
+\subsection{Equilibrium dynamics}\label{equilibrium-dynamics}}
+
+The output gap is defined as \(x_t \equiv y_t - \bar{y}_t\)
+
+To find The domestic natural level of output we impose \(mc_t=-\mu\) and
+solving for domestic output as \(y_t= \bar{y}_t\)
+
+\(-\mu = -\nu + (\sigma_\alpha+\varphi)\bar{y_t} + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t \ \ \Rightarrow \ \ (\sigma_\alpha+\varphi)\bar{y_t} = \nu -\mu +(1+\varphi)a_t - (\sigma-\sigma_\alpha)y_t^*\)
+
+\(\displaystyle \bar{y_t} = \frac{\nu -\mu}{\sigma_\alpha+\varphi} + \frac{1+\varphi}{\sigma_\alpha+\varphi}a_t - \frac{\sigma-\sigma_\alpha}{\sigma_\alpha+\varphi}y_t^*\)
+
+As \(\Theta = (\sigma \gamma-1)+(\sigma \eta-1)(1-\alpha)\),
+\(\omega=\sigma \gamma+(\sigma \eta-1)(1-\alpha)=\Theta+1\)
+\(\displaystyle \sigma_\alpha = \frac{\sigma}{(1-\alpha)+\alpha \omega}\),
+we have
+
+\(\displaystyle \sigma-\sigma_\alpha=\sigma- \frac{\sigma}{(1-\alpha)+\alpha \omega}=\frac{-\alpha \sigma +\alpha \omega\sigma}{(1-\alpha)+\alpha \omega}\)
+
+Let's verify that
+\(\sigma-\sigma_\alpha = - \alpha \Theta \sigma_\alpha\)
+
+\(\displaystyle \alpha \Theta \sigma_\alpha= \alpha (\omega-1) \frac{\sigma}{(1-\alpha)+\alpha \omega} = \frac{\alpha \sigma \omega -\alpha \sigma}{(1-\alpha)+\alpha \omega}=\sigma-\sigma_\alpha\)
+
+Thus,
+\(\displaystyle \bar{y_t} = \frac{\nu -\mu}{\sigma_\alpha+\varphi} + \frac{1+\varphi}{\sigma_\alpha+\varphi}a_t - \frac{ \alpha \Theta \sigma_\alpha}{\sigma_\alpha+\varphi}y_t^* \ \ \Rightarrow \ \ \bar{y_t} =\Omega+\Gamma a_t+ \alpha \Psi y_t^*\)
+where
+
+\(\displaystyle \Omega = \frac{\nu -\mu}{\sigma_\alpha+\varphi}\),
+\(\displaystyle \Gamma = \frac{1+\varphi}{\sigma_\alpha+\varphi}>0\) as
+\(\sigma_\alpha>0\) and
+\(\displaystyle \Psi=-\frac{\Theta \sigma_\alpha}{\sigma_\alpha + \varphi}\)
+
+Substituting \(y_t\) in
+\(mc_t = -\nu + (\sigma_\alpha+\varphi)y_t + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t\),
+we have
+\(mc_t = -\nu + (\sigma_\alpha+\varphi)(x_t+\bar{y_t}) + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t\)
+
+\(\displaystyle mc_t = -\nu + (\sigma_\alpha+\varphi)\left(x_t+\frac{\nu -\mu}{\sigma_\alpha+\varphi} + \frac{1+\varphi}{\sigma_\alpha+\varphi}a_t - \frac{ \alpha \Theta \sigma_\alpha}{\sigma_\alpha+\varphi}y_t^* \right) + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t = -\nu + (\sigma_\alpha+\varphi)x_t + \nu - \mu - \alpha \Theta \sigma_\alpha y_t^* + (\sigma-\sigma_\alpha)y_t^*\)
+
+\(\displaystyle mc_t-(-\mu)=(\sigma_\alpha+\varphi)x_t - \mu - \alpha \left[ \omega-1 \right] \frac{\sigma}{(1-\alpha)+\alpha \omega} y_t^* + \frac{-\alpha \sigma +\alpha \omega\sigma}{(1-\alpha)+\alpha \omega} y_t^* + \mu\)
+
+\(\displaystyle \widehat{mc_t}=(\sigma_\alpha+\varphi)x_t + \frac{-\alpha \omega \sigma + \alpha \sigma}{(1-\alpha)+\alpha \omega} y_t^* + \frac{-\alpha \sigma +\alpha \omega\sigma}{(1-\alpha)+\alpha \omega} y_t^* \ \ \Rightarrow \ \ \widehat{mc_t}=(\sigma_\alpha+\varphi)x_t\)
+
+Substituting the equation above into
+\(\pi_{H,t} = \beta E_t \{ \pi_{H,t+1} + \lambda \widehat{mc}_t\}\), we
+have the a version of the New Keynesian Phillips Curve (NKPC)
+
+\(\pi_{H,t} = \beta E_t \{ \pi_{H,t+1}\} + \lambda (\sigma_\alpha+\varphi)x_t = \beta E_t \{ \pi_{H,t+1}\} + \kappa_\alpha x_t\),
+where \(\kappa_\alpha \equiv \lambda (\sigma_\alpha+\varphi)\)
+
+Substituting \(y_t\) and \(E_t\{y_{t+1}\}\) in
+\(\displaystyle y_t= E_t\{y_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-E_t\{\pi_{H,t+1}\} -\rho)+ \alpha \Theta E_t\{\Delta y_{t+1}^*\}\),
+we have
+
+\[x_t + \Omega+\Gamma a_t+ \alpha \Psi y_t^* = E_t\{x_{t+1} + \Omega+\Gamma a_{t+1}+ \alpha \Psi y_{t+1}^*\} -\frac{1}{\sigma_\alpha}(r_t-E_t\{\pi_{H,t+1}\} -\rho)+ \alpha \Theta  E_t\{\Delta y_{t+1}^*\}\]
+\(\displaystyle x_t = E_t\{x_{t+1}\} +\Gamma (\rho_a a_{t}-a_t)+ \alpha \Psi E_t\{\Delta y_{t+1}^*\} -\frac{1}{\sigma_\alpha}(r_t-E_t\{\pi_{H,t+1}\} -\rho)+ \alpha \Theta E_t\{\Delta y_{t+1}^*\}\)
+
+\(\displaystyle x_t = E_t\{x_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-E_t\{\pi_{H,t+1}\} -[\rho-\sigma_\alpha \Gamma (1-\rho_a)a_t +\alpha \sigma_\alpha(\Theta+\Psi) E_t\{\Delta y_{t+1}^*\}])\)
+
+\(\displaystyle x_t = E_t\{x_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-E_t\{\pi_{H,t+1}\} -\overline{rr}_t)\)
+where
+\(\overline{rr}_t \equiv \rho-\sigma_\alpha \Gamma (1-\rho_a)a_t +\alpha \sigma_\alpha(\Theta+\Psi) E_t\{\Delta y_{t+1}^*\}\)
+is the small open economy's natural rate of interest.
+
+\hypertarget{optimal-monetary-policy-a-special-case}{%
+\subsection{Optimal Monetary Policy: a special
+case}\label{optimal-monetary-policy-a-special-case}}
+
+The problem of the central planner is:
+
+\(\displaystyle \max E_0\sum_{i=0}^\infty \beta^t U(C_t,N_t)\) subject
+to \(Y_t=A_tN_t\), \(\displaystyle C_t=C_t^i\mathcal{Q}_{i,t}\) and
+\(\displaystyle Y_t=\frac{P_t}{P_{H,t}} C_t\), as
+\(\eta=\sigma=\gamma=1\).
+
+In this case,
+\(\displaystyle Y_t=\frac{(P_{H,t})^{1-\alpha}(P_{F,t})^{\alpha}}{P_{H,t}} C_t = \frac{(P_{F,t})^{\alpha}}{(P_{H,t})^{\alpha}}C_t=\mathcal{S}_t^{\alpha}C_t \ \ \Rightarrow \ \ Y_t=\mathcal{S}_t^{\alpha}C_t \ \ \Rightarrow \ \ \mathcal{S}_t= \left( \frac{Y_t}{C_t} \right)^{\frac{1}{\alpha}}\).
+By equation 29, we have \(y_t=y_t^*+s_t\) or
+\(\displaystyle Y_t=Y_t^{*} \mathcal{S}_t= Y_t^{*} \left( \frac{Y_t}{C_t} \right)^{\frac{1}{\alpha}} \ \ \Rightarrow \ \ C_t Y_t^\alpha = (Y_t^*)^\alpha Y_t \ \ \Rightarrow \ \ C_t=Y_t^{1-\alpha}(Y_t^*)^\alpha\).
+
+The Central planner problem then becomes
+
+\(\displaystyle E_0\max \sum_{i=0}^\infty \beta^t U(C_t,N_t)\) subject
+to \(Y_t=A_tN_t\) and \(C_t=Y_t^{1-\alpha}(Y_t^*)^\alpha\).
+
+The Lagrangean can be written as
+
+\(\displaystyle \mathcal{L}= E_0 \sum_{i=0}^\infty \beta^t \left\{ U(C_t,N_t) +\Lambda_t(A_t N_t - Y_t) + \Phi_t \left( Y_t^{1-\alpha}(Y_t^*)^\alpha -C_t \right) \right\}\)
+
+which yields the FOCS:
+
+\((C_t)\) \(U_c(C_t,N_t)=\Phi_t\)
+
+\((N_t)\) \(U_N(C_t,N_t)=-\Lambda_t A_t\)
+
+\((Y_t)\) \(\Phi_t (1-\alpha)Y_t^{-\alpha}(Y_t^*)^\alpha =\Lambda_t\)
+
+\(U_N(C_t,N_t) = -A_t \Phi_t (1-\alpha)Y_t^{-\alpha}(Y_t^*)^\alpha = -A_t U_c(C_t,N_t) (1-\alpha)Y_t^{-\alpha}(Y_t^*)^\alpha\)
+
+\(\displaystyle -\frac{U_N(C_t,N_t)}{U_c(C_t,N_t)} = \frac{Y_t}{N_t} (1-\alpha)Y_t^{-\alpha}(Y_t^*)^\alpha=(1-\alpha) \frac{C_t}{N_t}\)
+
+Using the utility function
+\(\displaystyle U(C_t,N_t)=\log(C_t)-\frac{N_t^{1+\varphi}}{1+\varphi}\)
+as \(\sigma=1\).
+
+We have \(\displaystyle U_C(C_t,N_t)=\frac{1}{C_t}\) and
+\(\displaystyle U_N(C_t,N_t)=-N_t^\varphi\). Substituting in the FOCs
+relation, we have
+\(\displaystyle N_t^\varphi C_t=(1-\alpha)\frac{C_t}{N_t} \ \ \Rightarrow \ \ N_t^{1+\varphi}=(1-\alpha) \ \ \Rightarrow \ \ N_t = N = (1-\alpha)^{\frac{1}{1+\varphi}}\),
+which is a constant employment.
+
+We know that, under flexible prices,
+\(\displaystyle \frac{\overline{MC}_t^n}{\overline{P}_{H,t}}=\overline{MC}_t=\frac{\varepsilon-1}{\varepsilon}\)
+(see section 9 for the derivation).
+
+From the representative consumer FOCs (problem of item 5), we have the
+standard relation:
+\(\displaystyle -\frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\overline{C}_t,\overline{N}_t)}=\frac{\overline{W}_t}{\overline{P}_t}\).
+Thus,
+
+The subsidy \(\tau\) is chosen to achieve the optimal level of
+production if the prices were fully flexible. Thus, we have
+\(\displaystyle \overline{MC}_t=\frac{\varepsilon-1}{\varepsilon}=\frac{\overline{W}_t (1-\tau)}{\overline{P}_{H,t} A_t}=-\frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\overline{C}_t,\overline{N}_t)}\frac{\overline{P}_t (1-\tau)}{\overline{P}_{H,t} A_t}\).
+
+As \(\eta=1\),
+\(\overline{P}_t=(\overline{P}_{H,t})^{1-\alpha}(\overline{P}_{F,t})^\alpha\).
+Substituting,
+
+\(\displaystyle \overline{MC}_t= -\frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\overline{C}_t,\overline{N}_t)}\frac{(\overline{P}_{H,t})^{1-\alpha}(\overline{P}_{F,t})^\alpha (1-\tau)}{\overline{P}_{H,t} \overline{A}_t}= -\frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\overline{C}_t,\overline{N}_t)} \left( \frac{\overline{P}_{F,t}}{\overline{P}_{H,t}} \right)^\alpha \frac{1-\tau}{\overline{A}_t}= -\frac{(1-\tau)}{\overline{A}_t} (\mathcal{\overline{S}}_i)^\alpha \frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\overline{C}_t,\overline{N}_t)}\)
+
+As \(\sigma=1\),
+\(\displaystyle -\frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\overline{C}_t,\overline{N}_t)}=\overline{C}_t \overline{N}_t^\varphi \ \ \Rightarrow \ \ \overline{MC}_t= \frac{(1-\tau)}{\overline{A}_t} (\mathcal{\overline{S}}_i)^\alpha \overline{C}_t \overline{N}_t^\varphi\)
+
+From equation 26 (equilibrium part), we know that
+\(\displaystyle \overline{Y}_t=\overline{C}_t \mathcal{\overline{S}}_t^\alpha \ \ \Rightarrow \ \  \mathcal{\overline{S}}_t^\alpha = \frac{\overline{Y}_t}{\overline{C}_t}\).
+Thus,
+\(\displaystyle \overline{MC}_t= \frac{(1-\tau)}{\overline{A}_t} \frac{\overline{Y}_t}{\overline{C}_t} \overline{C}_t \overline{N}_t^\varphi\)
+
+Substituting the technological constraint,
+\(\displaystyle 1-\frac{1}{\varepsilon}=\overline{MC}_t= \frac{(1-\tau)}{\overline{A}_t} \overline{A}_t \overline{N}_t \overline{N}_t^\varphi=(1-\tau) \overline{N}_t^{1+\varphi}=(1-\tau)\left( (1-\alpha)^{1+\varphi} \right)^{\frac{1}{1+\varphi}}=(1-\tau)(1-\alpha)\).
+
+Hence, if \(\tau\) is set to satisfy
+\(\displaystyle (1-\tau)(1-\alpha)= 1-\frac{1}{\varepsilon}\), we have
+also the log-linear form \(\nu=\mu+\log(1-\alpha)\), where \(\mu\)
+(defined earlier) is \(\log(1-\tau)\) and the flexible price allocation
+is guaranteed.
+
+\hypertarget{optimal-policy-implementation}{%
+\subsection{Optimal policy
+Implementation}\label{optimal-policy-implementation}}
+
+Solving forward equation (36), we have
+\(\displaystyle \pi_{H,t}=\beta E_t\{ \pi_{H,t+1} \}+ \kappa_\alpha x_t = \beta E_t\{ \beta E_t \{ \pi_{H,t+2} \}+ \kappa_\alpha x_{t+1}\}+ \kappa_\alpha x_t=\beta^T E_t\{\pi_{H,T}\} + \sum_{j=t}^T \beta^{j-t}\kappa_\alpha x_j\)
+
+To stabilize inflation,
+
+\(\displaystyle \pi_{H,t} =\underset{T \rightarrow \infty} \lim\beta^T E_t\{\pi_{H,T}\} + \sum_{j=t}^T \beta^{j-t}\kappa_\alpha x_j\)
+which will stabilized (\(\pi_{H,t}=0\)) only if the output gap is zero
+for every period. As
+\(x_t \equiv y_t-\overline{y}_t \ \ \Rightarrow \ \ y_t=\overline{y}_t\).
+
+In equation (37) we have
+\(\displaystyle x_t = E_t\{x_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-E_t\{\pi_{H,t+1}\} -\overline{rr}_t)\).
+In this case, we have \(E_t\{x_{t+1}\}=0\), \(E_t\{\pi_{H,t+1}\}=0\),
+and \(\sigma_\alpha=1\), as
+
+\(\displaystyle \sigma_\alpha \equiv \frac{\sigma}{(1-\alpha)+\alpha \omega}=\frac{1}{(1-\alpha)+\alpha (\sigma \gamma+(\sigma \eta -1 )(1-\alpha))}=\frac{1}{(1-\alpha)+\alpha (1+(1 -1 )(1-\alpha))}=1\).
+
+Thus, \(r_t=\overline{rr}_t\).
+
+Now we suppose that the Central Bank follows this rule when the economy
+is not in its steady-state:
+\(r_t=\overline{rr}_t+\phi_\pi \pi_{H,t}+\phi_x x_t\).
+
+After setting \(r_t=\overline{rr}_t\) in a closed economy we have
+\(\displaystyle x_t = E_t\{x_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-E_t\{\pi_{H,t+1}\} -\overline{rr}_t) = E_t\{x_{t+1}\} -\frac{1}{\sigma}(\overline{rr}_t-E_t\{\pi_{H,t+1}\} -\overline{rr}_t) = E_t\{x_{t+1}\} -\frac{1}{\sigma}E_t\{\pi_{H,t+1}\}\)
+
+We have now a system with 2 equations
+
+\(\displaystyle x_t = E_t\{x_{t+1}\} +\frac{1}{\sigma}E_t\{\pi_{H,t+1}\}\)
+
+\(\pi_{H,t}=\beta E_t\{ \pi_{H,t+1}\} + \kappa_\alpha x_t\),
+
+which can be summarized as
+\(\displaystyle \left[ \begin{matrix} 1 & 0\\ -\kappa & 1 \end{matrix} \right] \left[ \begin{matrix} x_t\\ \pi_t \end{matrix} \right] = \left[ \begin{matrix} 1 & \sigma^{-1} \\ 0 & \beta \end{matrix} \right] \left[ \begin{matrix} E_t\{x_{t+1} \}\\ E_t \{\pi_{t+1} \} \end{matrix} \right]\)
+
+\(\displaystyle \left[ \begin{matrix} x_t\\ \pi_t \end{matrix} \right] = \left[ \begin{matrix} 1 & 0\\ \kappa & 1 \end{matrix} \right] \left[ \begin{matrix} 1 & \sigma^{-1} \\ 0 & \beta \end{matrix} \right] \left[ \begin{matrix} E_t\{x_{t+1} \}\\ E_t \{\pi_{t+1} \} \end{matrix} \right] = \left[ \begin{matrix} 1 & \sigma^{-1} \\ \kappa & \kappa \sigma^{-1}+ \beta \end{matrix} \right] \left[ \begin{matrix} E_t\{x_{t+1} \}\\ E_t \{\pi_{t+1} \} \end{matrix} \right] \ \ \Rightarrow \ \ \left[ \begin{matrix} x_t\\ \pi_t \end{matrix} \right] = \left[ \begin{matrix} 1 & \sigma^{-1} \\ \kappa & \beta +\kappa \sigma^{-1} \end{matrix} \right] \left[ \begin{matrix} E_t\{x_{t+1} \}\\ E_t \{\pi_{t+1} \} \end{matrix} \right]\).
+
+Defining
+\(\mathbf{A_O}=\left[ \begin{matrix} 1 & \sigma^{-1} \\ \kappa & \beta +\kappa \sigma^{-1} \end{matrix} \right]\),
+we can calculate its eigenvalues:
+
+\(\left| \begin{matrix} 1-\xi & \sigma^{-1} \\ \kappa & \beta +\kappa \sigma^{-1}-\xi \end{matrix} \right|=(1-\xi)(\beta +\kappa \sigma^{-1}-\xi)-\kappa \sigma^{-1}= \beta +\kappa \sigma^{-1}-\xi - \beta \xi -\kappa \sigma^{-1} \xi+\xi^2 -\kappa \sigma^{-1}\)
+
+Now we have a quadratic function whose roots are the eigenvalues of the
+system \(f(\xi)=\xi^2-(1+\beta+\kappa \sigma^{-1})\xi+\beta\),
+
+with the product of roots being \(\beta<1\) and the sum of the roots
+greater than 1 \(1+\beta+\kappa \sigma^{-1}\).
+
+We can see that if \(f(\xi)>0\) if \(\xi \rightarrow \infty\),
+\(f(0)=\beta>0\) and
+\(f(1)=1^2-(1+\beta+\kappa \sigma^{-1})1+\beta=-\kappa \sigma^{-1}<0\),
+as
+\(\displaystyle \kappa=\lambda(\sigma+\varphi)=\frac{(1-\beta \theta)(1-\theta)}{\theta}(\sigma+\varphi)>0\).
+Thus, we have one root between 0 and 1 and another one greater than 1
+(from the intermediate value theorem). As there's one eigenvalue outside
+the unit root circle, there are infinite solution for this system, as
+both variables are forward looking.
+
+Now if the Central bank has commits to the rule
+\(r_t=\overline{rr}_t+\phi_\pi \pi_t+\phi_x x_t\), we have
+
+\(\displaystyle x_t = E_t\{x_{t+1}\} -\frac{1}{\sigma}(\overline{rr}_t+\phi_\pi \pi_{t}+\phi_x x_t-E_t\{\pi_{t+1}\} -\overline{rr}_t)= -\phi_\pi \sigma^{-1} -\pi_{t}+\phi_x \sigma^{-1} x_t + E_t\{x_{t+1}\}+ \sigma^{-1}E_t\{\pi_{t+1}\}\)
+
+and the system becomes
+
+\(\displaystyle (1+\phi_x \sigma^{-1})x_t +\phi_\pi \sigma^{-1}\pi_{t} = E_t\{x_{t+1}\} +\sigma^{-1}E_t\{\pi_{t+1}\}\)
+
+\(-\kappa x_t +\pi_{H,t}=\beta E_t\{ \pi_{H,t+1}\}\),
+
+\(\displaystyle \left[ \begin{matrix} 1+\phi_x \sigma^{-1} & \phi_\pi \sigma^{-1}\\ -\kappa & 1 \end{matrix} \right] \left[ \begin{matrix} x_t\\ \pi_t \end{matrix} \right] = \left[ \begin{matrix} 1 & \sigma^{-1} \\ 0 & \beta \end{matrix} \right] \left[ \begin{matrix} E_t\{x_{t+1} \}\\ E_t \{\pi_{t+1} \} \end{matrix} \right]\)
+
+\(\displaystyle \left[ \begin{matrix} x_t\\ \pi_t \end{matrix} \right] = \frac{1}{1+\phi_x \sigma^{-1}+ \phi_\pi \sigma^{-1} \kappa} \left[ \begin{matrix} 1 & -\phi_\pi \sigma^{-1}\\ \kappa & 1+\phi_x \sigma^{-1} \end{matrix} \right] \left[ \begin{matrix} 1 & \sigma^{-1} \\ 0 & \beta \end{matrix} \right] \left[ \begin{matrix} E_t\{x_{t+1} \}\\ E_t \{\pi_{t+1} \} \end{matrix} \right]=\frac{\sigma}{\sigma+\phi_x + \phi_\pi \kappa}\left[ \begin{matrix} 1& \sigma^{-1}(1-\beta \phi_\pi)\\ \kappa & \sigma^{-1}(\kappa+\beta \sigma+\beta\phi_x) \end{matrix} \right] \left[ \begin{matrix} E_t\{x_{t+1} \}\\ E_t \{\pi_{t+1} \} \end{matrix} \right]\)
+
+\(\displaystyle \left[ \begin{matrix} x_t\\ \pi_t \end{matrix} \right] =\frac{1}{\sigma+\phi_x + \phi_\pi \kappa}\left[ \begin{matrix} \sigma& 1-\beta \phi_\pi\\ \kappa \sigma & \kappa+\beta (\sigma+\phi_x) \end{matrix} \right] \left[ \begin{matrix} E_t\{x_{t+1} \}\\ E_t \{\pi_{t+1} \} \end{matrix} \right]=\mathbf{A}_T\left[ \begin{matrix} E_t\{x_{t+1} \}\\ E_t \{\pi_{t+1} \} \end{matrix} \right]\),
+where
+
+\(\displaystyle \mathbf{A}_T \equiv\Omega\left[ \begin{matrix} \sigma& 1-\beta \phi_\pi\\ \kappa \sigma & \kappa+\beta (\sigma+\phi_x) \end{matrix} \right]\)
+and
+\(\displaystyle \Omega \equiv\frac{1}{\sigma+\phi_x + \phi_\pi\kappa}\)
+
+If we restrict \(\phi_\pi>0\) and \(\phi_x>0\), \(\Omega>0\).
+
+To satisfy the Blanchard and Khan conditions, we need that both
+eigenvalues are inside the unit circle.
+
+\(|\mathbf{A}_T-\lambda \mathbf{I}| = 0\)
+
+\(\displaystyle \left| \frac{1}{\sigma+\phi_x + \phi_\pi \kappa}\left[ \begin{matrix} \sigma & 1-\beta \phi_\pi\\ \kappa \sigma & \kappa+\beta (\sigma+\phi_x) \end{matrix} \right] -\lambda \left[ \begin{matrix} 1 & 0\\ 0 & 1 \end{matrix} \right] \right|=0\)
+
+\(\displaystyle \left| \left[ \begin{matrix} \displaystyle \frac{\sigma}{\sigma+\phi_x + \phi_\pi \kappa}-\lambda & \displaystyle \frac{1-\beta \phi_\pi}{\sigma+\phi_x + \phi_\pi \kappa}\\ \displaystyle \frac{\kappa \sigma}{\sigma+\phi_x + \phi_\pi \kappa} & \displaystyle \frac{\kappa+\beta (\sigma+\phi_x)}{\sigma+\phi_x + \phi_\pi \kappa}-\lambda \end{matrix} \right] \right|=0\)
+
+\(\displaystyle \frac{\sigma \kappa + \beta\sigma (\sigma+\phi_y)}{(\sigma+\phi_x + \phi_\pi \kappa)^2}- \frac{\sigma +\kappa + \beta (\sigma+ \phi_y)}{(\sigma+\phi_x + \phi_\pi \kappa)} \lambda + \lambda^2-\frac{\sigma \kappa-\beta \phi_\pi \sigma \kappa}{(\sigma+\phi_x + \phi_\pi \kappa)^2}=\lambda^2- \frac{\sigma +\kappa + \beta (\sigma+ \phi_y)}{(\sigma+\phi_x + \phi_\pi \kappa)} \lambda + \frac{\sigma \beta(\sigma+\phi_y+\phi_\pi \kappa)}{(\sigma+\phi_x + \phi_\pi \kappa)^2}=0\)
+
+\(\displaystyle \lambda^2- \frac{\sigma +\kappa + \beta (\sigma+ \phi_y)}{\sigma+\phi_x + \phi_\pi \kappa} \lambda + \frac{\sigma \beta}{\sigma+\phi_x + \phi_\pi \kappa}=0\)
+
+LaSalle (1986) showed that both roots of the equation \(x^2+bx+c=0\) are
+less than 1 if and only if \(|c|<1\) and \(|b|<1+c\). This comment was
+taken from Drago Bergholt notes.
+
+We have that
+\(\displaystyle \left| \frac{\sigma \beta}{\sigma+ \phi_y+\phi_\pi \kappa} \right|<1\)
+
+As \(\sigma>0\), \(\beta>0\), \(\kappa>0\), \(\phi_\pi>0\) and
+\(\phi_y>0\)
+
+\(\displaystyle \frac{\sigma \beta}{\sigma+ \phi_y+\phi_\pi \kappa} <1 \ \ \Rightarrow \ \ \sigma \beta<\sigma+ \phi_y+\phi_\pi \kappa \ \ \Rightarrow \ \ \sigma (\beta-1)< \phi_y+\phi_\pi \kappa\)
+This condition is always satisfied, as \(\beta<1\).
+
+The second condition is
+\(\displaystyle \left| \frac{\sigma+\kappa+ \beta(\sigma+\phi_y)}{\sigma+ \phi_y+\phi_\pi \kappa} \right|<1+\frac{\sigma \beta}{\sigma+ \phi_y+\phi_\pi \kappa}\)
+
+\(\displaystyle \frac{\sigma+\kappa+ \beta(\sigma+\phi_y)}{\sigma+ \phi_y+\phi_\pi \kappa} < 1+\frac{\sigma \beta}{\sigma+ \phi_y+\phi_\pi \kappa}\)
+
+\(\sigma+\kappa+ \beta(\sigma+\phi_y) < \sigma+ \phi_y+\phi_\pi \kappa + \sigma \beta \ \ \Rightarrow \ \ \kappa + \beta \phi_y<\phi_y+\phi_\pi \kappa \ \ \Rightarrow \ \ \kappa (\phi_\pi-1)+\phi_y(1-\beta)>0\)
+
+\end{document}
