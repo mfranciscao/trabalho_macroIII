@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb6bc072-d388-48db-8755-96a7f8a2f371" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/code/replication.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/modification.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/gensys.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/gensys.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/img/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/parte 2.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/parte 2.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/replication.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/replication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/trabalho_parcial.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/latex/trabalho_parcial.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/trabalho_parcial.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/trabalho_parcial.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +53,28 @@
       <recent name="Z:\Mestrado\Disciplinas\Macroeconomia III - Yvan\Trabalho\trabalho_macroIII\code" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.modification">
+    <configuration name="modification" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="trabalho_macroIII" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/modification.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="replication" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="trabalho_macroIII" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -78,6 +98,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.modification" />
         <item itemvalue="Python.replication" />
       </list>
     </recent_temporary>

@@ -25,7 +25,7 @@ a
 The model considers a standard representative consumer with separable preferences that maximizes his expected discounted payoff in a infinite time horizon:
 
 \begin{equation}
-    \max E_0 \sum^\infty_{t=0} \beta^t \frac{C_t^{1-\sigma}}{1-\sigma} - \frac{N_t^{\varphi+1}}{\varphi+1} \hspace{1em}  \textrm{ st. } \hspace{1em} \forall t, \hspace{0.8em} P_t C_t + \Et[Q_{t,t+1} D_{t+1}] \leq D_t +  W_t N_t + T_t
+    \max_{C_t, N_t} E_0 \sum^\infty_{t=0} \beta^t \left[\frac{C_t^{1-\sigma}}{1-\sigma} - \frac{N_t^{\varphi+1}}{\varphi+1} \right] \hspace{1em}  \textrm{ st. } \hspace{1em} \forall t, \hspace{0.8em} P_t C_t + \Et[Q_{t,t+1} D_{t+1}] \leq D_t +  W_t N_t + T_t
 \end{equation}
 
 Where $D_t$ is the nominal payoff in period $t$ of the portfolio held at the end of period $t-1$. The consumer chooses between domestic goods ($C_{H,t}$) and foreign goods ($C_{F,t}$) with $\alpha \in [0,1]$ as the opening index of the economy and elasticity of substitution $\eta > 0$ between domestic and imported goods. The imported goods consumption is divided in goods imported from a continuum of different countries $i$ with elasticity of substitution $\gamma > 0$. Finally, he chooses between goods $j$ made in the same country (domestic or foreign) with elasticity of substitution $\varepsilon > 0$.
@@ -103,7 +103,7 @@ Dividing $S_t P_{H,t}$ by $S_{t-1} P_{H,t-1}$ we get :
     \frac{S_t P_{H,t}}{S_{t-1} P_{H,t-1}} = \frac{\left( \int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}}{\left( \int^1_0 \left(\E_{i,t-1} P^i_{i,t-1} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}} \Rightarrow \frac{S_t}{S_{t-1}}\Pi_{H,t} = \left(\frac{\int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di }{\int^1_0 \left(\E_{i,t-1} P^i_{i,t-1} \right)^{1-\gamma} di} \right)^{\frac{1}{1-\gamma}}
 \end{equation}
 
-Which defines implicitly $\E_{t} \equiv \left( \int^1_0 \E_{i,t}^{\frac{\gamma-1}{\gamma}} di \right)^{\frac{\gamma}{\gamma-1}}$ as the nominal effective exchange rate \footnote{Log-linearizing we get $\pi_{H,t} + \alpha s_{t+1} - \alpha s_t = \pi^*_t + \Delta e_t$, where $e_t \equiv \int^1_0 e_{i,t}$, $p_t^* \equiv \int^1_0 p^i_{i,t}$ and $\pi^*_t \equiv p_t^* - p_{t-1}^*$. The baseline model of the paper assumes $p_t^* = p^* = 0$, implying that $\pi_{H,t} + \alpha s_{t+1} - \alpha s_t = \Delta e_t$}.
+Which defines implicitly $\E_{t} \equiv \left( \int^1_0 \E_{i,t}^{\frac{\gamma-1}{\gamma}} di \right)^{\frac{\gamma}{\gamma-1}}$ as the nominal effective exchange rate \footnote{Log-linearizing we get $\pi_{H,t+1} + s_{t+1} - s_t = \pi^*_{t+1} + \Delta e_{t+1}$, where $e_t \equiv \int^1_0 e_{i,t}$, $p_t^* \equiv \int^1_0 p^i_{i,t}$ and $\pi^*_t \equiv p_t^* - p_{t-1}^*$. The baseline model of the paper assumes $p_t^* = p^* = 0$, implying that $\pi_{H,t+1} + s_{t+1} - s_t = \Delta e_{t+1}$}.
 
 The bilateral real exchange rate with country $i$ is defined as $\mathcal{Q}_{i,t} \equiv \frac{\E_{i,t} P^i_{i,t}}{P_t}$ and using that $P_{i,t} = \E_{i,t} P^i_{i,t}$ then:
 
@@ -410,7 +410,31 @@ a
 Consumer problem solution.
 
 \section{Labor subsidy definition}
-a
+As the model depends on imperfect competition assumption the firms have market power implying that competitive equilibrium is not Pareto Optimal due to lower production and hiring. In this case, the domestic benevolent social planner maximizes the representative household discounted utility subject to technology (\ref{technology}), domestic/foreign consumption relation due to international risk sharing (\ref{consumption}) and market clearing (\ref{output_st}). For a analytically tractable solution we need to impose $\gamma = \sigma = \eta = 1$ (as adopted in the calibration). The problem becomes:
+
+$$\max_{C_t, N_t} E_0 \sum^\infty_{t=0} \beta^t \left[\ln(C_t) - \frac{N_t^{\varphi+1}}{\varphi+1} \right] \ \textrm{ s.t. } \begin{matrix}
+    Y_t = A_t N_t\\
+    C_t = C_t^* \mathcal Q_{t}\\
+    Y_t = C_t S_t^\alpha
+\end{matrix}$$
+
+By (\ref{real_rate}) with $\gamma = \sigma = \eta = 1$ we have that $\mathcal{Q}_t = S_t^{1-\alpha}$, and using the global market clearing condition in (\ref{world_equilibrium}): $Y_t^* = C_t^*$ we rewrite the social planner problem:
+
+$$\max_{C_t, N_t} E_0 \sum^\infty_{t=0} \beta^t \left[\ln(C_t) - \frac{N_t^{\varphi+1}}{\varphi+1} \right] \ \textrm{ s.t. } \begin{matrix}
+    C_t = (A_t N_t)^{1-\alpha}(Y_t^*)^\alpha
+\end{matrix}$$
+
+As this problem is a static one we can solve separately for $C_t$ and $N_t$ at any period. The Lagrangean and the first order conditions are:
+
+\begin{equation*}
+    \begin{split}
+        \mathcal L = & \ln(C_t) - \frac{N_t^{\varphi+1}}{\varphi+1} - \lambda_t(C_t - (A_t N_t)^{1-\alpha}(Y_t^*)^\alpha) \\
+        (C_t) \ & \frac{1}{C_t} - \lambda_t = 0\\
+        (N_t) \ & -N_t^\varphi + \lambda_t (Y_t^*)^\alpha (1 - \alpha) A_t^{(1 - \alpha)}N_t^{-\alpha} = 0\\
+    \end{split}
+\end{equation*}
+
+Manipulating we get that $N_t^{1+\varphi} = N^{1+\varphi} = (1-\alpha)$. In the competitive steady state in (\ref{ser}) again assuming $\gamma = \sigma = \eta = 1$ we obtain that $\frac{1}{\mathcal M} = (1-\tau) N^{1+\varphi}$. So, if the subsidy is such that $(1-\tau) = \frac{1}{(1-\alpha) \mathcal M}$ the steady state employment level coincides to Pareto optimal and, then, the efficiency is restored.
 
 \section{Optimal price setting}
 The firms optimal price setting problem is given by:
@@ -428,7 +452,6 @@ The domestic demand for a specific variety is $C_{H,t}(j) = \left( \frac{P_{H,t}
 Substituting $Q_{t, t+k}$ for the expression obtained in the consumer problem and $Y_{t+k}(j)$ for the expression above in the firms problem:
 
 \begin{equation}
-    \label{}
     \bar P_{H,t} = \max_{\bar P_{H,t}} \sum^\infty_{k=0} \theta^k \Et \left[ \beta^k \left( \frac{C_{t+k}}{C_t} \right)^{-\sigma} \left( \frac{P_{t}}{P_{t+k}} \right) \left( \frac{\bar P_{H,t}}{P_{H,t+k}} \right)^{-\varepsilon} \tilde C_{H,t+k} (\bar P_{H,t} - MC_{t+k} P_{H,t+k})  \right]
 \end{equation}
 
@@ -518,7 +541,7 @@ And finally, using (\ref{tot_level}) we obtain:
 \end{equation}
 
 \section{Optimal Monetary Policy and Welfare Losses}
-a
+
 
 
 

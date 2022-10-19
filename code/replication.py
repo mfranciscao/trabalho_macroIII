@@ -343,10 +343,10 @@ print(table5)
 ρ_a  = 0.90
 update_parameters(log(1.2), 3)
 
-G1_opt,  impact_opt,  RC_opt,  C_opt = gensys(*create_matrices("optimal"))
+G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
 G1_citr, impact_citr, RC_citr, C_citr = gensys(*create_matrices("citr"))
-G1_peg,  impact_peg,  RC_peg,  C_peg = gensys(*create_matrices("peg"))
+G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
 #######################################
 # Defining IRFs
