@@ -34,21 +34,14 @@ Where $D_t$ is the nominal payoff in period $t$ of the portfolio held at the end
     C_t \equiv \left[ (1-\alpha)^{\frac{1}{\eta}} (C_{H,t})^{\frac{\eta-1}{\eta}} + \alpha^{\frac{1}{\eta}} (C_{F,t})^{\frac{\eta-1}{\eta}} \right]^{\frac{\eta}{\eta-1}}
 \end{equation}
 
-\begin{equation}
-    C_{F,t} \equiv \left( \int^1_0 C_{i,t}^{\frac{\gamma-1}{\gamma}} di \right)^{\frac{\gamma}{\gamma-1}}
-\end{equation}
+\begin{equation*}
+    C_{F,t} \equiv \left( \int^1_0 C_{i,t}^{\frac{\gamma-1}{\gamma}} di \right)^{\frac{\gamma}{\gamma-1}} \quad C_{H,t} \equiv \left( \int^1_0 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}} dj \right)^{\frac{\varepsilon}{\varepsilon-1}} \quad C_{i,t} \equiv \left( \int^1_0 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}} dj \right)^{\frac{\varepsilon}{\varepsilon-1}}
+\end{equation*}
 
-\begin{equation}
-    C_{H,t} \equiv \left( \int^1_0 C_{H,t}(j)^{\frac{\varepsilon-1}{\varepsilon}} dj \right)^{\frac{\varepsilon}{\varepsilon-1}}
-\end{equation}
-
-\begin{equation}
-    C_{i,t} \equiv \left( \int^1_0 C_{i,t}(j)^{\frac{\varepsilon-1}{\varepsilon}} dj \right)^{\frac{\varepsilon}{\varepsilon-1}}
-\end{equation}
 
 %Moreover, the price indexes of domestic goods ($P_{H,t}$), imported goods ($P_{F,t}$) and goods imported from a specific country $i$ ($P_{i,t}$) are given by:
 
-The detailed solution of the consumer problem is detailed in the appendix A and results are, as usual, the consumer Euler equation and the labour supply:
+The detailed solution of the consumer problem is detailed in the appendix A and results are, as usual, the consumer Euler equation and the labor supply:
 
 \begin{equation}
     \label{euler}
@@ -57,9 +50,10 @@ The detailed solution of the consumer problem is detailed in the appendix A and 
 
 \begin{equation}
     \label{labour_supply}
-    C_t^\sigma N_t^\varphi = \frac{W_t}{P_t}
+    C_t^\sigma N_t^\varphi = \frac{W_t}{P_t} \equiv W_t^R
 \end{equation}
 
+Where $W_t^R$ is the real wage.
 
 \subsection{Terms of trade}
 We define the bilateral terms of trade $S_{i,t}$ between domestic economy and the country $i$ as $S_{i,t} \equiv \frac{P_{i,t}}{P_{H,t}}$. The effective terms of trade given by:
@@ -96,7 +90,7 @@ Aggregating for all countries $i$
     \left( \int^1_0 \left(P_{i,t} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} = \left( \int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} \Rightarrow S_t P_{H,t} = \left( \int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}
 \end{equation}
 
-Dividing $S_t P_{H,t}$ by $S_{t-1} P_{H,t-1}$ we get :
+Dividing $S_t P_{H,t}$ by $S_{t-1} P_{H,t-1}$ we get:
 
 \begin{equation}
     \label{fx}
@@ -121,7 +115,7 @@ A representative firm has a technology with constant returns:
 
 \begin{equation}
     \label{technology}
-    Y_t(j) = A_t N_t(j) \Rightarrow \int^1_0 Y_t(j) dj = \int^1_0 A_t N_t(j) dj \Rightarrow Y_t = A_t N_t
+    Y_t(j) = A_t N_t(j) \Rightarrow \int^1_0 Y_t(j) dj = \int^1_0 A_t N_t(j) dj \Rightarrow \int^1_0 Y_t(j) dj = A_t N_t 
 \end{equation}
 
 \begin{equation}
@@ -148,10 +142,11 @@ Finally, due to constant returns to scale, the real marginal cost does not depen
 
 \begin{equation}
     \label{marginal_cost}
-    \widehat{MC}_t = \mathcal M MC_t = \frac{W_t (1 - \tau) \mathcal M}{P_{H,t}A_t} = \frac{C_t^\sigma N_t^\varphi P_t (1 - \tau)\mathcal M}{P_{H,t}A_t} = \frac{C_t^\sigma Y_t^\varphi \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M}{A_t^{1+\varphi}}
+    \widehat{MC}_t = \mathcal M MC_t = \frac{W_t (1 - \tau) \mathcal M}{P_{H,t}A_t} = \frac{W_t P_t (1 - \tau)\mathcal M}{P_t P_{H,t}A_t}
+    = \frac{W_t^R \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M}{A_t^{1+\varphi}}
 \end{equation}
 
-Where $\tau$ is an employment subsidy \footnote{See appendix C for discussion on optimal subsidy}.\\
+Where $\tau$ is an employment subsidy \footnote{See appendix C for discussion on optimal subsidy} and $\frac{W_t}{P_{H,t}}$ is the real wage in the firm's perspective\footnote{On consumer problem's the real wage $W_t^R \equiv \frac{W_t}{P_t}$ was defined considering the total price index, however when calculating the real marginal cost of the domestic firms the paper uses the real wage considering only the domestic price index ($\frac{W_t}{P_{H,t}}$).}.\\
 
 \subsection{Rest of the world}
 Given the small domestic economy, we assume the rest of the world's output $Y_t^*$ can be taken as exogenous and such that $y_t^* = \ln(Y^*_t)$ follows and AR(1) process:
@@ -184,7 +179,7 @@ Where $v_{i,0}$ depends on initial conditions, which the model assumes be symmet
 
 \begin{equation}
     \label{consumption}
-    \left(\int^1_0 C_t^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} = C_t = \left(\int^1_0  \left(C_t^i \mathcal Q_{i,t}^{\frac{1}{\sigma}}\right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}
+    \left(\int^1_0 C_t^{1-\gamma} di \right)^{\frac{1}{1-\gamma}} \equiv C_t = \left(\int^1_0  \left(C_t^i \mathcal Q_{i,t}^{\frac{1}{\sigma}}\right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}
 \end{equation}
 
 
@@ -206,20 +201,21 @@ As we are considering the country as a small open economy, for the rest of the w
 \end{equation}
 
 \section{Equilibrium conditions}
-The equilibrium conditions (without a monetary policy equation) are given by equations (\ref{euler}), (\ref{tot}), (\ref{fx}), (\ref{real_rate}), (\ref{technology}), (\ref{tfp}), (\ref{marginal_cost}), (\ref{nkpc}), (\ref{y_row}), (\ref{consumption}), (\ref{output_st}) and (\ref{world_equilibrium}) obtained above:
+The equilibrium conditions (without a monetary policy equation) are given by equations (\ref{euler}), (\ref{labour_supply}), (\ref{tot}), (\ref{fx}), (\ref{real_rate}), (\ref{technology}), (\ref{tfp}), (\ref{marginal_cost}), (\ref{nkpc}), (\ref{y_row}), (\ref{consumption}), (\ref{output_st}) and (\ref{world_equilibrium}) obtained above:
 
 \begin{subequations}
     \label{se}
     \begin{align}
         &\beta R_t \Et\left[\left(\frac{C_{t+1}}{C_t} \right)^{-\sigma} \left(\frac{P_t}{P_{t+1}} \right) \right] = 1\\
+        & C_t^\sigma N_t^\varphi = W_t^R\\
         &\Pi_t = \Pi_{H,t} \left(\frac{(1-\alpha) + \alpha S_t^{1-\eta}} {(1-\alpha) + \alpha S_{t-1}^{1-\eta}} \right)^{\frac{1}{1-\eta}}\\
         &\frac{S_t}{S_{t-1}}\Pi_{H,t} = \left(\frac{\int^1_0 \left(\E_{i,t} P^i_{i,t} \right)^{1-\gamma} di }{\int^1_0 \left(\E_{i,t-1} P^i_{i,t-1} \right)^{1-\gamma} di} \right)^{\frac{1}{1-\gamma}}\\
         &\mathcal{Q}_{t}  = \left[(1-\alpha)S_t^{\eta-1} + \alpha \right]^{\frac{1}{\eta-1}}\\
-        &Y_t = A_t N_t\\
-        &A_{t+1} = {A_t}^{\rho_a}\exp( \varepsilon^a_t)\\
-        &\widehat{MC}_t  = \frac{C_t^\sigma Y_t^\varphi \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M}{A_t^{1+\varphi}}\\
+        &\int^1_0 Y_t(j) dj = A_t N_t\\
+        &A_{t+1} = {A_t}^{\rho_a}\exp( \varepsilon^a_{t+1})\\
+        &\widehat{MC}_t  = \frac{M_t^R \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M}{A_t^{1+\varphi}}\\
         &\Pi_{H,t} = \left[ \theta + \frac{(1-\theta)}{P_{H,t-1}^{1-\varepsilon}} \left(\frac{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}}\tilde C_{H,t+k} P_{H,t+k} \widehat{MC}_{t+k}\right] }{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}} \tilde C_{H,t+k}  \right]} \right)^{1-\varepsilon}\right]^\frac{1}{1-\varepsilon}\\
-        &Y^*_{t+1} = {Y^*_t}^{\rho_y}\exp( \varepsilon^*_t)\\
+        &Y^*_{t+1} = {Y^*_t}^{\rho_y}\exp( \varepsilon^*_{t+1})\\
         &C_t = \left(\int^1_0  \left(C_t^i \mathcal Q_{i,t}^{\frac{1}{\sigma}}\right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}\\
         &Y_{t} = C_t \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{\eta}{1-\eta}} \left[(1-\alpha)  +  \alpha \int_0^1 \left(\mathcal S^i_t \mathcal S_{i,t} \right)^{\gamma - \eta} \mathcal Q^{\eta - \frac{1}{\sigma}}_{i,t} di \right] \\
         & C_t^* = Y_t^*
@@ -232,26 +228,27 @@ The log-linear approximation of these equations around the steady state is \foot
 \label{sistema_loglin}
     \begin{align}
         &c_t = \Et[c_{t+1}] - \frac{1}{\sigma} (r_t - \Et[\pi_{t+1}] - \rho)\\
+        & w_t^R = \sigma c_t + \varphi n_t \\
         &\pi_t = \pi_{H,t} + \alpha s_t - \alpha s_{t-1}\\
         &s_{t} - s_{t-1} + \pi_{H,t} = \Delta e_t \\
         &q_t = (1-\alpha) s_t\\
         &y_t = a_t +  n_t\\
-        &a_{t+1} = \rho_a a_t + \varepsilon^a_t\\
-        &\hat{mc}_{t} = -\nu + \sigma c_t + \varphi y_t + \alpha s_t - (1+ \varphi )a_t + \mu\\
+        &a_{t+1} = \rho_a a_t + \varepsilon^a_{t+1}\\
+        &\hat{mc}_{t} = -\nu + w_t^R + \alpha s_t - (1+ \varphi )a_t + \mu\\
         & \pi_{H,t} = \beta \Et[\pi_{H,t+1}] + \lambda \hat{mc}_t\\
-        &y^*_{t+1} = \rho_y y^*_t + \varepsilon^*_t\\
+        &y^*_{t+1} = \rho_y y^*_t + \varepsilon^*_{t+1}\\
         &c_t = c_t^* + \frac{1}{\sigma} q_t\\
         &y_t = c_t + \alpha \gamma s_t + \alpha \left( \eta - \frac{1}{\sigma} \right) q_t\\
         &c_t^* = y_t^*
     \end{align}
 \end{subequations}
 
-To these equations we also adds a definition of potential output $\bar y_t$ obtained from (\ref{sistema_loglin}g) when $\hat{mc_t} = 0$ (and manipulating to be a function only of exogenous variables) and a definition of (log) output gap given by output deviation from its potential:
+To these equations we also adds a definition of potential output $\bar y_t$ obtained from (\ref{sistema_loglin}h) when $\hat{mc_t} = 0$ (and manipulating to be a function only of exogenous variables) and a definition of (log) output gap given by output deviation from its potential:
 
 \begin{subequations}
     \begin{align}
-        &\bar y_t = \Omega + \Gamma a_t - \alpha \Psi y_t^* \tag{\ref{sistema_loglin}m}\\
-        &x_t = y_t - \bar y_t \tag{\ref{sistema_loglin}n}
+        &\bar y_t = \Omega + \Gamma a_t - \alpha \Psi y_t^* \tag{\ref{sistema_loglin}n}\\
+        &x_t = y_t - \bar y_t \tag{\ref{sistema_loglin}o}
     \end{align}
 \end{subequations}
 
@@ -300,11 +297,12 @@ The paper assumes the following calibration for the structural parameters:
 In the paper's text and tables the parameter $\rho_a$ is defined as $0.66$, however the IRFs charts are compatible with value $0.90$ (authors reused the charts from an working paper version which $\rho_a = 0.90$ without update the figure or inform the different parameter in the text). We use this same value in the charts to be comparable with original ones in the paper.
 
 \section{Steady State Properties}
-In the steady state: (i) Purchasing Power Parity holds symmetrically for all other countries (then $\mathcal Q_i = \mathcal Q$, $S_i = S$, $S^i=1$ and $C^i = C^*$), (ii) all the stationary variables are constant and (iii) there is not uncertainty ($\varepsilon^* = \varepsilon^a = 0$).  Using the equilibrium conditions showed in (\ref{se}) immediately by (f), (i) and (l) we obtain that $A = Y^* = C^* = 1$. The equation (a) defines $R = \beta^{-1}$. From (c) and (b) we have $\Pi = \Pi_H = 1$. Using (h) we find $\widehat{MC} = 1$. The remaining system (composed by equations (d), (e), (j) and (k)) is:
+In the steady state: (i) Purchasing Power Parity holds symmetrically for all other countries (then $\mathcal Q_i = \mathcal Q$, $S_i = S$, $S^i=1$ and $C^i = C^*$), (ii) all the stationary variables are constant and (iii) there is not uncertainty ($\varepsilon^* = \varepsilon^a = 0$).  Using the equilibrium conditions showed in (\ref{se}) immediately by (g), (j) and (m) we obtain that $A = Y^* = C^* = 1$. The equation (a) defines $R = \beta^{-1}$. From (d) and (c) we have $\Pi = \Pi_H = 1$. Using (i) we find $\widehat{MC} = 1$. The remaining system (composed by equations (b), (e), (f), (l) and (l)) is:
 
 \begin{subequations}
     \label{ser}
     \begin{align}
+        & C_t^\sigma N_t^\varphi = W_t^R \\
         &\mathcal{Q} = \left[(1-\alpha)S^{\eta-1} + \alpha \right]^{\frac{1}{\eta-1}}\\
         &Y =  N\\
         &1 = C^\sigma Y^\varphi \left[(1-\alpha) + \alpha S^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M\\
@@ -313,7 +311,7 @@ In the steady state: (i) Purchasing Power Parity holds symmetrically for all oth
     \end{align}
 \end{subequations}
 
-This system cannot be solved analytically in the general case, however, using the values showed in calibration for $\alpha, \sigma, \eta, \gamma, \epsilon$ and $\varphi$ and defining the optimal subsidy ($ 1-\tau = \frac{1}{(1-\alpha)\mathcal M}  $), as showed in appendix C, we obtain the following steady state values:
+This system cannot be solved analytically in the general case, however, using the values showed in calibration for $\alpha, \sigma, \eta, \gamma, \varepsilon$ and $\varphi$ and defining the optimal subsidy ($ 1-\tau = \frac{1}{(1-\alpha)\mathcal M}  $), as showed in appendix C, we obtain the following steady state values:
 
 \begin{table}[H]
     \centering
@@ -323,9 +321,10 @@ This system cannot be solved analytically in the general case, however, using th
         \hline
         $Y$ & Output & 1.13622 \\
         $C$ & Consumption & 1.07964 \\
+        $W^R$ & Real wage & 1.58367 \\
         $C/Y$ & Consumption-to-GDP Ratio & 0.95020 \\
         $S$ & Terms of trade & 1.13622 \\
-        $NX/Y$ & New exports in terms of domestic output & $0$\\
+        $NX/Y$ & New exports in terms of domestic output & $0.00000$\\
         $(R^4 -1)$ & Real annual interest rate &  0.04102\\
         \hline
     \end{tabular}
@@ -394,7 +393,26 @@ We show the IRFs relative to both shocks present in the model (TFP and world out
 \end{figure}
 
 \section{Modification}
-a
+We include wage stickiness following Ergec, Hendenson and Levin (ref, 2000) and Gali (livro). Explicar melhor
+
+\subsection{Firms}
+Each represent firm $j$ now uses a continuum of different labor types ($n \in [0,1]$) as inputs:
+
+\begin{equation}
+    Y_t(j) = A_t N_t(j) \quad N_t(j) \equiv \left( \int^1_0 N_t(j, n)^{\frac{\zeta-1}{\zeta}} dn \right)^{\frac{\zeta}{\zeta-1}}
+\end{equation}
+
+Where $\zeta$ represents the elasticity of substitution among labor varieties. The model assumes that there is some coordination (or a representative union) that sets the same nominal wages to works of each type $W_t(n)$. Analogously to the consumer problem that solve for the optimal demand for each type of good given the individual aggregate consumption, for the firm cost minimization problem given $N_t(j)$ we have that the optimal demand for $n$-type labor is:
+
+\begin{equation}
+    N_t(j,n) = \left(\frac{W_t(n)}{W_t} \right)^\zeta N_t(j) \quad \textrm{ where } \ W_t \equiv \left(\int^1_0 W_t(n)^{1-\zeta} dn \right)^{\frac{1}{1-\zeta}}
+\end{equation}
+
+The $W_t$ and $N_t(j)$ above are such that in aggregate terms $\int^1_0 W_t(n) N_t(j,n) dn = W_t N_t(j)$. Follows that the firms price setting problem remains unchanged as marginal cost is constant due to constant returns to scale and $W_t$ is not calculate by aggregator above. Moreover we assume that all consumers homogeneously supply all the labor types implying that his income is given by $\int^1_0 W_t(n) N_t(n) dn$ which is aggregated to $w_t N_t$, leading to same problem discussed in original model and then, same labor supply and Euler equation.\\
+
+Wage rigidities are defined following in the same way of goods prices, following Calvo: ever period a randomly selected fraction with measure $\varrho$ of the labor types can reset nominal wages, while the remaining sectors are forced to keep their wages unchanged.
+
+
 
 \section{The new implications for the static and dynamics properties of the model}
 a
@@ -437,7 +455,7 @@ As this problem is a static one we can solve separately for $C_t$ and $N_t$ at a
 Manipulating we get that $N_t^{1+\varphi} = N^{1+\varphi} = (1-\alpha)$. In the competitive steady state in (\ref{ser}) again assuming $\gamma = \sigma = \eta = 1$ we obtain that $\frac{1}{\mathcal M} = (1-\tau) N^{1+\varphi}$. So, if the subsidy is such that $(1-\tau) = \frac{1}{(1-\alpha) \mathcal M}$ the steady state employment level coincides to Pareto optimal and, then, the efficiency is restored.
 
 \section{Optimal price setting}
-The firms optimal price setting problem is given by:
+The firms optimal price setting problem following the Calvo's model is given by:
 
 \begin{equation}
     \bar P_{H,t} = \max_{\bar P_{H,t}} \sum^\infty_{k=0} \theta^k \Et \left[ Q_{t, t+k}[Y_{t+k}(j) (\bar P_{H,t} - MC_{t+k} P_{H,t+k})] \right]
