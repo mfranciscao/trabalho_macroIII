@@ -7,6 +7,7 @@
 \usepackage{bigints}
 \usepackage{float}
 \usepackage{svg}
+\usepackage{multirow}
 
 \newcommand{\Et}{\mathbb{E}_t}
 \newcommand{\E}{\mathcal{E}}
@@ -213,7 +214,7 @@ The equilibrium conditions (without a monetary policy equation) are given by equ
         &\mathcal{Q}_{t}  = \left[(1-\alpha)S_t^{\eta-1} + \alpha \right]^{\frac{1}{\eta-1}}\\
         &\int^1_0 Y_t(j) dj = A_t N_t\\
         &A_{t+1} = {A_t}^{\rho_a}\exp( \varepsilon^a_{t+1})\\
-        &\widehat{MC}_t  = \frac{M_t^R \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M}{A_t^{1+\varphi}}\\
+        &\widehat{MC}_t  = \frac{W_t^R \left[(1-\alpha) + \alpha S_t^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M}{A_t^{1+\varphi}}\\
         &\Pi_{H,t} = \left[ \theta + \frac{(1-\theta)}{P_{H,t-1}^{1-\varepsilon}} \left(\frac{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}}\tilde C_{H,t+k} P_{H,t+k} \widehat{MC}_{t+k}\right] }{\Et\left[ \sum^\infty_{k=0} (\beta\theta)^k C_{t+k}^{-\sigma} \frac{1}{P_{t+k}} \tilde C_{H,t+k}  \right]} \right)^{1-\varepsilon}\right]^\frac{1}{1-\varepsilon}\\
         &Y^*_{t+1} = {Y^*_t}^{\rho_y}\exp( \varepsilon^*_{t+1})\\
         &C_t = \left(\int^1_0  \left(C_t^i \mathcal Q_{i,t}^{\frac{1}{\sigma}}\right)^{1-\gamma} di \right)^{\frac{1}{1-\gamma}}\\
@@ -302,10 +303,10 @@ In the steady state: (i) Purchasing Power Parity holds symmetrically for all oth
 \begin{subequations}
     \label{ser}
     \begin{align}
-        & C_t^\sigma N_t^\varphi = W_t^R \\
+        & C^\sigma N^\varphi = W^R \\
         &\mathcal{Q} = \left[(1-\alpha)S^{\eta-1} + \alpha \right]^{\frac{1}{\eta-1}}\\
         &Y =  N\\
-        &1 = C^\sigma Y^\varphi \left[(1-\alpha) + \alpha S^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M\\
+        &1 = W^R \left[(1-\alpha) + \alpha S^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M\\
         &C = \mathcal Q^{\frac{1}{\sigma}}\\
         &Y = C \left[(1-\alpha) + \alpha S^{1-\eta} \right]^{\frac{\eta}{1-\eta}} \left[(1-\alpha)  +  \alpha \mathcal S^{\gamma - \eta} \mathcal Q^{\eta - \frac{1}{\sigma}} \right]
     \end{align}
@@ -396,27 +397,149 @@ We show the IRFs relative to both shocks present in the model (TFP and world out
 We include wage stickiness following Ergec, Hendenson and Levin (ref, 2000) and Gali (livro). Explicar melhor
 
 \subsection{Firms}
-Each represent firm $j$ now uses a continuum of different labor types ($n \in [0,1]$) as inputs:
+Each represent firm $j$ now uses a continuum of different labor types ($x \in [0,1]$) as inputs:
 
 \begin{equation}
-    Y_t(j) = A_t N_t(j) \quad N_t(j) \equiv \left( \int^1_0 N_t(j, n)^{\frac{\zeta-1}{\zeta}} dn \right)^{\frac{\zeta}{\zeta-1}}
+    Y_t(j) = A_t N_t(j) \quad N_t(j) \equiv \left( \int^1_0 N_t(j, x)^{\frac{\zeta-1}{\zeta}} dx \right)^{\frac{\zeta}{\zeta-1}}
 \end{equation}
 
-Where $\zeta$ represents the elasticity of substitution among labor varieties. The model assumes that there is some coordination (or a representative union) that sets the same nominal wages to works of each type $W_t(n)$. Analogously to the consumer problem that solve for the optimal demand for each type of good given the individual aggregate consumption, for the firm cost minimization problem given $N_t(j)$ we have that the optimal demand for $n$-type labor is:
+Where $\zeta$ represents the elasticity of substitution among labor varieties and $W_t(x)$ is the nominal wage per unit of $x$-type labor. Analogously to the consumer problem that solve for the optimal demand for each type of good given the individual aggregate consumption, for the firm cost minimization problem given $N_t(j)$ we have that the optimal demand for $n$-type labor is:
 
 \begin{equation}
-    N_t(j,n) = \left(\frac{W_t(n)}{W_t} \right)^\zeta N_t(j) \quad \textrm{ where } \ W_t \equiv \left(\int^1_0 W_t(n)^{1-\zeta} dn \right)^{\frac{1}{1-\zeta}}
+    N_t(j,x) = \left(\frac{W_t(x)}{W_t} \right)^\zeta N_t(j) \quad \textrm{ where } \ W_t \equiv \left(\int^1_0 W_t(x)^{1-\zeta} dx \right)^{\frac{1}{1-\zeta}}
 \end{equation}
 
-The $W_t$ and $N_t(j)$ above are such that in aggregate terms $\int^1_0 W_t(n) N_t(j,n) dn = W_t N_t(j)$. Follows that the firms price setting problem remains unchanged as marginal cost is constant due to constant returns to scale and $W_t$ is not calculate by aggregator above. Moreover we assume that all consumers homogeneously supply all the labor types implying that his income is given by $\int^1_0 W_t(n) N_t(n) dn$ which is aggregated to $w_t N_t$, leading to same problem discussed in original model and then, same labor supply and Euler equation.\\
+The $W_t$ and $N_t(j)$ above are such that in aggregate terms $\int^1_0 W_t(x) N_t(j,x) dx = W_t N_t(j)$. Follows that the firms price setting problem remains unchanged as marginal cost is constant due to constant returns to scale and $W_t$ is calculated by aggregator above.
 
-Wage rigidities are defined following in the same way of goods prices, following Calvo: ever period a randomly selected fraction with measure $\varrho$ of the labor types can reset nominal wages, while the remaining sectors are forced to keep their wages unchanged.
+\subsection{Households}
+Moreover we assume that all consumers homogeneously supply all the labor types implying that his income is given by $\int^1_0 W_t(x) N_t(x) dx$, leading to same problem discussed in original model:
+
+\begin{equation}
+    \max_{C_t} E_0 \sum^\infty_{t=0} \beta^t \left[\frac{C_t^{1-\sigma}}{1-\sigma} - \frac{N_t^{\varphi+1}}{\varphi+1} \right] \hspace{1em}  \textrm{ st. } \hspace{1em} \forall t, \hspace{0.8em} P_t C_t + \Et[Q_{t,t+1} D_{t+1}] \leq D_t +  \int^1_0 W_t(x) N_t(x) dx + T_t
+\end{equation}
+
+The major difference is that now the consumers do not chose anymore the hours worked, thus labor income is now exogenous and the maximization problem solution consists only in the Euler equation showed in (\ref{euler}).\\
+
+\subsection{Wage setting}
+
+The model assumes that there exists a continuum of representative unions that can determine the nominal wages for each labor type. Analouslgy to price setting problem we assume that each union is not completely free to adjust their wage at any period, but only a random selected fraction of them with measure $\varsigma$ can reset the wages in a given period, while the remaining fraction must keep the nominal wage unchanged. The union wage setting problem consider the utility maximization of the workers, taking as exogenous the other union decisions and the labor demand by the firms. Formally:
+
+\begin{equation}
+    \label{wage_setting}
+    \max_{W_t^*} \Et \sum^\infty_{k=0} (\beta \varsigma)^k \left( \frac{C_{t+k}^{-\sigma}}{C_t^{-\sigma}} \frac{P_t}{P_{t+k}} W_t^* N_{t+k|t} - \frac{N_{t+k|t}^{1+\varphi}}{1+\varphi} \right)Z_{t+k} \quad \textrm{such that} \quad N_{t+k|k} = \left(\frac{W_t^*}{W_{t+k}} \right)^{-\zeta} \left(\int_0^1 N_t(j) dj \right)
+\end{equation}
+
+The first order condition is given by:
+
+\begin{equation}
+    \label{foc_wage}
+    \sum^\infty_{k=0} (\beta \varsigma)^k \Et \left[N_{t+k|t} Z_{t+k} \left(\frac{C_{t+k}^{-\sigma} W_t^*}{P_{t+k}} - \Xi N_{t+k|t}^\varphi \right) \right] = 0
+\end{equation}
+
+Where $\Xi = \frac{\zeta}{\zeta-1}$. Log-linearizing and rearranging the expression above and defining $\xi = \ln(\Xi)$ we get:
+
+\begin{equation}
+    w_t^* = (1 - \beta \varsigma) \sum^\infty_{k=0} (\beta \rho)^k \Et[\xi +  \sigma c_{t+k} + \varphi n_{t+k|t} + p_{t+k}]
+\end{equation}
 
 
+Log-linearizing the constraint in (\ref{wage_setting}) we obtain that $n_{t+k|t} = -\zeta w_t^* + \zeta w_{t+k} + n_{t+k}$, thus:
+
+\begin{equation}
+    w_t^* = (1 - \beta \varsigma) \sum^\infty_{k=0} (\beta \rho)^k \Et[\xi +  \sigma c_{t+k} + \varphi( \zeta w_{t+k} -\zeta w_t^* + n_{t+k}) + p_{t+k}]
+\end{equation}
+
+\begin{equation}
+    w_t^* = \frac{1-\beta \varsigma}{1 + \zeta \varphi} \sum^{\infty}_{k=0} (\beta \varsigma)^k \Et[\xi + \sigma c_{t+k} + \varphi n_{t+k} + \zeta \varphi w_{t+k} + p_{t+k}]
+\end{equation}
+
+Writing in a recursive form:
+
+\begin{equation}
+    \label{opt_wage}
+    w_t^* = \beta \varsigma \Et[w^*_{t+1}] + (1 - \beta \varsigma) \left[w_t - (1+\zeta \varphi)^{-1} (w_t^R  - \sigma c_t - \varphi n_t - \xi) \right]
+\end{equation}
+
+\subsection{Wage inflation dynamics}
+The wage inflation is defined as $\Pi_{w,t} = \frac{W_t}{W_{t-1}}$ or, log-linearizing, $\pi_{w,t} = w_t - w_{t-1}$. As we defined real wage $W_t^R = \frac{W_t}{P_t}$ we can derive a relation between goods and wage inflation:
+
+\begin{equation}
+    \Pi_{w,t} = \frac{W_t}{W_{t-1}} = \frac{W_t^R P_t}{W_{t-1}^R P_{t-1}} = \frac{W_t^R \Pi_t}{W_{t-1}^R}
+\end{equation}
+
+Log-linearizing:
+
+\begin{equation}
+    \label{wage_inflation}
+    \pi_{w,t} = w_t^R - w_{t-1}^R + \pi_t
+\end{equation}
+
+The aggregate wage dynamics is given by:
+
+\begin{equation}
+    W_t = \left(\varsigma W_{t-1}^{1-\zeta} + (1-\varsigma) (W_t^*)^{1-\zeta} \right)^{\frac{1}{1-\zeta}}
+\end{equation}
+
+Log-linearizing and calculating $\pi_{w,t}$:
+
+\begin{equation}
+    \Rightarrow w_t = \varsigma w_{t-1} + (1-\varsigma) w_t^* \Rightarrow \pi_{w,t} = (1-\varsigma)(w_t^* - w_{t-1})
+\end{equation}
+
+Substituting the expression for $w_t^*$ found in (\ref{opt_wage}) and rearranging:
+
+\begin{equation}
+    \label{wage_pc}
+    \pi_{w,t} = \beta \Et[\pi_{w,t+1}] - \Lambda (w_t^R  - \sigma c_t - \varphi n_t - \xi)
+\end{equation}
+
+Where $\Lambda \equiv \frac{(1-\varsigma)(1- \beta \varsigma)}{\varsigma(1+ \zeta \varphi)}$.
+
+\subsection{Equilibrium}
+The new log-linearized equilibrium is the same showed in (\ref{sistema_loglin}) but removing the labor supply equation $(b)$ and adding (\ref{wage_inflation}) and (\ref{wage_pc}).
 
 \section{The new implications for the static and dynamics properties of the model}
-a
 
+\subsection{Steady state}
+Using the first order condition in wage setting problem in (\ref{foc_wage}) evaluated in steady state it becomes $W^R = \Xi N^\varphi C^\sigma$. Thus, the exact same steady state found in (\ref{ser}) must hold, with only change the substitution of labor supply equation (\ref{ser})a) to the expression above:
+
+\begin{subequations}
+    \label{ser_wage}
+    \begin{align}
+        & \Xi C^\sigma N^\varphi = W^R \\
+        &\mathcal{Q} = \left[(1-\alpha)S^{\eta-1} + \alpha \right]^{\frac{1}{\eta-1}}\\
+        &Y =  N\\
+        &1 = W^R \left[(1-\alpha) + \alpha S^{1-\eta} \right]^{\frac{1}{1-\eta}} (1 - \tau) \mathcal M\\
+        &C = \mathcal Q^{\frac{1}{\sigma}}\\
+        &Y = C \left[(1-\alpha) + \alpha S^{1-\eta} \right]^{\frac{\eta}{1-\eta}} \left[(1-\alpha)  +  \alpha \mathcal S^{\gamma - \eta} \mathcal Q^{\eta - \frac{1}{\sigma}} \right]
+    \end{align}
+\end{subequations}
+
+It is immediate that if $\zeta \to \infty$ then $\Xi \to 1$ and the system above results in the same of the original model, as it means that workers has not market power to set wages due to perfect substitutability among labor types, which is equivalent to a model without wage stickiness. Assuming the same calibration showed in section 4 and, for the new parameters, adopting $\varsigma = 0.75$ (consistent 1 year as average time to change wages) and $\zeta = 6$ (similarly to elasticity of substitution $\varepsilon$ between goods) we obtain that steady state values are identical to original model except the real wage:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{clcc}
+        \hline
+        \multirow{2}*{\textbf{Variable}} & \multirow{2}*{\textbf{Description}} & \textbf{Original} & \textbf{Model with}\\
+        & & \textbf{Model} & \textbf{Price Stickiness} \\
+        \hline
+        $Y$ & Output & 1.13622 & 1.13622 \\
+        $C$ & Consumption & 1.07964 & 1.07964 \\
+        $W^R$ & Real wage & 1.58367 & 1.90040 \\
+        $C/Y$ & Consumption-to-GDP Ratio & 0.95020 & 0.95020 \\
+        $S$ & Terms of trade & 1.13622 & 1.13622 \\
+        $NX/Y$ & New exports in terms of domestic output & $0.00000$ & $0.00000$\\
+        $(R^4 -1)$ & Real annual interest rate &  0.04102 &  0.04102\\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Dynamic Properties}
+aaa
+
+\subsection{Impulse Response Functions}
+aaa
 
 \section{Conclusion}
 a
@@ -559,7 +682,6 @@ And finally, using (\ref{tot_level}) we obtain:
 \end{equation}
 
 \section{Optimal Monetary Policy and Welfare Losses}
-
 
 
 

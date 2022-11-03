@@ -4,9 +4,6 @@
     <list default="true" id="cb6bc072-d388-48db-8755-96a7f8a2f371" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/modification.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/modification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/replication.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/replication.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/trabalho_parcial.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/latex/trabalho_parcial.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/trabalho_parcial.tex" beforeDir="false" afterPath="$PROJECT_DIR$/latex/trabalho_parcial.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +50,7 @@
       <recent name="Z:\Mestrado\Disciplinas\Macroeconomia III - Yvan\Trabalho\trabalho_macroIII\code" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.replication">
+  <component name="RunManager" selected="Python.modification">
     <configuration name="eei" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="trabalho_macroIII" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -161,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.modification" />
         <item itemvalue="Python.replication" />
         <item itemvalue="Python.egp" />
         <item itemvalue="Python.eei" />
         <item itemvalue="Python.teste" />
-        <item itemvalue="Python.modification" />
       </list>
     </recent_temporary>
   </component>
