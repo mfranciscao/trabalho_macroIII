@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb6bc072-d388-48db-8755-96a7f8a2f371" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/code/replication_graficos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/modification.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/modification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/replication.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/replication.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/img/figure1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure1.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/img/figure2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure2.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +55,7 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.modification">
-    <configuration name="eei" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="endogenous_grid_points" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="trabalho_macroIII" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -63,7 +67,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1/Py/eei.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1/Py/endogenous_grid_points.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -72,7 +76,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="egp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="euler_equation_iteration" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="trabalho_macroIII" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -84,7 +88,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1/Py/egp.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1/Py/euler_equation_iteration.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -135,7 +139,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="teste" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="replication_graficos" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="trabalho_macroIII" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -143,11 +147,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1" />
-      <option name="IS_MODULE_SDK" value="false" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/code" />
+      <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1/teste.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/replication_graficos.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -159,10 +163,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.modification" />
+        <item itemvalue="Python.replication_graficos" />
         <item itemvalue="Python.replication" />
-        <item itemvalue="Python.egp" />
-        <item itemvalue="Python.eei" />
-        <item itemvalue="Python.teste" />
+        <item itemvalue="Python.endogenous_grid_points" />
+        <item itemvalue="Python.euler_equation_iteration" />
       </list>
     </recent_temporary>
   </component>

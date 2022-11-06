@@ -231,9 +231,7 @@ for k in range(4): #iterate over models
         for t in range(0, lenghtsimul):
             endog[:, t] = G1[k].dot(endog[:, t-1]) + impact[k].dot(shocks[:, t]) + C[k].reshape(16, )
 
-        [y_t, dcpi, cpi, nrate, s_t, de_t] = [endog[j, :] for j in [6,2,11,4,8,12]]
-
-        std_series[:, i] = [std(j[1:])*100 for j in [y_t, dcpi, cpi, nrate, s_t, de_t]]
+        std_series[:, i] = [std(j[1:])*100 for j in [endog[j, :] for j in [6,2,11,4,8,12]]]
 
     results.append([round(mean(std_series[j, :]), 2) for j in range(std_series.shape[0])])
 
@@ -248,15 +246,6 @@ print(table1)
 # --------------------------------------------------------------------------
 # Welfare Losses
 # --------------------------------------------------------------------------
-def update_parameters(μ_new, φ_new):
-    # Update the value of the parameters which deppend on μ or φ
-    global μ; μ = μ_new
-    global φ; φ = φ_new
-    global ε; ε = exp(μ) / (exp(μ) - 1)
-    global ν; ν = μ #+ log(1 - α)
-    global Ω; Ω = (ν - μ) / (σ_α + φ)
-    global Γ; Γ = (1 + φ) / (σ_α + φ)
-    global Ψ; Ψ = (-Θ * σ_α) / (σ_α + φ)
 
 def welfare_simulations():
     var_output_ditr = []
@@ -303,7 +292,10 @@ print("\nCase 1 - Benchmark:  μ = log(1.2), φ = 3")
 print(table2)
 
 # Case 2 - Low steady state markup:  μ = ln(1.1), φ = 3
-update_parameters(log(1.1), 3)
+μ = log(1.1)
+ε = exp(μ)/(exp(μ) - 1)
+ν = μ
+Ω = (ν-μ)/(σ_α+φ)
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
@@ -316,7 +308,13 @@ print("\nCase 2 - Low steady state markup:  μ = ln(1.1), φ = 3")
 print(table3)
 
 # Case 3 - Low elasticity of labor supply:  μ = log(1.2), φ = 10
-update_parameters(log(1.2), 10)
+μ = log(1.2)
+φ = 10
+ε = exp(μ)/(exp(μ) - 1)
+ν = μ
+Ω = (ν-μ)/(σ_α+φ)
+Γ = (1+φ)/(σ_α+φ)
+Ψ = (-Θ*σ_α)/(σ_α+φ)
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
@@ -330,7 +328,11 @@ print(table4)
 
 
 # Case 4 - Low mark-up and elasticity of labour supply:  μ = log(1.1), φ = 10
-update_parameters(log(1.1), 10)
+μ = log(1.1)
+φ = 10
+ε = exp(μ)/(exp(μ) - 1)
+ν = μ
+Ω = (ν-μ)/(σ_α+φ)
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
@@ -349,7 +351,13 @@ print(table5)
 
 # Change ρ_a and restore μ = log(1.2) and φ = 3
 ρ_a  = 0.90
-update_parameters(log(1.2), 3)
+μ = 1.2
+φ = 3
+ε = exp(μ)/(exp(μ) - 1)
+ν = μ
+Ω = (ν-μ)/(σ_α+φ)
+Γ = (1+φ)/(σ_α+φ)
+Ψ = (-Θ*σ_α)/(σ_α+φ)
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
@@ -367,14 +375,9 @@ def irfs(G1, impact, C, nperiods, shock):
     for j in range(1, nperiods):
         resp[:, [j]] = G1 @ (resp[:, [j-1]] + C)
 
-    #Define nominal variables
-    pt = np.cumsum(resp[11, :])
-    pHt = np.cumsum(resp[2, :])
-    et = np.cumsum(resp[12, :])
-
     #Return irfs series
-    return [resp[3 if shock=="a" else 1, :], resp[2, :], resp[0, :],
-            resp[11, :], resp[8, :], et, resp[4, :], pHt, pt]
+    return [resp[3 if shock=="a" else 1, :], resp[0, :], resp[6, :],
+            resp[11, :], resp[2, :], resp[15, :], resp[4, :], resp[12, :], resp[8, :]]
 
 
 
@@ -391,12 +394,11 @@ x_axis = range(1, nperiods+1)
 figure1 = plt.figure(figsize=figsize)
 lines = []
 charts = [figure1.add_subplot(3, 3, j+1) for j in range(9)]
-limits = [(0,1.1), (-.4,.4), (-1,.5), (-.4,.4), (0,1), (-2,1), (-.3,.1), (-1.5,.5), (-1.5,.5)]
-ticks = [(0,1.5,.5), (-.4,.6,.2), (-1,1,.5), (-.4,.6,.2), (0,1.5,.5), (-2,2,1),
-         (-.3,.2,.1), (-1.5,1,.5), (-1.5,1,.5)]
-plot_titles = ["Productivity", "Domestic inflation", "Output gap", "CPI Inflation",
-               "Terms of trade", "Nominal exchange rate", "Nominal interest rate",
-               "Domestic price level", "CPI level"]
+limits = [(0,1.1), (-.75,0.1), (0,1), (-.4,.4), (-0.4,0.2), (-2,1), (-0.3,0.1), (-.5,1), (0,1)]
+ticks = [(0,1.5,.5), (-.75,.25,.25), (0,1.5,.5), (-.4,.6,.2), (-.4,.4,.2), (-2,2,1),
+         (-.3,.2,.1), (-.5,1.5,.5), (0,1.5,.5)]
+plot_titles = ["Productivity", "Output Gap", "Output", "CPI Inflation", "Domestic Inflation",
+               "Real Wage", "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade"]
 
 for j in range(9):
     charts[j].set_title(plot_titles[j], fontsize = 10)
@@ -437,12 +439,10 @@ plt.show()
 figure2 = plt.figure(figsize=figsize)
 lines = []
 charts = [figure2.add_subplot(3, 3, j+1) for j in range(9)]
-limits = [(0,1.1), (-.2,.6), (-.2,.8), (-.4,.4), (-1.5,0.5), (-.4,0.2), (0,.1), (-1,1), (-1,0.5)]
-ticks = [(0,1.5,.5), (-.2,.8,.2), (-.2,.8,.2), (-.4,.6,.2), (-1,1,.5), (-1,1,.5),
-         (-.4,.4,.2), (-1,1.5,.5), (-1,1,.5)]
-plot_titles = ["World Output", "Domestic inflation", "Output gap", "CPI Inflation",
-               "Terms of trade", "Nominal exchange rate", "Nominal interest rate",
-               "Domestic price level", "CPI level"]
+limits = [(0,1.1), (-.1,.75), (-.1,.75), (-.5,.4), (-0.2,0.4), (-0.1,3), (-0.4,.05), (-1.1,.25), (-1.1,0)]
+ticks = [(0,1.5,.5), (0,1,.25), (0,1,.75), (-.5,.5,.25), (-.25,0.75,.25), (0,4,1),
+         (-.4,.1,.2), (-1,.5,.5), (-1,1,.5)]
+plot_titles[0] = "World Output"
 
 for j in range(9):
     charts[j].set_title(plot_titles[j], fontsize = 10)

@@ -7,11 +7,15 @@ from math import log
 import numpy as np
 from numpy import std, var, cov, corrcoef, mean, exp
 from gensys import gensys
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import pandas as pd
 from scipy.optimize import fsolve
 
 np.set_printoptions(formatter={'all':lambda x: str(x)}, suppress=True)
+np.random.seed(1)
+pd.set_option('display.max_columns', 7)
+
 
 #######################################
 # Parameters
@@ -24,7 +28,7 @@ np.set_printoptions(formatter={'all':lambda x: str(x)}, suppress=True)
 σ    = 1         #coefficient of relative risk aversion
 φ    = 3         #inverse Frisch elasticity of labor supply
 β    = 0.99      #intertemporal discount factor
-θ    = 0.75      #price stickiness / share of firms which must keep prices unchanged
+θ    = 0.75      #price stickiness / share of firms which need to keep prices unchanged
 φ_π  = 1.5       #Taylor rule response to inflation
 ρ_a  = 0.66      #AR(1) coeffiecient of productivity
 ρ_y  = 0.86      #AR(1) coefficient of Rest of World GDP
@@ -42,13 +46,13 @@ np.set_printoptions(formatter={'all':lambda x: str(x)}, suppress=True)
 M    = ε/(ε-1)
 τ    = 1 - 1/(M*(1-α))
 μ    = log(M)
-ν    = μ + log(1-α)
+ν    = μ #+ log(1-α)
 Ω    = (ν-μ)/(σ_α+φ)
 Γ    = (1+φ)/(σ_α+φ)
 Ψ    = (-Θ*σ_α)/(σ_α+φ)
 Ξ    = ζ/(ζ-1)
 ξ    = log(Ξ)
-Λ    = (1-ς)*(1-β*ς)/(ς*(1+ς*φ))
+Λ    = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
 
 #######################################
 # Steady State
@@ -105,8 +109,8 @@ def create_matrices(monetary_rule):
                         [0,  0,    1,   0,  0, 0,   0,   0,   1,     0,      0,  0, -1, 0,  0, 0, 0],
                         [0,  0,    0,  -1,  0, 0,   0,   0,   α,     0,      0,  0,  0, -1, 0, 1, 0],
                         [0,  0,    0,   1,  0, 0,  -1,   0,   0,     0,      0,  0,  0, 0,  1, 0, 0],
-                        [0,  0,    0,   0,  0, 0,   0,   0,   0,     0,      0,  1,  0, 0,  0,-1, 1],
-                        [0,  0,    0,   0,  0, 0,   0,   0,   0,     0,      0,  0,  0, 0,  0,0, β]])
+                        [0,  0,    0,   0,  0, 0,   0,   0,   0,     0,      0,  0,  0, 0,  0, 0, β],
+                        [0,  0,    0,   0,  0, 0,   0,   0,   0,     0,      0,  1,  0, 0,  0,-1, 1]])
 
     Gamma_1  = np.array([[0,  0,  0,  0, 1/σ, 0, 0, 0, 0, 0,   1, 0, 0, 0,  0,  0, 0],
                          [0,  0,  1,  0,  0,  0, 0, 0, 0, 0,   0, 0, 0,-λ,  0,  0, 0],
@@ -123,8 +127,8 @@ def create_matrices(monetary_rule):
                          [0,  0,  0,  0,  0,  0, 0, 0, 1, 0,   0, 0, 0, 0,  0,  0, 0],
                          [0,  0,  0,  0,  0,  0, 0, 0, 0, 0,   0, 0, 0, 0,  0,  0, 0],
                          [0,  0,  0,  0,  0,  0, 0, 0, 0, 0,   0, 0, 0, 0,  0,  0, 0],
-                         [0,  0,  0,  0,  0,  0, 0, 0, 0, 0,   0, 0, 0, 0,  0, -1, 0],
-                         [0,  0,  0,  0,  0,  0, 0, 0, 0, 0,-Λ*σ, 0, 0, 0,-Λ*φ, Λ, 1]])
+                         [0,  0,  0,  0,  0,  0, 0, 0, 0, 0,-Λ*σ, 0, 0, 0,-Λ*φ, Λ, 1],
+                         [0,  0,  0,  0,  0,  0, 0, 0, 0, 0,   0, 0, 0, 0,  0, -1, 0]])
 
     CONST = np.array([[-ρ/σ],
                   [0],
@@ -139,10 +143,10 @@ def create_matrices(monetary_rule):
                   [0],
                   [0],
                   [0],
+                  [-ν+μ],
                   [0],
-                  [0],
-                  [0],
-                  [-Λ*ξ]])
+                  [-Λ*ξ],
+                  [0]])
 
     PI = np.array([[-1, -1/σ, 0,  0],
                    [0,    0, -β,  0],
@@ -159,8 +163,8 @@ def create_matrices(monetary_rule):
                    [0,    0,  0,  0],
                    [0,    0,  0,  0],
                    [0,    0,  0,  0],
-                   [0,    0,  0,  0],
-                   [0,    0,  0, -β]])
+                   [0,    0,  0, -β],
+                   [0,    0,  0,  0]])
 
     PSI = np.array([[0, 0],
                     [0, 0],
@@ -206,15 +210,6 @@ def create_matrices(monetary_rule):
     return [Gamma_0, Gamma_1, PSI, PI, CONST]
 
 
-#######################################
-# Running gensys
-#######################################
-
-G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
-G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
-G1_citr, impact_citr, RC_citr, C_citr = gensys(*create_matrices("citr"))
-G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
-
 # --------------------------------------------------------------------------
 # Stochastic Simulations
 # --------------------------------------------------------------------------
@@ -224,48 +219,66 @@ numsimul = 1000
 
 std_series = np.zeros((6,numsimul))
 
-G1 = [G1_opt, G1_ditr, G1_citr, G1_peg]
-impact = [impact_opt, impact_ditr, impact_citr, impact_peg]
-C = [C_opt, C_ditr, C_citr, C_peg]
-results = []
+Ξ = 1
+Λ = 1000000000000
+ξ = log(Ξ)
 
-for k in range(4): #iterate over models
-    for i in range(numsimul):
-        shocks = np.random.multivariate_normal([0,0],
-                      [[σ_a**2, ρ_ay*σ_a*σ_y],
-                      [ρ_ay*σ_a*σ_y, σ_y**2]], lenghtsimul).transpose()
+G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
+G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
+G1_citr, impact_citr, RC_citr, C_citr = gensys(*create_matrices("citr"))
+G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
-        endog = np.zeros((17, lenghtsimul))
+G1 = [[G1_opt, G1_ditr, G1_citr, G1_peg]]
+impact = [[impact_opt, impact_ditr, impact_citr, impact_peg]]
+C = [[C_opt, C_ditr, C_citr, C_peg]]
 
-        for t in range(0, lenghtsimul):
-            endog[:, t] = G1[k].dot(endog[:, t-1]) + impact[k].dot(shocks[:, t]) + C[k].reshape(17, )
+Ξ = ζ/(ζ-1)
+Λ = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
+ξ = log(Ξ)
 
-        [y_t, dcpi, cpi, nrate, s_t, de_t] = [endog[j, :] for j in [6,2,11,4,8,12]]
+G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
+G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
+G1_citr, impact_citr, RC_citr, C_citr = gensys(*create_matrices("citr"))
+G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
-        std_series[:, i] = [std(j[1:])*100 for j in [y_t, dcpi, cpi, nrate, s_t, de_t]]
+G1.append([G1_opt, G1_ditr, G1_citr, G1_peg])
+impact.append([impact_opt, impact_ditr, impact_citr, impact_peg])
+C.append([C_opt, C_ditr, C_citr, C_peg])
 
-    results.append([round(mean(std_series[j, :]), 2) for j in range(std_series.shape[0])])
+standard_dev = [[], []]
 
-table1 = pd.DataFrame(results, index=["Optimal", "DI Taylor", "CPI Taylor", "Peg"],
+for h in range(2):
+    for k in range(4): #iterate over models
+        for i in range(numsimul):
+            shocks = np.random.multivariate_normal([0,0],
+                          [[σ_a**2, ρ_ay*σ_a*σ_y],
+                          [ρ_ay*σ_a*σ_y, σ_y**2]], lenghtsimul).transpose()
+
+            endog = np.zeros((17, lenghtsimul))
+
+            for t in range(0, lenghtsimul):
+                endog[:, t] = G1[h][k].dot(endog[:, t-1]) + impact[h][k].dot(shocks[:, t]) + C[h][k].reshape(17, )
+
+            std_series[:, i] = [std(j[1:])*100 for j in [endog[j, :] for j in [6,2,11,4,8,12]]]
+
+        standard_dev[h].append([round(mean(std_series[j, :]), 2) for j in range(std_series.shape[0])])
+
+table1a = pd.DataFrame(standard_dev[0], index=["Optimal_Model", "DITR_Model", "CITR_Model", "Peg_Model"],
+                    columns=["Output", "Domestic Inflation", "CPI Inflation",
+                    "Nominal int. rate", "Terms of trade", "Nominal depr. rate"]).transpose()
+
+table1b = pd.DataFrame(standard_dev[1], index=["Optimal_Modif", "DITR_Modif", "CITR_Modif", "Peg_Modif"],
                     columns=["Output", "Domestic Inflation", "CPI Inflation",
                     "Nominal int. rate", "Terms of trade", "Nominal depr. rate"]).transpose()
 
 print("\nDynamic Properties")
-print(table1)
+table1 = pd.concat([table1a, table1b], axis=1)
+print(table1[table1.columns[[1,5,2,6,3,7]]])
 
 
 # --------------------------------------------------------------------------
 # Welfare Losses
 # --------------------------------------------------------------------------
-def update_parameters(μ_new, φ_new):
-    # Update the value of the parameters which deppend on μ or φ
-    global μ; μ = μ_new
-    global φ; φ = φ_new
-    global ε; ε = exp(μ) / (exp(μ) - 1)
-    global ν; ν = μ + log(1 - α)
-    global Ω; Ω = (ν - μ) / (σ_α + φ)
-    global Γ; Γ = (1 + φ) / (σ_α + φ)
-    global Ψ; Ψ = (-Θ * σ_α) / (σ_α + φ)
 
 def welfare_simulations():
     var_output_ditr = []
@@ -274,6 +287,9 @@ def welfare_simulations():
     var_dcpi_ditr = []
     var_dcpi_citr = []
     var_dcpi_peg = []
+    var_wage_ditr = []
+    var_wage_citr = []
+    var_wage_peg = []
 
     for i in range(numsimul):
         shocks = np.random.multivariate_normal([0, 0],
@@ -298,114 +314,171 @@ def welfare_simulations():
 
         var_output_ditr.append(100*(1-α)/2*((1+φ)*var(endog_ditr[0, :])))
         var_output_citr.append(100*(1-α)/2*((1+φ)*var(endog_citr[0, :])))
-        var_output_peg.append(100*(1-α)/2*((1+φ)*var(endog_peg[0, :])))
+        var_output_peg.append( 100*(1-α)/2*((1+φ)*var(endog_peg[0, :])))
+
+        var_wage_ditr.append(100*(1-α)/2*(ζ/Λ*var(endog_ditr[16, :])))
+        var_wage_citr.append(100*(1-α)/2*(ζ/Λ*var(endog_citr[16, :])))
+        var_wage_peg.append( 100*(1-α)/2*(ζ/Λ*var(endog_peg[16, :])))
+
+    print("----------")
+    print(Λ)
+    print(ζ/Λ)
+    print(λ)
+    print(ε/λ)
+
+
 
     return [[mean(var_dcpi_ditr), mean(var_dcpi_citr), mean(var_dcpi_peg)],
             [mean(var_output_ditr), mean(var_output_citr), mean(var_output_peg)],
-            [mean(var_dcpi_ditr) + mean(var_output_ditr), mean(var_dcpi_citr) +
-             mean(var_output_citr), mean(var_dcpi_peg) + mean(var_output_peg)]]
+            [mean(var_wage_ditr), mean(var_wage_citr), mean(var_wage_peg)],
+            [mean(var_dcpi_ditr) + mean(var_output_ditr) + mean(var_wage_ditr),
+             mean(var_dcpi_citr) + mean(var_output_citr) + mean(var_wage_citr),
+             mean(var_dcpi_peg) + mean(var_output_peg) + mean(var_wage_peg)]]
 
 # Case 1 - Benchmark:  μ = log(1.2), φ = 3
-table2 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)", "Total"],
-                    columns=["DI Taylor", "CPI Taylor", "Peg"])
+table2 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)",
+                    "Var(Wage Inf.)", "Total"], columns=["DI Taylor", "CPI Taylor", "Peg"])
 print("\nCase 1 - Benchmark:  μ = log(1.2), φ = 3")
 print(table2)
 
 # Case 2 - Low steady state markup:  μ = ln(1.1), φ = 3
-update_parameters(log(1.1), 3)
+μ = log(1.1)
+ε = exp(μ)/(exp(μ)-1)
+ν = μ
+Ω = (ν-μ)/(σ_α+φ)
+Λ = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
 G1_citr, impact_citr, RC_citr, C_citr = gensys(*create_matrices("citr"))
 G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
-table3 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)", "Total"],
-                    columns=["DI Taylor", "CPI Taylor", "Peg"])
+table3 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)",
+                    "Var(Wage Inf.)", "Total"], columns=["DI Taylor", "CPI Taylor", "Peg"])
 print("\nCase 2 - Low steady state markup:  μ = ln(1.1), φ = 3")
 print(table3)
 
 # Case 3 - Low elasticity of labor supply:  μ = log(1.2), φ = 10
-update_parameters(log(1.2), 10)
+μ = log(1.2)
+φ = 10
+ε = exp(μ)/(exp(μ) - 1)
+ν = μ
+Ω = (ν-μ)/(σ_α+φ)
+Γ = (1+φ)/(σ_α+φ)
+Ψ = (-Θ*σ_α)/(σ_α+φ)
+Λ = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
+
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
 G1_citr, impact_citr, RC_citr, C_citr = gensys(*create_matrices("citr"))
 G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
-table4 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)", "Total"],
-                    columns=["DI Taylor", "CPI Taylor", "Peg"])
+table4 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)",
+                    "Var(Wage Inf.)", "Total"], columns=["DI Taylor", "CPI Taylor", "Peg"])
 print("\nCase 3 - Low elasticity of labor supply:  μ = log(1.2), φ = 10")
 print(table4)
 
 
 # Case 4 - Low mark-up and elasticity of labour supply:  μ = log(1.1), φ = 10
-update_parameters(log(1.1), 10)
+μ = log(1.1)
+φ = 10
+ε = exp(μ)/(exp(μ)-1)
+ν = μ
+Ω = (ν-μ)/(σ_α+φ)
+Γ = (1+φ)/(σ_α+φ)
+Ψ = (-Θ*σ_α)/(σ_α+φ)
+Λ = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
 G1_citr, impact_citr, RC_citr, C_citr = gensys(*create_matrices("citr"))
 G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
-table5 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)", "Total"],
-                    columns=["DI Taylor", "CPI Taylor", "Peg"])
+table5 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)",
+                    "Var(Wage Inf.)", "Total"], columns=["DI Taylor", "CPI Taylor", "Peg"])
 print("\nCase 4 - Low mark-up and elasticity of labour supply:  μ = log(1.1), φ = 10")
 print(table5)
-
-
-#######################################
-# Running gensys with ρ_a  = 0.90
-#######################################
-
-# Change ρ_a and restore μ = log(1.2) and φ = 3
-ρ_a  = 0.90
-update_parameters(log(1.2), 3)
-
-G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
-G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
-G1_citr, impact_citr, RC_citr, C_citr = gensys(*create_matrices("citr"))
-G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
 #######################################
 # Defining IRFs
 #######################################
 
-def irfs(G1, impact, C, nperiods, shock):
+nperiods = 20
+
+def irfs(G1, impact, RC, C, nperiods, shock):
     # Calculate the shock impact in the next periods
     resp = np.zeros((C.shape[0], nperiods))
     resp[:, 0] = impact[:, 0 if shock=="a" else 1]
     for j in range(1, nperiods):
         resp[:, [j]] = G1 @ (resp[:, [j-1]] + C)
 
-    #Define nominal variables
-    pt = np.cumsum(resp[11, :])
-    pHt = np.cumsum(resp[2, :])
-    et = np.cumsum(resp[12, :])
-
     #Return irfs series
-    return [resp[3 if shock=="a" else 1, :], resp[2, :], resp[0, :],
-            resp[11, :], resp[8, :], et, resp[4, :], pHt, pt]
+    return [resp[3 if shock=="a" else 1, :], resp[0, :], resp[6, :],
+            resp[11, :], resp[2, :], resp[15, :], resp[4, :], resp[12, :], resp[16, :]]
 
 
+#######################################
+# Calculating IRFs
+#######################################
+
+# Change ρ_a, restore μ = log(1.2) and φ = 3 and define ν = μ
+ρ_a  = 0.90
+μ = 1.2
+φ = 3
+ε = exp(μ)/(exp(μ)-1)
+ν = μ
+Ω = (ν-μ)/(σ_α+φ)
+Γ = (1+φ)/(σ_α+φ)
+Ψ = (-Θ*σ_α)/(σ_α+φ)
+Λ = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
+
+
+# Calculate irfs
+
+series_ditr_modification_prod = irfs(*gensys(*create_matrices("ditr")), nperiods, "a")
+series_citr_modification_prod = irfs(*gensys(*create_matrices("citr")), nperiods, "a")
+series_peg_modification_prod  = irfs(*gensys(*create_matrices("peg")),  nperiods, "a")
+
+series_ditr_modification_world = irfs(*gensys(*create_matrices("ditr")), nperiods, "y")
+series_citr_modification_world = irfs(*gensys(*create_matrices("citr")), nperiods, "y")
+series_peg_modification_world  = irfs(*gensys(*create_matrices("peg")),  nperiods, "y")
+
+#Calculating the original model
+Ξ = 1
+Λ = 1000000
+ξ = log(Ξ)
+
+# Calculate irfs
+
+series_ditr_original_prod = irfs(*gensys(*create_matrices("ditr")), nperiods, "a")
+series_citr_original_prod = irfs(*gensys(*create_matrices("citr")), nperiods, "a")
+series_peg_original_prod  = irfs(*gensys(*create_matrices("peg")),  nperiods, "y")
+
+series_ditr_original_world = irfs(*gensys(*create_matrices("ditr")), nperiods, "y")
+series_citr_original_world = irfs(*gensys(*create_matrices("citr")), nperiods, "y")
+series_peg_original_world  = irfs(*gensys(*create_matrices("peg")),  nperiods, "y")
 
 #######################################
 # Creating charts
 #######################################
-linewidth  = 2
-markersize = 5
-nperiods = 20
 figsize= (9,5)
 x_axis = range(1, nperiods+1)
+mpl.rcParams['lines.linewidth'] = 2
+mpl.rcParams['lines.markersize'] = 5
+mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["#007E00", "#FF0000", "#00BFBF"],
+                                             linestyle=["--", "solid", "solid"],
+                                             marker=["None", "X", "o"])
 
 # Figure 1 : Productivity shock
-figure1 = plt.figure(figsize=figsize)
+figure3 = plt.figure(figsize=figsize)
 lines = []
-charts = [figure1.add_subplot(3, 3, j+1) for j in range(9)]
-limits = [(0,1.1), (-.4,.4), (-1,.5), (-.4,.4), (0,1), (-2,1), (-.3,.1), (-1.5,.5), (-1.5,.5)]
-ticks = [(0,1.5,.5), (-.4,.6,.2), (-1,1,.5), (-.4,.6,.2), (0,1.5,.5), (-2,2,1),
-         (-.3,.2,.1), (-1.5,1,.5), (-1.5,1,.5)]
-plot_titles = ["Productivity", "Domestic inflation", "Output gap", "CPI Inflation",
-               "Terms of trade", "Nominal exchange rate", "Nominal interest rate",
-               "Domestic price level", "CPI level"]
+charts = [figure3.add_subplot(3, 3, j+1) for j in range(9)]
+limits = [(0,1.1), (-.5,.25), (0,1), (-.25,.25), (-.4,0.2), (-.5,.5), (-.3,.1), (-.5,.5), (-.1,.2)]
+ticks = [(0,1.5,.5), (-.5,.5,.25), (0,1.5,.5), (-.4,.6,.2), (-.5,.5,.25), (-.5,.75,.25),
+         (-.3,.2,.1), (-.5,1,.5), (-.1,.3,.1)]
+plot_titles = ["Productivity", "Output Gap", "Output", "CPI Inflation", "Domestic Inflation",
+               "Real Wage", "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade"]
 
 for j in range(9):
     charts[j].set_title(plot_titles[j], fontsize = 10)
@@ -415,42 +488,29 @@ for j in range(9):
     charts[j].set_xlim(0,nperiods+1)
     charts[j].grid(color="#000000", linestyle=':',  dashes=(1,4,1,4))
 
-# Calculate irfs
-series_opt = irfs(G1_opt, impact_opt, C_opt, nperiods, "a")
-series_ditr = irfs(G1_ditr, impact_ditr, C_ditr, nperiods, "a")
-series_citr = irfs(G1_citr, impact_citr, C_citr, nperiods, "a")
-series_peg = irfs(G1_peg, impact_peg, C_peg, nperiods, "a")
-
 # Plot irfs
-lines.append([charts[j].plot(x_axis, series_opt[j], linewidth=linewidth,
-                             color="#0000FF")[0] for j in range(9)][0])
-lines.append([charts[j].plot(x_axis, series_ditr[j], linewidth=linewidth, color="#007E00",
-                linestyle="--")[0] for j in range(9)][0])
-lines.append([charts[j].plot(x_axis, series_citr[j], linewidth=linewidth, color="#FF0000",
-                marker="X", markersize=markersize)[0] for j in range(9)][0])
-lines.append([charts[j].plot(x_axis, series_peg[j], linewidth=linewidth, color="#00BFBF",
-                marker="o", markersize=markersize)[0] for j in range(9)][0])
+lines.append([charts[j].plot(x_axis, series_ditr_modification_prod[j])[0] for j in range(9)][0])
+lines.append([charts[j].plot(x_axis, series_citr_modification_prod[j])[0] for j in range(9)][0])
+lines.append([charts[j].plot(x_axis, series_peg_modification_prod[j])[0] for j in range(9)][0])
 
 # Create legend and title
-figure1.legend(lines, ["Optimal", "DITR", "CITR", "PEG"], ncol=4,
+figure3.legend(lines, ["DITR", "CITR", "PEG"], ncol=4,
                bbox_to_anchor=(0.5,0.95), loc=9, frameon=False)
-figure1.suptitle("Impulse Responses - Productivity Shock\n", fontweight="bold")
+figure3.suptitle("Impulse Responses - Productivity Shock\n", fontweight="bold")
 
 # Draw chart 1
 plt.tight_layout()
 plt.draw()
 plt.show()
 
-# Figure 2 : World Output shock
-figure2 = plt.figure(figsize=figsize)
+# Figure 4 : World Output shock
+figure4 = plt.figure(figsize=figsize)
 lines = []
-charts = [figure2.add_subplot(3, 3, j+1) for j in range(9)]
-limits = [(0,1.1), (-.2,.6), (-.2,.8), (-.4,.4), (-1.5,0.5), (-.4,0.2), (0,.1), (-1,1), (-1,0.5)]
-ticks = [(0,1.5,.5), (-.2,.8,.2), (-.2,.8,.2), (-.4,.6,.2), (-1,1,.5), (-1,1,.5),
-         (-.4,.4,.2), (-1,1.5,.5), (-1,1,.5)]
-plot_titles = ["World Output", "Domestic inflation", "Output gap", "CPI Inflation",
-               "Terms of trade", "Nominal exchange rate", "Nominal interest rate",
-               "Domestic price level", "CPI level"]
+charts = [figure4.add_subplot(3, 3, j+1) for j in range(9)]
+limits = [(0,1.1), (-.5,1), (-.5,1), (-.4,.2), (-.25,0.25), (-.2,0.6), (-0.4,.2), (-.75,.25), (-.2,0.4)]
+ticks = [(0,1.5,.5), (-0.5,1.5,.5), (-.5,1.5,.5), (-.4,.4,.2), (-.25,.5,.25), (-.2,0.8,.2),
+         (-.4,.4,.2), (-.75,.5,.25), (-.2,.6,.2)]
+plot_titles[0] = "World Output"
 
 for j in range(9):
     charts[j].set_title(plot_titles[j], fontsize = 10)
@@ -460,29 +520,82 @@ for j in range(9):
     charts[j].set_xlim(0,nperiods+1)
     charts[j].grid(color="#000000", linestyle=':',  dashes=(1,4,1,4))
 
-# Calculate irfs
-series_opt = irfs(G1_opt, impact_opt, C_opt, nperiods, "y")
-series_ditr = irfs(G1_ditr, impact_ditr, C_ditr, nperiods, "y")
-series_citr = irfs(G1_citr, impact_citr, C_citr, nperiods, "y")
-series_peg = irfs(G1_peg, impact_peg, C_peg, nperiods, "y")
-
 # Plot irfs
-lines.append([charts[j].plot(x_axis, series_opt[j], linewidth=linewidth,
-                             color="#0000FF")[0] for j in range(9)][0])
-lines.append([charts[j].plot(x_axis, series_ditr[j], linewidth=linewidth, color="#007E00",
-                linestyle="--")[0] for j in range(9)][0])
-lines.append([charts[j].plot(x_axis, series_citr[j], linewidth=linewidth, color="#FF0000",
-                marker="X", markersize=markersize)[0] for j in range(9)][0])
-lines.append([charts[j].plot(x_axis, series_peg[j], linewidth=linewidth, color="#00BFBF",
-                marker="o", markersize=markersize)[0] for j in range(9)][0])
+[charts[j].plot(x_axis, series_ditr_modification_world[j]) for j in range(9)]
+[charts[j].plot(x_axis, series_citr_modification_world[j]) for j in range(9)]
+[charts[j].plot(x_axis, series_peg_modification_world[j]) for j in range(9)]
 
 # Create legend and title
-figure2.legend(lines, ["Optimal", "DITR", "CITR", "PEG"], ncol=4,
+figure4.legend(lines, ["DITR", "CITR", "PEG"], ncol=4,
                bbox_to_anchor=(0.5,0.95), loc=9, frameon=False)
-figure2.suptitle("Impulse Responses - World Output Shock\n", fontweight="bold")
+figure4.suptitle("Impulse Responses - World Output Shock\n", fontweight="bold")
 
 # Draw chart 2
 plt.tight_layout()
 plt.draw()
 plt.show()
 
+############################################################ Chart
+
+# Figure 5 : Comparison
+figure5 = plt.figure(figsize=figsize)
+mpl.rcParams['lines.linewidth'] = 1.5
+mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["#0000FF", "#FF0000"], marker=["None", "None"])
+
+figure5.suptitle("Productivity Shock - Impulse Responses Comparison \n", fontweight="bold")
+charts = [figure5.add_subplot(3, 3, j+1) for j in range(9)]
+lines = []
+
+for j in range(9):
+    charts[j].grid(color="#000000", linestyle=':', dashes=(1, 4, 1, 4))
+    charts[j].set_xticks(range(0, nperiods + 1, 5))
+    charts[j].set_xlim(0, nperiods + 1)
+
+charts[0].plot(x_axis, series_ditr_original_prod[1], label="Gali & Monacelli")
+charts[0].plot(x_axis, series_ditr_modification_prod[1], label="Our Modification")
+charts[0].set_title("DITR - Output Gap")
+
+charts[1].plot(x_axis, series_ditr_original_prod[2])
+charts[1].plot(x_axis, series_ditr_modification_prod[2])
+charts[1].set_title("DITR - Output")
+
+charts[2].plot(x_axis, series_ditr_original_prod[4])
+charts[2].plot(x_axis, series_ditr_modification_prod[4])
+charts[2].set_title("DITR - Domestic Inflation")
+
+charts[3].plot(x_axis, series_citr_original_prod[1])
+charts[3].plot(x_axis, series_citr_modification_prod[1])
+charts[3].set_title("CITR - Output Gap")
+
+charts[4].plot(x_axis, series_citr_original_prod[2])
+charts[4].plot(x_axis, series_citr_modification_prod[2])
+charts[4].set_title("CITR - Output")
+
+charts[5].plot(x_axis, series_citr_original_prod[4])
+charts[5].plot(x_axis, series_citr_modification_prod[4])
+charts[5].set_title("CITR - Domestic Inflation")
+
+charts[6].plot(x_axis, series_peg_original_prod[1])
+charts[6].plot(x_axis, series_peg_modification_prod[1])
+charts[6].set_title("PEG - Output Gap")
+
+charts[7].plot(x_axis, series_peg_original_prod[2])
+charts[7].plot(x_axis, series_peg_modification_prod[2])
+charts[7].set_title("PEG - Output")
+
+charts[8].plot(x_axis, series_peg_original_prod[4])
+charts[8].plot(x_axis, series_peg_modification_prod[4])
+charts[8].set_title("PEG - Domestic Inflation")
+
+
+handles, labels = charts[0].get_legend_handles_labels()
+figure5.legend(handles, labels, ncol=2, bbox_to_anchor=(0.5,0.95), loc=9, frameon=False)
+
+# Draw chart 1
+plt.tight_layout()
+plt.draw()
+plt.show()
+
+figure3.savefig("..\\latex\\img\\figure3.svg")
+figure4.savefig("..\\latex\\img\\figure4.svg")
+figure5.savefig("..\\latex\\img\\figure5.svg")
