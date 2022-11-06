@@ -35,7 +35,7 @@ pd.set_option('display.max_columns', 7)
 σ_a  = 0.0071    #Variance of productivity shocks
 σ_y  = 0.0078    #Variance of shocks Rest of World GDP
 ρ_ay = 0.3       #Correlation of productivity shocks and Rest of World GDP shocks
-ζ    = 6         #elasticity of substitution between labor types
+ζ    = 4         #elasticity of substitution between labor types
 ς    = 0.75      #wage stickiness / share of unions which must keep wages unchanged
 
 ρ    = 1/β - 1
@@ -320,14 +320,6 @@ def welfare_simulations():
         var_wage_citr.append(100*(1-α)/2*(ζ/Λ*var(endog_citr[16, :])))
         var_wage_peg.append( 100*(1-α)/2*(ζ/Λ*var(endog_peg[16, :])))
 
-    print("----------")
-    print(Λ)
-    print(ζ/Λ)
-    print(λ)
-    print(ε/λ)
-
-
-
     return [[mean(var_dcpi_ditr), mean(var_dcpi_citr), mean(var_dcpi_peg)],
             [mean(var_output_ditr), mean(var_output_citr), mean(var_output_peg)],
             [mean(var_wage_ditr), mean(var_wage_citr), mean(var_wage_peg)],
@@ -335,17 +327,22 @@ def welfare_simulations():
              mean(var_dcpi_citr) + mean(var_output_citr) + mean(var_wage_citr),
              mean(var_dcpi_peg) + mean(var_output_peg) + mean(var_wage_peg)]]
 
-# Case 1 - Benchmark:  μ = log(1.2), φ = 3
+# Case 1 - No wage rigidity: ς = 0
+ς = 0
+Λ = 10000000
+
+G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
+G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
+G1_citr, impact_citr, RC_citr, C_citr = gensys(*create_matrices("citr"))
+G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
+
 table2 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)",
                     "Var(Wage Inf.)", "Total"], columns=["DI Taylor", "CPI Taylor", "Peg"])
-print("\nCase 1 - Benchmark:  μ = log(1.2), φ = 3")
+print("\nNo wage rigiditiy: ς = 0")
 print(table2)
 
-# Case 2 - Low steady state markup:  μ = ln(1.1), φ = 3
-μ = log(1.1)
-ε = exp(μ)/(exp(μ)-1)
-ν = μ
-Ω = (ν-μ)/(σ_α+φ)
+# Case 2 - Low wage rigidity: ς = 0.25
+ς = 0.25
 Λ = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
@@ -355,19 +352,12 @@ G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
 table3 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)",
                     "Var(Wage Inf.)", "Total"], columns=["DI Taylor", "CPI Taylor", "Peg"])
-print("\nCase 2 - Low steady state markup:  μ = ln(1.1), φ = 3")
+print("\nCase 2 - Low wage rigidity: ς = 0.25")
 print(table3)
 
-# Case 3 - Low elasticity of labor supply:  μ = log(1.2), φ = 10
-μ = log(1.2)
-φ = 10
-ε = exp(μ)/(exp(μ) - 1)
-ν = μ
-Ω = (ν-μ)/(σ_α+φ)
-Γ = (1+φ)/(σ_α+φ)
-Ψ = (-Θ*σ_α)/(σ_α+φ)
+# Case 3 - Moderate wage rigidity: ς = 0.50
+ς = 0.50
 Λ = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
-
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
@@ -376,18 +366,11 @@ G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
 table4 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)",
                     "Var(Wage Inf.)", "Total"], columns=["DI Taylor", "CPI Taylor", "Peg"])
-print("\nCase 3 - Low elasticity of labor supply:  μ = log(1.2), φ = 10")
+print("\nCase 3 - Moderate wage rigidity: ς = 0.50")
 print(table4)
 
-
-# Case 4 - Low mark-up and elasticity of labour supply:  μ = log(1.1), φ = 10
-μ = log(1.1)
-φ = 10
-ε = exp(μ)/(exp(μ)-1)
-ν = μ
-Ω = (ν-μ)/(σ_α+φ)
-Γ = (1+φ)/(σ_α+φ)
-Ψ = (-Θ*σ_α)/(σ_α+φ)
+# Case 4 - Benchmark wage rigidity: ς = 0.75
+ς = 0.75
 Λ = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
@@ -397,7 +380,7 @@ G1_peg,  impact_peg,  RC_peg,  C_peg  = gensys(*create_matrices("peg"))
 
 table5 = pd.DataFrame(welfare_simulations(), index=["Var(Domest. Inf.)", "Var(Output)",
                     "Var(Wage Inf.)", "Total"], columns=["DI Taylor", "CPI Taylor", "Peg"])
-print("\nCase 4 - Low mark-up and elasticity of labour supply:  μ = log(1.1), φ = 10")
+print("\nCase 4 - Benchmark wage rigidity: ς = 0.75")
 print(table5)
 
 #######################################
@@ -415,24 +398,15 @@ def irfs(G1, impact, RC, C, nperiods, shock):
 
     #Return irfs series
     return [resp[3 if shock=="a" else 1, :], resp[0, :], resp[6, :],
-            resp[11, :], resp[2, :], resp[15, :], resp[4, :], resp[12, :], resp[16, :]]
+            resp[11, :], resp[2, :], resp[15, :], resp[4, :], resp[12, :], resp[8, :]]
 
 
 #######################################
 # Calculating IRFs
 #######################################
 
-# Change ρ_a, restore μ = log(1.2) and φ = 3 and define ν = μ
+# Change ρ_a
 ρ_a  = 0.90
-μ = 1.2
-φ = 3
-ε = exp(μ)/(exp(μ)-1)
-ν = μ
-Ω = (ν-μ)/(σ_α+φ)
-Γ = (1+φ)/(σ_α+φ)
-Ψ = (-Θ*σ_α)/(σ_α+φ)
-Λ = (1-ς)*(1-β*ς)/(ς*(1+ζ*φ))
-
 
 # Calculate irfs
 
@@ -453,7 +427,7 @@ series_peg_modification_world  = irfs(*gensys(*create_matrices("peg")),  nperiod
 
 series_ditr_original_prod = irfs(*gensys(*create_matrices("ditr")), nperiods, "a")
 series_citr_original_prod = irfs(*gensys(*create_matrices("citr")), nperiods, "a")
-series_peg_original_prod  = irfs(*gensys(*create_matrices("peg")),  nperiods, "y")
+series_peg_original_prod  = irfs(*gensys(*create_matrices("peg")),  nperiods, "a")
 
 series_ditr_original_world = irfs(*gensys(*create_matrices("ditr")), nperiods, "y")
 series_citr_original_world = irfs(*gensys(*create_matrices("citr")), nperiods, "y")
@@ -474,9 +448,9 @@ mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["#007E00", "#FF0000", "#00BF
 figure3 = plt.figure(figsize=figsize)
 lines = []
 charts = [figure3.add_subplot(3, 3, j+1) for j in range(9)]
-limits = [(0,1.1), (-.5,.25), (0,1), (-.25,.25), (-.4,0.2), (-.5,.5), (-.3,.1), (-.5,.5), (-.1,.2)]
-ticks = [(0,1.5,.5), (-.5,.5,.25), (0,1.5,.5), (-.4,.6,.2), (-.5,.5,.25), (-.5,.75,.25),
-         (-.3,.2,.1), (-.5,1,.5), (-.1,.3,.1)]
+limits = [(0,1.1), (-1,0.5), (0,1.5), (-.25,.25), (-.4,0.2), (-.5,.5), (-.25,.25), (-.5,.5), (0,1.5)]
+ticks = [(0,1.5,.5), (-1,1,.5), (0,2,.5), (-.4,.6,.2), (-.5,.5,.25), (-.5,1.,0.5),
+         (-.25,.5,.25), (-.5,1,.5), (0,2,.5)]
 plot_titles = ["Productivity", "Output Gap", "Output", "CPI Inflation", "Domestic Inflation",
                "Real Wage", "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade"]
 
@@ -505,11 +479,10 @@ plt.show()
 
 # Figure 4 : World Output shock
 figure4 = plt.figure(figsize=figsize)
-lines = []
 charts = [figure4.add_subplot(3, 3, j+1) for j in range(9)]
-limits = [(0,1.1), (-.5,1), (-.5,1), (-.4,.2), (-.25,0.25), (-.2,0.6), (-0.4,.2), (-.75,.25), (-.2,0.4)]
-ticks = [(0,1.5,.5), (-0.5,1.5,.5), (-.5,1.5,.5), (-.4,.4,.2), (-.25,.5,.25), (-.2,0.8,.2),
-         (-.4,.4,.2), (-.75,.5,.25), (-.2,.6,.2)]
+limits = [(0,1.1), (-.5,1), (-.5,1), (-.3,.1), (-.2,.1), (-.2,0.4), (-0.4,.2), (-.5,.25), (-.5,0.25)]
+ticks = [(0,1.5,.5), (-0.5,1.5,.5), (-.5,1.5,.5), (-.3,.2,.1), (-.2,.2,.1), (-.2,0.6,.2),
+         (-.4,.4,.2), (-.5,.5,.25), (-.5,.5,.25)]
 plot_titles[0] = "World Output"
 
 for j in range(9):
@@ -540,7 +513,7 @@ plt.show()
 # Figure 5 : Comparison
 figure5 = plt.figure(figsize=figsize)
 mpl.rcParams['lines.linewidth'] = 1.5
-mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["#0000FF", "#FF0000"], marker=["None", "None"])
+mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["#0000FF", "#FF0000"], linestyle=["solid", "--"])
 
 figure5.suptitle("Productivity Shock - Impulse Responses Comparison \n", fontweight="bold")
 charts = [figure5.add_subplot(3, 3, j+1) for j in range(9)]
@@ -553,38 +526,56 @@ for j in range(9):
 
 charts[0].plot(x_axis, series_ditr_original_prod[1], label="Gali & Monacelli")
 charts[0].plot(x_axis, series_ditr_modification_prod[1], label="Our Modification")
+charts[0].set_ylim((-0.25, 0.25))
+charts[0].set_yticks(np.arange(-0.25,0.5,0.25))
 charts[0].set_title("DITR - Output Gap")
 
 charts[1].plot(x_axis, series_ditr_original_prod[2])
 charts[1].plot(x_axis, series_ditr_modification_prod[2])
+charts[1].set_ylim((0, 1.1))
+charts[1].set_yticks(np.arange(0,1.5,.5))
 charts[1].set_title("DITR - Output")
 
 charts[2].plot(x_axis, series_ditr_original_prod[4])
 charts[2].plot(x_axis, series_ditr_modification_prod[4])
+charts[2].set_ylim((-0.2, 0.1))
+charts[2].set_yticks(np.arange(-.2,.2,.1))
 charts[2].set_title("DITR - Domestic Inflation")
 
 charts[3].plot(x_axis, series_citr_original_prod[1])
 charts[3].plot(x_axis, series_citr_modification_prod[1])
+charts[3].set_ylim((-0.5, 0.25))
+charts[3].set_yticks(np.arange(-0.5,0.5,0.25))
 charts[3].set_title("CITR - Output Gap")
 
 charts[4].plot(x_axis, series_citr_original_prod[2])
 charts[4].plot(x_axis, series_citr_modification_prod[2])
+charts[4].set_ylim((0, 1))
+charts[4].set_yticks(np.arange(0,1.5,.5))
 charts[4].set_title("CITR - Output")
 
 charts[5].plot(x_axis, series_citr_original_prod[4])
 charts[5].plot(x_axis, series_citr_modification_prod[4])
+charts[5].set_ylim((-.3, 0.05))
+charts[5].set_yticks(np.arange(-.3,.1,.1))
 charts[5].set_title("CITR - Domestic Inflation")
 
 charts[6].plot(x_axis, series_peg_original_prod[1])
 charts[6].plot(x_axis, series_peg_modification_prod[1])
+charts[6].set_ylim((-1, 0.55))
+charts[6].set_yticks(np.arange(-1,0.75,0.5))
 charts[6].set_title("PEG - Output Gap")
 
 charts[7].plot(x_axis, series_peg_original_prod[2])
 charts[7].plot(x_axis, series_peg_modification_prod[2])
+charts[7].set_ylim((0, 1.05))
+charts[7].set_yticks(np.arange(0,1.5,.5))
 charts[7].set_title("PEG - Output")
 
 charts[8].plot(x_axis, series_peg_original_prod[4])
 charts[8].plot(x_axis, series_peg_modification_prod[4])
+charts[8].set_ylim((-.5, 0.25))
+charts[8].set_yticks(np.arange(-.5,.5,.25))
 charts[8].set_title("PEG - Domestic Inflation")
 
 

@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb6bc072-d388-48db-8755-96a7f8a2f371" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/code/replication_graficos.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/modification.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/modification.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/code/replication.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/replication.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/img/figure1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure1.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/latex/img/figure2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure2.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/img/figure3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure3.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/img/figure4.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure4.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/img/figure5.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure5.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

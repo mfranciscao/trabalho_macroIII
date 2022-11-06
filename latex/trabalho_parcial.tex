@@ -1,5 +1,5 @@
 \documentclass{article}
-\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[a4paper, total={6in, 8in}, hmargin=0.8in, vmargin=0.8in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -8,17 +8,33 @@
 \usepackage{float}
 \usepackage{svg}
 \usepackage{multirow}
+\usepackage[round]{natbib}
+\usepackage{url}
+\def\UrlBreaks{\do\/\do-}
+\usepackage{breakurl}
+\usepackage[hidelinks]{hyperref}
+%\usepackage{layout}
+
+\setlength{\topskip}{0mm}
+\setlength{\parindent}{0mm}
+
 
 \newcommand{\Et}{\mathbb{E}_t}
 \newcommand{\E}{\mathcal{E}}
 
+\title{\large{\textbf{Macroeconomics III - Project}} \\
+\LARGE{Replication of New Keynesian Model for a Small Open Economy and Inclusion of Staggered Wages }
+\author{Anna Catarina Batista Tavella\\Matheus Roberto de Bona Franciscão}}
+\date{}
+
 \begin{document}
+\maketitle
 
 \section*{Abstract}
-a
+Replicates and extends \cite{gali_monacelli} model to a small open economy. Terminar
 
 \section{Introduction}
-a
+Terminar
 
 \section{Description of the model}
 
@@ -244,7 +260,7 @@ The log-linear approximation of these equations around the steady state is \foot
     \end{align}
 \end{subequations}
 
-To these equations we also adds a definition of potential output $\bar y_t$ obtained from (\ref{sistema_loglin}h) when $\hat{mc_t} = 0$ (and manipulating to be a function only of exogenous variables) and a definition of (log) output gap given by output deviation from its potential:
+To these equations we also add a definition of potential output $\bar y_t$ obtained from (\ref{sistema_loglin}h) when $\hat{mc_t} = 0$ (and manipulating to be a function only of exogenous variables) and a definition of (log) output gap given by output deviation from its potential:
 
 \begin{subequations}
     \begin{align}
@@ -295,7 +311,7 @@ The paper assumes the following calibration for the structural parameters:
     \end{tabular}
 \end{table}
 
-In the paper's text and tables the parameter $\rho_a$ is defined as $0.66$, however the IRFs charts are compatible with value $0.90$ (authors reused the charts from an working paper version which $\rho_a = 0.90$ without update the figure or inform the different parameter in the text). We use this same value in the charts to be comparable with original ones in the paper.
+In the paper's text and tables the parameter $\rho_a$ is defined as $0.66$, however the IRFs charts are compatible with value $\rho_a = 0.90$ (apparently authors reused the charts from an working paper version \citep{gali_monacelli2002} without update the figure or inform the different parameter in the text). We use this same value in the charts to be comparable with original ones in the paper. 
 
 \section{Steady State Properties}
 In the steady state: (i) Purchasing Power Parity holds symmetrically for all other countries (then $\mathcal Q_i = \mathcal Q$, $S_i = S$, $S^i=1$ and $C^i = C^*$), (ii) all the stationary variables are constant and (iii) there is not uncertainty ($\varepsilon^* = \varepsilon^a = 0$).  Using the equilibrium conditions showed in (\ref{se}) immediately by (g), (j) and (m) we obtain that $A = Y^* = C^* = 1$. The equation (a) defines $R = \beta^{-1}$. From (d) and (c) we have $\Pi = \Pi_H = 1$. Using (i) we find $\widehat{MC} = 1$. The remaining system (composed by equations (b), (e), (f), (l) and (l)) is:
@@ -344,11 +360,11 @@ Simulating 1000 samples with 201 periods each we obtained the following dynamic 
         & Optimal & DI Taylor & CPI Taylor & Peg\\
         & sd\% & sd\% & sd\% & sd\% \\
         \hline
-        Output & 0.93 & 0.67 & 0.70 & 0.84 \\
+        Output & 0.93 & 0.66 & 0.70 & 0.84 \\
         Domestic inflation & 0.00 & 0.27 & 0.26 & 0.35 \\
-        CPI inflation & 0.38 & 0.41 & 0.27 & 0.21 \\
+        CPI inflation & 0.38 & 0.40 & 0.26 & 0.21 \\
         Nominal int. rate & 0.32 & 0.40 & 0.40 & 0.21 \\
-        Terms of trade & 1.50 & 1.42 & 1.33 & 1.08 \\
+        Terms of trade & 1.52 & 1.43 & 1.33 & 1.08 \\
         Nominal depr. rate & 0.95 & 0.85 & 0.52 & 0.00 \\
         \hline
         \multicolumn{5}{l}{\textit{Note: } Sd denotes standard deviation in \%}
@@ -364,28 +380,28 @@ The contribution to welfare losses are:
         &  DI Taylor & CPI Taylor & Peg\\
         \hline
         \multicolumn{4}{c}{Benchmark $\mu = 1.2$, $\varphi = 3$}\\
-        Var(Domestic infl.) & 0.0151 & 0.0142 & 0.0261 \\
+        Var(Domestic infl.) & 0.0150 & 0.0143 & 0.0259 \\
         Var(Output gap) & 0.0009 & 0.0019 & 0.0052 \\
-        Total & 0.0160 & 0.0161 & 0.0313 \\
+        Total & 0.0159 & 0.0162 & 0.0311 \\
         \multicolumn{4}{c}{Low steady state markup $\mu = 1.1$, $\varphi = 10$}\\
-        Var(Domestic infl.) & 0.0278 & 0.0262 & 0.0478 \\
+        Var(Domestic infl.) & 0.0277 & 0.0262 & 0.0472 \\
         Var(Output gap) & 0.0009 & 0.0019 & 0.0052 \\
-        Total & 0.0286 & 0.0281 & 0.0529 \\
+        Total & 0.0287 & 0.0281 & 0.0524 \\
         \multicolumn{4}{c}{Low elasticity of labour supply $\mu = 1.2$, $\varphi = 3$}\\
-        Var(Domestic infl.) & 0.0225 & 0.0230 & 0.0551 \\
-        Var(Output gap) & 0.0005 & 0.0005 & 0.0063 \\
-        Total & 0.0230 & 0.0250 & 0.0614 \\
+        Var(Domestic infl.) & 0.0226 & 0.0230 & 0.0556 \\
+        Var(Output gap) & 0.0005 & 0.0020 & 0.0064 \\
+        Total & 0.0231 & 0.0250 & 0.0620 \\
         \multicolumn{4}{c}{Low markup and elasticity of labour supply $\mu = 1.1$, $\varphi = 10$}\\
-        Var(Domestic infl.) & 0.0414 & 0.0422 & 0.1013 \\
+        Var(Domestic infl.) & 0.0415 & 0.0421 & 0.1011 \\
         Var(Output gap) & 0.0005 & 0.0020 & 0.0063 \\
-        Total & 0.0419 & 0.0419 & 0.1076 \\
+        Total & 0.0420 & 0.0440 & 0.1074 \\
         \hline
-        \multicolumn{4}{l}{\textit{Note: } Values are percentage units of steady state consumption}
+        \multicolumn{4}{l}{\textit{Note: } Values are \% units of steady state consumption}
     \end{tabular}
 \end{table}
 
 \section{Impulse Response Functions}
-We show the IRFs relative to both shocks present in the model (TFP and world output shocks) in output gap, domestic and total inflation, terms of trade, nominal exchange rate, nominal interest rate and dometic and total price levels (same charts showed in the original paper).
+We show the IRFs relative to both shocks present in the model (TFP and world output shocks) in the main variables in the economy.
 
 \begin{figure}[H]
 \centering
@@ -393,8 +409,10 @@ We show the IRFs relative to both shocks present in the model (TFP and world out
 \includesvg[inkscapelatex=false, width=0.9\textwidth]{img/figure2.svg}
 \end{figure}
 
+Explicar!
+
 \section{Modification}
-We include wage stickiness following Ergec, Hendenson and Levin (ref, 2000) and Gali (livro). Explicar melhor
+We include wage stickiness following \cite{erceg} and \citet[Chap.~6]{gali2015} in the small open economy model. This framework add imperfect competition in the labor market and consider unions that can define labor supply and set nominal wages aiming to maximize workers utility and that decision are subject to nominal rigidities following Calvo, with the same mechanism of the price setting by the firms. This modification changes the consumer problem (as they do not decides individually their work hours) and the firms (by way of technology), while the external sector relations and the monetary policy rules are unaffected.
 
 \subsection{Firms}
 Each represent firm $j$ now uses a continuum of different labor types ($x \in [0,1]$) as inputs:
@@ -496,7 +514,9 @@ Substituting the expression for $w_t^*$ found in (\ref{opt_wage}) and rearrangin
 Where $\Lambda \equiv \frac{(1-\varsigma)(1- \beta \varsigma)}{\varsigma(1+ \zeta \varphi)}$.
 
 \subsection{Equilibrium}
-The new log-linearized equilibrium is the same showed in (\ref{sistema_loglin}) but removing the labor supply equation $(b)$ and adding (\ref{wage_inflation}) and (\ref{wage_pc}).
+The new log-linearized equilibrium is the same showed in (\ref{sistema_loglin}) but removing the labor supply equation $(\ref{sistema_loglin}b)$ and adding (\ref{wage_inflation}) and (\ref{wage_pc}). \\
+
+Note that this new model generalizes the original one in \cite{gali_monacelli}: assuming that workers have no market power to set wages due to perfect substitutability among labor types $\zeta \to \infty$ (thus $\Xi \to 1$ and $\xi \to 0$), and there is not wage stickiness $\varsigma \to 0$ (thus $\Lambda \to \infty$) we are back to baseline model.
 
 \section{The new implications for the static and dynamics properties of the model}
 
@@ -515,7 +535,7 @@ Using the first order condition in wage setting problem in (\ref{foc_wage}) eval
     \end{align}
 \end{subequations}
 
-It is immediate that if $\zeta \to \infty$ then $\Xi \to 1$ and the system above results in the same of the original model, as it means that workers has not market power to set wages due to perfect substitutability among labor types, which is equivalent to a model without wage stickiness. Assuming the same calibration showed in section 4 and, for the new parameters, adopting $\varsigma = 0.75$ (consistent 1 year as average time to change wages) and $\zeta = 6$ (similarly to elasticity of substitution $\varepsilon$ between goods) we obtain that steady state values are identical to original model except the real wage:
+It is immediate that if $\zeta \to \infty$ then $\Xi \to 1$ and the system above results in the same of the original model. Assuming the same calibration showed in section 4 and, for the new parameters, adopting $\varsigma = 0.75$ (consistent 1 year as average time to change wages) and $\zeta = 4$ (following \cite{erceg}, that considered a wage markup of $1/3$) we obtain that steady state values are identical to original model except the real wage:
 
 \begin{table}[H]
     \centering
@@ -526,7 +546,7 @@ It is immediate that if $\zeta \to \infty$ then $\Xi \to 1$ and the system above
         \hline
         $Y$ & Output & 1.13622 & 1.13622 \\
         $C$ & Consumption & 1.07964 & 1.07964 \\
-        $W^R$ & Real wage & 1.58367 & 1.90040 \\
+        $W^R$ & Real wage & 1.58367 & 2.11156 \\
         $C/Y$ & Consumption-to-GDP Ratio & 0.95020 & 0.95020 \\
         $S$ & Terms of trade & 1.13622 & 1.13622 \\
         $NX/Y$ & New exports in terms of domestic output & $0.00000$ & $0.00000$\\
@@ -536,14 +556,94 @@ It is immediate that if $\zeta \to \infty$ then $\Xi \to 1$ and the system above
 \end{table}
 
 \subsection{Dynamic Properties}
-aaa
+Again, simulating 1000 samples with 201 periods, we obtained the following dynamic properties\footnote{The previously obtained optimal policy rule 
+$r_t = \bar{rr}_t + \phi_\pi \pi_{H,t}$ is no longer optimal in that new framework due to change in the welfare cost. We proceed our comparison with only DITR, CITR and Peg.}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcccccc}
+        \hline
+        & \multicolumn{2}{c}{DI Taylor} & \multicolumn{2}{c}{CPI Taylor} & \multicolumn{2}{c}{Peg}\\
+        & Model & Modif.  & Model & Modif.  & Model & Modif. \\
+        &  sd\% & sd\% & sd\% & sd\% & sd\% & sd\% \\
+        \hline
+        Output &  0.66 & 1.81 & 0.70 & 1.75 & 0.84 & 1.43 \\
+        Domestic inflation & 0.27 & 0.37 & 0.26 & 0.33 & 0.35 & 0.25 \\
+        CPI inflation & 0.40 & 0.41 & 0.26 & 0.33 & 0.21 & 0.15 \\
+        Nominal int. rate & 0.40 & 0.55 & 0.40 & 0.50 & 0.21 & 0.20 \\
+        Terms of trade & 1.43 & 1.29 & 1.33 & 1.12 & 1.08 & 1.03 \\
+        Nominal depr. rate & 0.85 & 0.61 & 0.52 & 0.43 & 0.00 & 0.00 \\
+        \hline
+        \multicolumn{5}{l}{\textit{Note: } Sd denotes standard deviation in \%}
+    \end{tabular}
+\end{table}
+
+Talvez colocar tambem correlação das variáveis com y para ver se é pro-cíclico?
 
 \subsection{Impulse Response Functions}
-aaa
+The new calculated impulse response functions to both shocks are:
+
+\begin{figure}[H]
+\centering
+\includesvg[inkscapelatex=false, width=0.9\textwidth]{img/figure3.svg}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includesvg[inkscapelatex=false, width=0.9\textwidth]{img/figure4.svg}
+\end{figure}
+
+Explicar! Ressaltar que as variáveis reais / quantidades reagem mais fortemente dada a maior rigidez nominal\\
+
+\begin{figure}[H]
+\centering
+\includesvg[inkscapelatex=false, width=0.9\textwidth]{img/figure5.svg}
+\end{figure}
+
+\subsubsection{Welfare Losses}
+Following the derivation for welfare losses in a closed economy with wage stickiness in \citet[Appendix.~6.1]{gali2015} and in a open economy with openness index $\alpha$ in \cite{rhee} the the expected welfare losses as fraction of steady state consumption are given by:
+
+\begin{equation}
+    \mathbb V = -\frac{(1-\alpha)}{2} \left[ (1 + \varphi) var(x_t) + \frac{\varepsilon}{\lambda} var(\pi_t) + \frac{\zeta}{\Lambda} var(\pi_{w,t}) \right] 
+\end{equation}
+
+Now calculating the contributions to welfare losses in the new model, considering different levels of wage rigidities:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lcccc}
+        \hline
+        &  DI Taylor & CPI Taylor & Peg\\
+        \hline
+        \multicolumn{4}{c}{No wage rigidity: $\varsigma = 0$}\\
+        Var(Domestic infl.) & 0.01506 & 0.01570 & 0.04082\\
+        Var(Output gap) & 0.00088 & 0.00224 & 0.00662\\
+        Var(Wage infl.) & 0.00000 & 0.00000 & 0.00000\\
+        Total & 0.01594 & 0.01794 & 0.04744\\
+        \multicolumn{4}{c}{Low wage rigidity: $\varsigma = 0.25$}\\
+        Var(Domestic infl.) & 0.01587 & 0.01334 & 0.02549\\
+        Var(Output gap) & 0.00106 & 0.00420 & 0.01076\\
+        Var(Wage infl.) & 0.01473 & 0.02009 & 0.02418\\
+        Total & 0.03167 & 0.03763 & 0.06043\\
+        \multicolumn{4}{c}{Intermediate wage rigidity: $\varsigma = 0.50$}\\
+        Var(Domestic infl.) & 0.02171 & 0.01706 & 0.01889\\
+        Var(Output gap) & 0.00353 & 0.00764 & 0.01460\\
+        Var(Wage infl.) & 0.05409 & 0.04948 & 0.01989\\
+        Total & 0.07933 & 0.07417 & 0.05338\\
+        \multicolumn{4}{c}{Standard wage rigidity: $\varsigma = 0.75$}\\
+        Var(Domestic infl.) & 0.03002 & 0.02320 & 0.01485\\
+        Var(Output gap) & 0.02904 & 0.02963 & 0.02146\\
+        Var(Wage infl.) & 0.29458 & 0.21234 & 0.01422\\
+        Total & 0.35364 & 0.26516 & 0.05053\\
+        \hline
+        \multicolumn{4}{l}{\textit{Note: } Values are \% units of steady state consumption}
+    \end{tabular}
+\end{table}
+
+Comentar! Quanto mais rígido comparativamente a PEG fica superior
 
 \section{Conclusion}
 a
-
 
 
 \appendix
@@ -575,7 +675,7 @@ As this problem is a static one we can solve separately for $C_t$ and $N_t$ at a
     \end{split}
 \end{equation*}
 
-Manipulating we get that $N_t^{1+\varphi} = N^{1+\varphi} = (1-\alpha)$. In the competitive steady state in (\ref{ser}) again assuming $\gamma = \sigma = \eta = 1$ we obtain that $\frac{1}{\mathcal M} = (1-\tau) N^{1+\varphi}$. So, if the subsidy is such that $(1-\tau) = \frac{1}{(1-\alpha) \mathcal M}$ the steady state employment level coincides to Pareto optimal and, then, the efficiency is restored.
+Manipulating we get that $N_t^{1+\varphi} = N^{1+\varphi} = (1-\alpha)$. In the competitive steady state in (\ref{ser}) again assuming $\gamma = \sigma = \eta = 1$ we obtain that $\frac{1}{\mathcal M} = (1-\tau) N^{1+\varphi}$. So, if the subsidy is such that $(1-\tau) = \frac{1}{(1-\alpha) \mathcal M}$ the steady state employment level coincides to Pareto optimal and, then, the efficiency is restored. Note that the solution above holds only for this specific parameter selection.
 
 \section{Optimal price setting}
 The firms optimal price setting problem following the Calvo's model is given by:
@@ -682,7 +782,11 @@ And finally, using (\ref{tot_level}) we obtain:
 \end{equation}
 
 \section{Optimal Monetary Policy and Welfare Losses}
+a
 
+\nocite{*}
+\bibliographystyle{plainnat}
+\bibliography{bibliografia}
 
 
 \end{document}
