@@ -1058,9 +1058,13 @@ $\displaystyle \Omega = \frac{\nu -\mu}{\sigma_\alpha+\varphi}$, $\displaystyle 
 
 $\pi_{H,t} = \beta \mathbb{E}_t \{ \pi_{H,t+1}\} +  \kappa_\alpha x_t$
 
-Substituting $y_t$ in $mc_t = -\nu + (\sigma_\alpha+\varphi)y_t + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t$, we have  $mc_t = -\nu + (\sigma_\alpha+\varphi)(x_t+\overline{y_t}) + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t$
+Substituting $y_t$ in $mc_t = -\nu + (\sigma_\alpha+\varphi)y_t + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t$, 
 
-$\displaystyle mc_t = -\nu + (\sigma_\alpha+\varphi)\left(x_t+\frac{\nu -\mu}{\sigma_\alpha+\varphi} + \frac{1+\varphi}{\sigma_\alpha+\varphi}a_t - \frac{ \alpha \Theta \sigma_\alpha}{\sigma_\alpha+\varphi}y_t^* \right) + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t = -\nu + (\sigma_\alpha+\varphi)x_t + \nu - \mu - \alpha \Theta \sigma_\alpha y_t^* + (\sigma-\sigma_\alpha)y_t^*$
+we have  $mc_t = -\nu + (\sigma_\alpha+\varphi)(x_t+\overline{y_t}) + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t$
+
+$\displaystyle mc_t = -\nu + (\sigma_\alpha+\varphi)\left(x_t+\frac{\nu -\mu}{\sigma_\alpha+\varphi} + \frac{1+\varphi}{\sigma_\alpha+\varphi}a_t - \frac{ \alpha \Theta \sigma_\alpha}{\sigma_\alpha+\varphi}y_t^* \right) + (\sigma-\sigma_\alpha)y_t^*-(1+\varphi)a_t$
+
+$\displaystyle mc_t = -\nu + (\sigma_\alpha+\varphi)x_t + \nu - \mu - \alpha \Theta \sigma_\alpha y_t^* + (\sigma-\sigma_\alpha)y_t^*$
 
 $\displaystyle mc_t-(-\mu)=(\sigma_\alpha+\varphi)x_t - \mu - \alpha \left[ \omega-1 \right] \frac{\sigma}{(1-\alpha)+\alpha \omega} y_t^* + \frac{-\alpha \sigma +\alpha \omega\sigma}{(1-\alpha)+\alpha \omega} y_t^* + \mu$
 
@@ -1086,17 +1090,23 @@ $\displaystyle x_t  = \mathbb{E}_t\{x_{t+1}\} +\Gamma (\rho_a a_{t}-a_t)+ \alpha
 
 $\displaystyle x_t  = \mathbb{E}_t\{x_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-\mathbb{E}_t\{\pi_{H,t+1}\} -[\rho-\sigma_\alpha \Gamma (1-\rho_a)a_t +\alpha \sigma_\alpha(\Theta+\Psi) \mathbb{E}_t\{\Delta y_{t+1}^*\}])$
 
-$\displaystyle x_t  = \mathbb{E}_t\{x_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-\mathbb{E}_t\{\pi_{H,t+1}\} -\overline{rr}_t)$ where $\overline{rr}_t \equiv \rho-\sigma_\alpha \Gamma (1-\rho_a)a_t +\alpha \sigma_\alpha(\Theta+\Psi) \mathbb{E}_t\{\Delta y_{t+1}^*\}$ is the small open economy's natural rate of interest.
+$\displaystyle x_t  = \mathbb{E}_t\{x_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-\mathbb{E}_t\{\pi_{H,t+1}\} -\overline{rr}_t)$ 
+
+where $\overline{rr}_t \equiv \rho-\sigma_\alpha \Gamma (1-\rho_a)a_t +\alpha \sigma_\alpha(\Theta+\Psi) \mathbb{E}_t\{\Delta y_{t+1}^*\}$ is the small open economy's natural rate of interest.
 
 \vspace{12pt}
 
 ## Optimal Monetary Policy: a special case
 
+\vspace{8pt}
+
 The problem of the central planner is:
 
 $\displaystyle \max E_0\sum_{i=0}^\infty \beta^t U(C_t,N_t)$ subject to $Y_t=A_tN_t$, $\displaystyle C_t=C_t^i\mathcal{Q}_{i,t}$ and $\displaystyle Y_t=\frac{P_t}{P_{H,t}} C_t$, as $\eta=\sigma=\gamma=1$. 
 
-In this case, $\displaystyle Y_t=\frac{(P_{H,t})^{1-\alpha}(P_{F,t})^{\alpha}}{P_{H,t}} C_t = \frac{(P_{F,t})^{\alpha}}{(P_{H,t})^{\alpha}}C_t=\mathcal{S}_t^{\alpha}C_t \ \ \Rightarrow \ \ Y_t=\mathcal{S}_t^{\alpha}C_t \ \ \Rightarrow \ \ \mathcal{S}_t= \left( \frac{Y_t}{C_t} \right)^{\frac{1}{\alpha}}$. By equation 29, we have $y_t=y_t^*+s_t$ or $\displaystyle Y_t=Y_t^{*} \mathcal{S}_t= Y_t^{*} \left( \frac{Y_t}{C_t} \right)^{\frac{1}{\alpha}} \ \ \Rightarrow \ \ C_t Y_t^\alpha = (Y_t^*)^\alpha Y_t \ \ \Rightarrow \ \ C_t=Y_t^{1-\alpha}(Y_t^*)^\alpha$.
+In this case, $\displaystyle Y_t=\frac{(P_{H,t})^{1-\alpha}(P_{F,t})^{\alpha}}{P_{H,t}} C_t = \frac{(P_{F,t})^{\alpha}}{(P_{H,t})^{\alpha}}C_t=\mathcal{S}_t^{\alpha}C_t \ \ \Rightarrow \ \ Y_t=\mathcal{S}_t^{\alpha}C_t \ \ \Rightarrow \ \ \mathcal{S}_t= \left( \frac{Y_t}{C_t} \right)^{\frac{1}{\alpha}}$. 
+
+By equation 29, we have $y_t=y_t^*+s_t$ or $\displaystyle Y_t=Y_t^{*} \mathcal{S}_t= Y_t^{*} \left( \frac{Y_t}{C_t} \right)^{\frac{1}{\alpha}} \ \ \Rightarrow \ \ C_t Y_t^\alpha = (Y_t^*)^\alpha Y_t \ \ \Rightarrow \ \ C_t=Y_t^{1-\alpha}(Y_t^*)^\alpha$.
 
 The Central planner problem then becomes 
 
@@ -1120,13 +1130,21 @@ $\displaystyle -\frac{U_N(C_t,N_t)}{U_c(C_t,N_t)} = \frac{Y_t}{N_t} (1-\alpha)Y_
 
 Using the utility function $\displaystyle U(C_t,N_t)=\log(C_t)-\frac{N_t^{1+\varphi}}{1+\varphi}$ as $\sigma=1$.
 
-We have $\displaystyle U_C(C_t,N_t)=\frac{1}{C_t}$ and $\displaystyle U_N(C_t,N_t)=-N_t^\varphi$. Substituting in the FOCs relation, we have $\displaystyle N_t^\varphi C_t=(1-\alpha)\frac{C_t}{N_t} \ \ \Rightarrow \ \ N_t^{1+\varphi}=(1-\alpha) \ \ \Rightarrow \ \ N_t = N = (1-\alpha)^{\frac{1}{1+\varphi}}$, which is a constant employment.
+We have $\displaystyle U_C(C_t,N_t)=\frac{1}{C_t}$ and $\displaystyle U_N(C_t,N_t)=-N_t^\varphi$. 
+
+Substituting in the FOCs relation, we have 
+
+$\displaystyle N_t^\varphi C_t=(1-\alpha)\frac{C_t}{N_t} \ \ \Rightarrow \ \ N_t^{1+\varphi}=(1-\alpha) \ \ \Rightarrow \ \ N_t = N = (1-\alpha)^{\frac{1}{1+\varphi}}$, 
+
+which is a constant employment.
 
 We know that, under flexible prices, $\displaystyle \frac{\overline{MC}_t^n}{\overline{P}_{H,t}}=\overline{MC}_t=\frac{\varepsilon-1}{\varepsilon}$ (see section 9 for the derivation). 
 
 From the representative consumer FOCs, we have the standard relation: $\displaystyle -\frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\overline{C}_t,\overline{N}_t)}=\frac{\overline{W}_t}{\overline{P}_t}$.
 
-The subsidy $\tau$ is chosen to achieve the optimal level of production if the prices were fully flexible. Thus, we have $\displaystyle \overline{MC}_t=\frac{\varepsilon-1}{\varepsilon}=\frac{\overline{W}_t (1-\tau)}{\overline{P}_{H,t} A_t}=-\frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\overline{C}_t,\overline{N}_t)}\frac{\overline{P}_t (1-\tau)}{\overline{P}_{H,t} A_t}$.
+The subsidy $\tau$ is chosen to achieve the optimal level of production if the prices were fully flexible. 
+
+Thus, we have $\displaystyle \overline{MC}_t=\frac{\varepsilon-1}{\varepsilon}=\frac{\overline{W}_t (1-\tau)}{\overline{P}_{H,t} A_t}=-\frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\overline{C}_t,\overline{N}_t)}\frac{\overline{P}_t (1-\tau)}{\overline{P}_{H,t} A_t}$.
 
 As $\eta=1$, $\overline{P}_t=(\overline{P}_{H,t})^{1-\alpha}(\overline{P}_{F,t})^\alpha$. Substituting, 
 
@@ -1136,19 +1154,25 @@ As $\sigma=1$, $\displaystyle -\frac{U_C(\overline{C}_t,\overline{N}_t)}{U_N(\ov
 
 From equation 26 (equilibrium part), we know that $\displaystyle \overline{Y}_t=\overline{C}_t \mathcal{\overline{S}}_t^\alpha \ \ \Rightarrow \ \  \mathcal{\overline{S}}_t^\alpha = \frac{\overline{Y}_t}{\overline{C}_t}$. Thus, $\displaystyle \overline{MC}_t= \frac{(1-\tau)}{\overline{A}_t} \frac{\overline{Y}_t}{\overline{C}_t} \overline{C}_t \overline{N}_t^\varphi$
 
-Substituting the technological constraint, $\displaystyle 1-\frac{1}{\varepsilon}=\overline{MC}_t= \frac{(1-\tau)}{\overline{A}_t}  \overline{A}_t \overline{N}_t \overline{N}_t^\varphi=(1-\tau) \overline{N}_t^{1+\varphi}=(1-\tau)\left( (1-\alpha)^{1+\varphi} \right)^{\frac{1}{1+\varphi}}=(1-\tau)(1-\alpha)$.
+Substituting the technological constraint 
+
+$\displaystyle 1-\frac{1}{\varepsilon}=\overline{MC}_t= \frac{(1-\tau)}{\overline{A}_t}  \overline{A}_t \overline{N}_t \overline{N}_t^\varphi=(1-\tau) \overline{N}_t^{1+\varphi}=(1-\tau)\left( (1-\alpha)^{1+\varphi} \right)^{\frac{1}{1+\varphi}}=(1-\tau)(1-\alpha)$.
 
 Hence, if $\tau$ is set to satisfy $\displaystyle (1-\tau)(1-\alpha)= 1-\frac{1}{\varepsilon}$, we have also the log-linear form $\nu=\mu+\log(1-\alpha)$, where $\mu$ (defined earlier) is $\log(1-\tau)$ and the flexible price allocation is guaranteed.
 
 ## Equation (38) - Central bank commitment rule
 
-Solving forward equation (36), we have $\displaystyle \pi_{H,t}=\beta \mathbb{E}_t\{ \pi_{H,t+1} \}+ \kappa_\alpha x_t = \beta \mathbb{E}_t\{ \beta \mathbb{E}_t \{ \pi_{H,t+2} \}+ \kappa_\alpha x_{t+1}\}+ \kappa_\alpha x_t=\beta^T \mathbb{E}_t\{\pi_{H,T}\} + \sum_{j=t}^T \beta^{j-t}\kappa_\alpha x_j$
+Solving forward equation (36), we have 
 
-To stabilize inflation, 
+$\displaystyle \pi_{H,t}=\beta \mathbb{E}_t\{ \pi_{H,t+1} \}+ \kappa_\alpha x_t = \beta \mathbb{E}_t\{ \beta \mathbb{E}_t \{ \pi_{H,t+2} \}+ \kappa_\alpha x_{t+1}\}+ \kappa_\alpha x_t=\beta^T \mathbb{E}_t\{\pi_{H,T}\} + \sum_{j=t}^T \beta^{j-t}\kappa_\alpha x_j$
 
-$\displaystyle \pi_{H,t} =\underset{T \rightarrow \infty} \lim\beta^T \mathbb{E}_t\{\pi_{H,T}\} + \sum_{j=t}^T \beta^{j-t}\kappa_\alpha x_j$ which will stabilized ($\pi_{H,t}=0$) only if the output gap is zero for every period. As $x_t \equiv y_t-\overline{y}_t \ \ \Rightarrow \ \ y_t=\overline{y}_t$.
+To stabilize inflation, $\displaystyle \pi_{H,t} =\underset{T \rightarrow \infty} \lim\beta^T \mathbb{E}_t\{\pi_{H,T}\} + \sum_{j=t}^T \beta^{j-t}\kappa_\alpha x_j$ which will stabilized ($\pi_{H,t}=0$) only if the output gap is zero for every period. 
 
-In equation (37) we have $\displaystyle x_t  = \mathbb{E}_t\{x_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-\mathbb{E}_t\{\pi_{H,t+1}\} -\overline{rr}_t)$. In this case, we have $\mathbb{E}_t\{x_{t+1}\}=0$, $\mathbb{E}_t\{\pi_{H,t+1}\}=0$, and $\sigma_\alpha=1$, as 
+As $x_t \equiv y_t-\overline{y}_t \ \ \Rightarrow \ \ y_t=\overline{y}_t$.
+
+In equation (37) we have $\displaystyle x_t  = \mathbb{E}_t\{x_{t+1}\} -\frac{1}{\sigma_\alpha}(r_t-\mathbb{E}_t\{\pi_{H,t+1}\} -\overline{rr}_t)$. 
+
+In this case, we have $\mathbb{E}_t\{x_{t+1}\}=0$, $\mathbb{E}_t\{\pi_{H,t+1}\}=0$, and $\sigma_\alpha=1$, as 
 
 $\displaystyle \sigma_\alpha \equiv  \frac{\sigma}{(1-\alpha)+\alpha \omega}=\frac{1}{(1-\alpha)+\alpha (\sigma \gamma+(\sigma \eta -1 )(1-\alpha))}=\frac{1}{(1-\alpha)+\alpha (1+(1 -1 )(1-\alpha))}=1$.
 
@@ -1431,3 +1455,122 @@ If $\beta \to 1$, any policy deviation in a period can be calculated as
 $\displaystyle \mathbb{V} = -\frac{(1-\alpha)}{2}\sum_{i=0}^{\infty} \beta^t \left[ \frac{\varepsilon}{\lambda}\mathbb{V}(\pi_{H,t})+ (1+\varphi)\mathbb{V}(x_t) \right]$
 
 
+## Appendix E - Optimal policy for the modification
+
+$\displaystyle \mathbb{W}= -\frac{(1-\alpha)}{2}\sum_{i=0}^{\infty} \beta^t \left[ \frac{\varepsilon}{\lambda}\pi_{H,t}^2+\frac{\zeta}{\Lambda}\pi_{w,t}^2+ (1+\varphi)x_t^2 \right] + t.i.p+  o(||a||^3)$
+
+\vspace{8pt}
+
+Here we'll derive the loss function with wage rigidity, adapted from Rhee. Then, considering the limit case, we get the original paper formula. By the Taylor's rule, the second order approximation is:
+
+
+$\displaystyle Y_t = Y+y_t+\frac{1}{2} \left( y_t \right)^2+o(||a||^n) \ \ \Rightarrow \ \ \displaystyle \frac{Y_t-Y}{Y}= y_t+\frac{y_t^2}{2} +o(||a||^n) \approx y_t+\frac{y_t^2}{2}$, there $a$ is the bound for the high order terms.
+
+Let's consider and additive welfare function, defined as the sum of the utility of all households:
+
+$\displaystyle \mathbb{W}=\int_0^1 U_t(\ell)d\ell = \int_0^1 E_0\sum_{t=0}^\infty \beta^t U(C_t(\ell),N_t(\ell))d\ell = E_0 \sum_{t=0}^{\infty} \beta^t \int_0^1 U(C_t(\ell),N_t(\ell))d\ell=E_0 \sum_{t=0}^{\infty} \beta^t \int_0^1 \left(\log C_t(\ell)-\frac{N_t(\ell)}{1+\varphi}\right)d\ell$
+
+In the extended model, as the demanded work for each type of labor is different (as they are inside a continuum of measure 1), the consumption will also be different and will depend on the total income. To make the problem tractable, we will suppose that the government makes a lump-sum transfer for each household to compensate the income differences so everyone consume the same basket and the only source of heterogeneity  is the disutility of labor. We also consider the special parametrization $\sigma=\gamma=\eta=1$
+
+With flexible salary prices, there's no monopolistic competition in the labor market. Thus, we have $\displaystyle U_C(C_t,N_t)=\frac{1}{C_t}$ and $\displaystyle U_N(C_t,N_t)=-N_t^\varphi$. Substituting in the FOCs relation, with flexible prices we have 
+
+$\displaystyle \overline{N}_t^\varphi \overline{C}_t= (1-\alpha)\frac{\overline{C}_t}{\overline{N}_t} \ \ \Rightarrow \ \ \overline{N}_t^{\varphi+1} = \overline{N}^{1+\varphi}(1-\alpha) \ \ \Rightarrow \ \ \overline{N}=(1-\alpha)^{\frac{1}{1+\varphi}}$ which is a constant employment.
+
+From log-linearized equations in the special case, we have
+
+$\displaystyle c_t=c_t^*+(1-\alpha)s_t \ \ \Rightarrow \ \ s_t=\frac{c_t-c_t^*}{1-\alpha}$
+
+$\displaystyle y_t=c_t+\alpha s_t=c_t+ \alpha \frac{c_t-c_t^*}{1-\alpha} \ \ \Rightarrow \ \ (1-\alpha) y_t=(1-\alpha)c_t+\alpha c_t-\alpha c_t^*  \ \ \Rightarrow \ \ c_t=(1-\alpha)y_t+\alpha y_t^*$
+
+
+Back to our welfare function
+
+$\displaystyle \mathbb{W} \approx  E_0 \sum_{t=0}^{\infty} \beta^t \left[ (1-\alpha)y_t+\alpha y_t^* -\int_0^1 \left(\frac{(N_t(\ell)-\overline{N}_t)^{\varphi+1}}{\varphi+1} \right)d\ell \right] \approx E_0 \sum_{t=0}^{\infty} \beta^t \left[ (1-\alpha)y_t+\alpha y_t^* -\int_0^1 \left(\frac{\overline{N}_t^{\varphi+1}+(1+\varphi)N_t(\ell)\overline{N}_t^\varphi}{1+\varphi} \right)d\ell \right]$ 
+
+$\displaystyle \mathbb{W} = E_0 \sum_{t=0}^{\infty} \beta^t \left[ (1-\alpha)y_t+\alpha y_t^* - \frac{\overline{N}_t^{\varphi+1}}{1+\varphi}\int_0^1 \left(1+(1+\varphi)\frac{N_t(\ell)}{\overline{N}_t} \right)d\ell \right]$
+
+$\displaystyle \mathbb{W}  \approx E_0 \sum_{t=0}^{\infty} \beta^t \left[ (1-\alpha)y_t+\alpha y_t^* - \frac{1-\alpha}{1+\varphi}- (1-\alpha)\int_0^1 \left(\widehat{n}_t(\ell) + \frac{1+\varphi}{2} \widehat{n}_t(\ell)^2 \right)d\ell \right]$ 
+
+$\displaystyle \mathbb{W}  \approx E_0 \sum_{t=0}^{\infty} \beta^t \left[ (1-\alpha)y_t- (1-\alpha)\widehat{n}_t - \frac{(1-\alpha)(1+\varphi)}{2}\int_0^1 \widehat{n}_t(\ell)^2 d\ell + t.i.p\right]$,
+
+where $t.i.p$ contains the terms independent of policy, which we remove from the function, as they are constant terms from the point of view of the policy maker.
+
+Using equation proposed in the modification $\displaystyle N_t(j,\ell)=\left(\frac{W_t(\ell)}{W_t} \right)^{-\zeta} N_t(j)$, where $\displaystyle W_t \equiv \left(\int_0^1 N_t(j,\ell)^{\frac{\zeta-1}{\zeta}}d\ell\right)^{\frac{\zeta}{1-\eta}}$
+
+and summing the labor for all j firms, we have $\displaystyle N_t(j,\ell)=\left(\frac{ W_t(\ell)}{W_t}\right)^\zeta N_t(j) \ \ \Rightarrow \ \ \int_0^1N_t(j,\ell)dj= \int_0^1\left(\frac{ W_t(\ell)}{W_t}\right)^\zeta N_t(j) dj \ \ \Rightarrow \ \ N_t(\ell)=\left(\frac{ W_t(\ell)}{W_t}\right)^\zeta N_t$
+
+Taking the log and subtracting the same equation in the steady-state, we have
+
+$\displaystyle n_t(\ell)=\zeta(w_t(\ell)-w_t) + n_t \ \ \Rightarrow \ \  \widehat{n}_t(\ell)=\zeta(\widehat{w}_t(\ell)-\widehat{w}_t) + n_t \ \ \Rightarrow \ \ \widehat{n}_t(\ell) - n_t=\zeta(\widehat{w}_t(\ell)-\widehat{w}_t)$
+
+$\displaystyle \int_0^1 \widehat{n}_t(j)^2 dj = \int_0^1 (\zeta(\widehat{w}_t(\ell)-\widehat{w}_t)+\widehat{n}_t)^2 dj = \zeta^2\int_0^1(\widehat{w}_t(\ell)-\widehat{w}_t)^2d\ell + 2 \zeta \int_0^1 (\widehat{w}_t(\ell)-\widehat{w}_t) d\ell + \int_0^1 \widehat{n}_t^2 d\ell = \widehat{n}_t^2+ \zeta^2 \mathbb{V}[w_t(\ell)]$
+
+using the fact that $\int_0^1 (\widehat{w}_t(\ell)-\widehat{w}_t) d\ell=0$ and $\int_0^1 (\widehat{w}_t(\ell)-\widehat{w}_t)^2 d\ell=\mathbb{V}[w_t(\ell)]$
+
+Now we need to write the employment in terms of output and prices:
+
+$\displaystyle N_t=\int_0^1 \int_0^1 N_t(j,\ell)d\ell dj = \int_0^1N_t(j) \int_0^1 \frac{N_t(j,\ell)}{N_t(\ell)} d\ell dj = \Delta_{w,t} \int_0^1N_t(j)dj$
+
+where $\Delta_{w,t} \equiv \int_0^1 \frac{N_t(j,\ell)}{N_t(\ell)}d\ell = \int_0^1 \left(\frac{W_t(\ell)}{W_t} \right)^{-\zeta}d\ell$.
+
+
+Now we'll derive the demand curve for $Y_t(j)$. Good market clearing in the representative small open economy ("home") requires that the total produced inside the small economy is consumed either by the households of this economy or imported (from the small economy, subscript H) from households of any other country (superscript i). 
+
+$\displaystyle Y_t(j) = C_{H,t}(j)+\int_0^1 C_{H,t}^i(j)di = \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}C_{H,t} + \int_0^1 \displaystyle  \left( \frac{P_{H,t}^i(j)}{P_{H,t}^i}\right)^{-\varepsilon}C_{H,t}^i di$
+
+$\displaystyle Y_t(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon} (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \int_0^1  \left( \frac{P_{H,t}^i(j)}{P_{H,t}^i}\right)^{-\varepsilon} \left( \frac{P_{H,t}^i}{P_{F,t}^i}\right)^{-\gamma}C_{F,t}^i di$
+
+$\displaystyle Y_t(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon} (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \int_0^1  \left( \frac{P_{H,t}^i(j)}{P_{H,t}^i}\right)^{-\varepsilon} \left( \frac{P_{H,t}}{\mathcal{E}_{i,t}P_{F,t}^i}\right)^{-\gamma} \alpha \left( \frac{P_{F,t}^i}{P_t^i} \right)^{-\eta} C_t^i di$
+
+Assuming symmetric preferences across countries, the home country will sell the variety of good j for the same price, independently of which country is buying, which implies  $\displaystyle \frac{P_{H,t}^i (j)}{P_{H,t}^i}=\frac{P_{H,t} (j)}{P_{H,t}}$
+
+Thus, $\displaystyle Y_t(j) = \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon} \left[ (1-\alpha)\left( \frac{P_{H,t}}{P_t} \right)^{-\eta}C_t + \alpha \int_0^1   \left( \frac{P_{H,t}}{\mathcal{E}_{i,t}P_{F,t}^i}\right)^{-\gamma}  \left( \frac{P_{F,t}^i}{P_t^i} \right)^{-\eta} C_t^i di \right] = \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}Y_t$
+
+
+Back to the employment expression, using the above expression and using $Y_t(j)=A_tN_t(j)$ and 
+
+$\displaystyle N_t \equiv  \left(\int_0^1 N_t(j,\ell)^{\frac{\zeta-1}{\zeta}} d\ell \right)^{\frac{\zeta}{\zeta-1}}$
+
+in the modification proposed, we have
+
+$\displaystyle N_t= \Delta_{w,t} \int_0^1 \frac{Y_t(j)}{A_t}dj= \Delta_{w,t}  \frac{Y_t}{A_t}\int_0^1 \frac{Y_t(j)}{Y_t}dj = \Delta_{w,t}  \frac{Y_t}{A_t}\int_0^1 \frac{Y_t(j)}{Y_t}dj=\Delta_{w,t} \Delta_{P_H,t}\frac{Y_t}{A_t}$
+
+where $\Delta_{P_H,t}=\int_0^1 \left( \frac{P_{H,t}(j)}{P_{H,t}}\right)^{-\varepsilon}dj$
+
+Log-linearizing around the steady-state (the potential, or natural product), where there are no differences between firms and households we have:
+
+$\widehat{n}_t=y_t-\overline{y}_t+d_{w,t}+d_{P_H,t}$, where $d_{w,t}=\log \Delta_{w,t}$ and $d_{P_H,t}=\log \Delta_{P_H,t}$ 
+
+Lemma 1: $\displaystyle d_{P_H,t}=\frac{\varepsilon}{2}\mathbb{V}_j[P_{H,t}(j)]$. The proof is in the appendix D of the original paper.
+
+Lemma 2: $\displaystyle d_{p_H,t}=\frac{\zeta}{2}\mathbb{V}_\ell[w_t(\ell)]$. Proof is Erced et al.
+
+Lemma 3: (proof in Woodford, chapter 6)
+
+$\displaystyle \sum_{i=0}^{\infty} \beta^t \mathbb{V}_j[p_{H,t}(j)]=\frac{\theta}{(1-\beta\theta)(1-\theta)}\sum_{i=0}^\infty \beta^t \pi_{H,t}^2$
+
+$\displaystyle \sum_{i=0}^{\infty} \beta^t \mathbb{V}_\ell[w_t(\ell)]=\frac{\varsigma}{(1-\beta \varsigma)(1-\varsigma)}\sum_{i=0}^\infty \beta^t \pi_{w,t}^2$
+
+Back to the welfare function, we have
+
+$\displaystyle \mathbb{W} = E_0 \sum_{t=0}^{\infty} \beta^t \left[ (1-\alpha)y_t- (1-\alpha)(y_t-\overline{y}_t+d_{w,t}+d_{P_H,t}) - \frac{(1-\alpha)(1+\varphi)}{2} (\widehat{n}_t^2+ \zeta^2 \mathbb{V}_\ell[w_t(\ell)]) + t.i.p\right]$
+
+$\displaystyle \mathbb{W} = E_0 \sum_{t=0}^{\infty} \beta^t \left[ - (1-\alpha)\left(\frac{\varepsilon}{2}\mathbb{V}_j[p_{H,t}(j)]+ \frac{\zeta}{2}\mathbb{V}_\ell[w_t(\ell)]\right) - \frac{(1-\alpha)(1+\varphi)}{2} (\widehat{n}_t^2+ \zeta^2 \mathbb{V}_\ell[w_t(\ell)]) + t.i.p\right]$
+
+$\displaystyle \mathbb{W} = - \frac{1-\alpha}{2} E_0 \sum_{t=0}^{\infty} \beta^t  \left[\varepsilon\mathbb{V}_j[p_{H,t}(j)]+ \zeta\mathbb{V}_\ell[w_t(\ell)] + (1+\varphi) (x_t^2+ \zeta^2 \mathbb{V}_\ell[w_t(\ell)])\right] + t.i.p$
+
+$\displaystyle \mathbb{W} = - \frac{1-\alpha}{2}  E_0 \sum_{t=0}^{\infty} \beta^t  \left\{(1+\varphi) x_t^2 + \varepsilon\mathbb{V}_j[p_{H,t}(j)] + [\zeta(1+\varphi \zeta)]  \mathbb{V}_\ell[w_t(\ell)]\right\} + t.i.p$,
+
+where $\zeta^2\mathbb{V}_\ell[w_t(\ell)]$ is a term independent of policy.
+
+Using both equations from lemma 3, we have
+
+$\displaystyle \mathbb{W} = - \frac{1-\alpha}{2} E_0 \sum_{t=0}^{\infty} \beta^t  \left\{(1+\varphi) x_t^2 + \varepsilon\frac{\theta}{(1-\beta\theta)(1-\theta)}\pi_{H,t}^2 + \zeta(1+\varphi \zeta)  \frac{\varsigma}{(1-\beta\varsigma)(1-\varsigma)} \pi_{w,t}^2\right\} + t.i.p$,
+
+$\displaystyle \mathbb{W} = - \frac{1-\alpha}{2} E_0 \sum_{t=0}^{\infty} \beta^t  \left\{(1+\varphi) x_t^2 + \frac{\varepsilon}{\lambda}\pi_{H,t}^2 +  \frac{\zeta}{\Lambda} \pi_{w,t}^2\right\} + t.i.p$,  
+
+where $\lambda=\frac{\theta}{(1-\beta\theta)(1-\theta)}$ and $\Lambda=\frac{\varsigma (1-\beta \varsigma)}{(1-\beta\varsigma)(1-\varsigma)}$
+
+In the limit case, when $\Lambda \to \infty$, the third term of the equation above vanishes and we have the result for the original paper, with flexible prices in the labor market.
+
+\vspace{12pt}
