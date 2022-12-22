@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cb6bc072-d388-48db-8755-96a7f8a2f371" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/code/modification_certo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/code/replication_antigo.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code/modification.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/modification.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/modification_rep.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/modification_rep.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/replication_graficos.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/replication_graficos.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/code/replication_graficos_v2.py" beforeDir="false" afterPath="$PROJECT_DIR$/code/replication_graficos_v2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/img/figure1.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure1.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/latex/img/figure2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure2.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/latex/img/figure3.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure3.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/latex/img/figure4.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure4.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/latex/img/figure5.svg" beforeDir="false" afterPath="$PROJECT_DIR$/latex/img/figure5.svg" afterDir="false" />
@@ -53,49 +60,7 @@
       <recent name="Z:\Mestrado\Disciplinas\Macroeconomia III - Yvan\Trabalho\trabalho_macroIII\code" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.modification">
-    <configuration name="endogenous_grid_points" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="trabalho_macroIII" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1/Py" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1/Py/endogenous_grid_points.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="euler_equation_iteration" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="trabalho_macroIII" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1/Py" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../Macroeconomia II - Mendo/Listas/Lista 1/Py/euler_equation_iteration.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.modification_rep">
     <configuration name="modification" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="trabalho_macroIII" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -117,7 +82,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="replication" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="modification_catarina" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="trabalho_macroIII" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -129,7 +94,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/replication.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/modification_catarina.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -138,7 +103,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="replication_graficos" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="modification_rep" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="trabalho_macroIII" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -150,7 +115,49 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/replication_graficos.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/modification_rep.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="replication_antigo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="trabalho_macroIII" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/replication_antigo.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="replication_graficos_v2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="trabalho_macroIII" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/code" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/code/replication_graficos_v2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -161,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.modification_rep" />
+        <item itemvalue="Python.modification_catarina" />
+        <item itemvalue="Python.replication_graficos_v2" />
+        <item itemvalue="Python.replication_antigo" />
         <item itemvalue="Python.modification" />
-        <item itemvalue="Python.replication_graficos" />
-        <item itemvalue="Python.replication" />
-        <item itemvalue="Python.endogenous_grid_points" />
-        <item itemvalue="Python.euler_equation_iteration" />
       </list>
     </recent_temporary>
   </component>

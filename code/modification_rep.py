@@ -30,7 +30,6 @@ pd.set_option('display.max_columns', 7)
 β    = 0.99      #intertemporal discount factor
 θ    = 0.75      #price stickiness / share of firms which need to keep prices unchanged
 φ_π  = 1.5       #Taylor rule response to inflation
-φ_y  = 0.125     #Taylor rule response to output gap
 ρ_a  = 0.66      #AR(1) coeffiecient of productivity
 ρ_y  = 0.86      #AR(1) coefficient of Rest of World GDP
 σ_a  = 0.0071    #Variance of productivity shocks
@@ -187,16 +186,16 @@ def create_matrices(monetary_rule):
 
     if monetary_rule == "optimal":
         Gamma_0[2] = [0, -α*σ_α*(Θ+Ψ), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        Gamma_1[2] = [0, -α*σ_α*(Θ+Ψ), φ_π, -Γ*(1-ρ_a)*σ_α, -1, -φ_y, φ_y, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        Gamma_1[2] = [0, -α*σ_α*(Θ+Ψ), φ_π, -Γ*(1-ρ_a)*σ_α, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         CONST[2] = [ρ]
         PI[2] = [0, -1, 0, 0]
     elif monetary_rule == "ditr":
-        Gamma_0[2] = [0, 0, φ_π, 0, -1, -φ_y, φ_y, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        Gamma_0[2] = [0, 0, φ_π, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         Gamma_1[2] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         CONST[2] = [ρ]
         PI[2] = [0, 0, 0, 0]
     elif monetary_rule == "citr":
-        Gamma_0[2] = [0, 0, 0, 0, -1, -φ_y, φ_y, 0, 0, 0, 0, φ_π, 0, 0, 0, 0, 0]
+        Gamma_0[2] = [0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, φ_π, 0, 0, 0, 0, 0]
         Gamma_1[2] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         CONST[2] = [ρ]
         PI[2] = [0, 0, 0, 0]
@@ -398,9 +397,9 @@ def irfs(G1, impact, RC, C, nperiods, shock):
         resp[:, [j]] = G1 @ (resp[:, [j-1]] + C)
 
     #Return irfs series
-    return [resp[3 if shock=="a" else 1, :], resp[0, :],  resp[8, :], resp[10, :],
+    return [resp[3 if shock=="a" else 1, :], resp[0, :],  resp[6, :], resp[10, :],
             resp[11, :], resp[2, :], resp[14, :], resp[15, :], 
-            resp[4, :], resp[12, :], resp[8, :], resp[6, :]-resp[10, :]]
+            resp[4, :], resp[12, :], resp[8, :], resp[8, :]-resp[16, :]]
 
 
 #######################################
@@ -408,7 +407,7 @@ def irfs(G1, impact, RC, C, nperiods, shock):
 #######################################
 
 # Change ρ_a
-ρ_a  = 0.66
+ρ_a  = 0.90
 
 # Calculate irfs
 
@@ -458,12 +457,12 @@ ticks = [(0,1.1,.2), (-1,0.2,.2), (0,1,.2),(0,0.6,.1),
          (-.5,.1,.1), (-.4,0.8,.2), (0,1,.2), (0,0.4,.1)]
 plot_titles = ["Productivity", "Output Gap", "Output", "Consumption", 
                "CPI Inflation", "Domestic Inflation","Hours worked", "Real Wage", 
-               "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade","Net exports"]
+               "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade","Wage Inflation"]
 
 for j in range(12):
     charts[j].set_title(plot_titles[j], fontsize = 10)
-    charts[j].set_ylim(limits[j])
-    charts[j].set_yticks(np.arange(ticks[j][0], ticks[j][1], ticks[j][2]))
+    #charts[j].set_ylim(limits[j])
+    #charts[j].set_yticks(np.arange(ticks[j][0], ticks[j][1], ticks[j][2]))
     charts[j].set_xticks(range(0,nperiods+1,5))
     charts[j].set_xlim(0,nperiods+1)
     charts[j].grid(color="#000000", linestyle=':',  dashes=(1,4,1,4))
@@ -475,7 +474,7 @@ lines.append([charts[j].plot(x_axis, series_peg_modification_prod[j])[0] for j i
 
 # Create legend and title
 figure3.legend(lines, ["DITR", "CITR", "PEG"], ncol=4,
-               bbox_to_anchor=(0.5,0.96), loc=9, frameon=False)
+               bbox_to_anchor=(0.5,0.97), loc=9, frameon=False)
 figure3.suptitle("Impulse Responses - Productivity Shock\n", fontweight="bold")
 
 # Draw chart 1
@@ -496,8 +495,8 @@ plot_titles[0] = "World Output"
 
 for j in range(12):
     charts[j].set_title(plot_titles[j], fontsize = 10)
-    charts[j].set_ylim(limits[j])
-    charts[j].set_yticks(np.arange(ticks[j][0], ticks[j][1], ticks[j][2]))
+    #charts[j].set_ylim(limits[j])
+    #charts[j].set_yticks(np.arange(ticks[j][0], ticks[j][1], ticks[j][2]))
     charts[j].set_xticks(range(0,nperiods+1,5))
     charts[j].set_xlim(0,nperiods+1)
     charts[j].grid(color="#000000", linestyle=':',  dashes=(1,4,1,4))
@@ -509,7 +508,7 @@ for j in range(12):
 
 # Create legend and title
 figure4.legend(lines, ["DITR", "CITR", "PEG"], ncol=4,
-               bbox_to_anchor=(0.5,0.96), loc=9, frameon=False)
+               bbox_to_anchor=(0.5,0.97), loc=9, frameon=False)
 figure4.suptitle("Impulse Responses - World Output Shock\n", fontweight="bold")
 
 # Draw chart 2
@@ -535,20 +534,20 @@ for j in range(9):
 
 charts[0].plot(x_axis, series_ditr_original_prod[1], label="Gali & Monacelli")
 charts[0].plot(x_axis, series_ditr_modification_prod[1], label="Our Modification")
-charts[0].set_ylim((-0.3, 0.1))
-charts[0].set_yticks(np.arange(-0.3,0.1,0.1))
+#charts[0].set_ylim((-0.3, 0.1))
+#charts[0].set_yticks(np.arange(-0.3,0.1,0.1))
 charts[0].set_title("DITR - Output Gap")
 
 charts[1].plot(x_axis, series_ditr_original_prod[2])
 charts[1].plot(x_axis, series_ditr_modification_prod[2])
-charts[1].set_ylim((0, 1.1))
-charts[1].set_yticks(np.arange(0,1.5,.5))
+#charts[1].set_ylim((0, 1.1))
+#charts[1].set_yticks(np.arange(0,1.5,.5))
 charts[1].set_title("DITR - Output")
 
 charts[2].plot(x_axis, series_ditr_original_prod[4])
 charts[2].plot(x_axis, series_ditr_modification_prod[4])
-charts[2].set_ylim((-0.4, 0.4))
-charts[2].set_yticks(np.arange(-.4,.4,.2))
+#charts[2].set_ylim((-0.4, 0.4))
+#charts[2].set_yticks(np.arange(-.4,.4,.2))
 charts[2].set_title("DITR - Domestic Inflation")
 
 charts[3].plot(x_axis, series_citr_original_prod[1])

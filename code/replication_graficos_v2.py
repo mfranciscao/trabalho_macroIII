@@ -41,7 +41,7 @@ np.random.seed(1)
 M    = ε/(ε-1)
 τ    = 1 - 1/(M*(1-α))
 μ    = log(M)
-ν    = μ #+ log(1-α)
+ν    = μ + log(1-α)
 Ω    = (ν-μ)/(σ_α+φ)
 Γ    = (1+φ)/(σ_α+φ)
 Ψ    = (-Θ*σ_α)/(σ_α+φ)
@@ -376,9 +376,9 @@ def irfs(G1, impact, C, nperiods, shock):
         resp[:, [j]] = G1 @ (resp[:, [j-1]] + C)
 
     #Return irfs series
-    return [resp[3 if shock=="a" else 1, :], resp[0, :],  resp[8, :], resp[10, :],
+    return [resp[3 if shock=="a" else 1, :], resp[0, :],  resp[6, :], resp[10, :],
             resp[11, :], resp[2, :], resp[14, :], resp[15, :], 
-            resp[4, :], resp[12, :], resp[8, :], resp[6, :]-resp[10, :]]
+            resp[4, :], resp[12, :], resp[8, :], resp[13, :]]
 
 
 
@@ -394,16 +394,16 @@ x_axis = range(1, nperiods+1)
 # Figure 1 : Productivity shock
 figure1 = plt.figure(figsize=figsize)
 lines = []
-charts = [figure1.add_subplot(4, 4, j+1) for j in range(12)]
+charts = [figure1.add_subplot(3, 4, j+1) for j in range(12)]
 limits = [(0,1.1), (-.8,0.1), (0,1.2), (0,0.8), 
           (-.4,.6), (-0.6,0.2), (-0.8,0.2), (-2,1), 
-          (-0.3,0.1), (-.4,1.2), (0,1.2), (0,0.5)]
+          (-0.3,0.1), (-.4,1.2), (0,1.2), (-2,0.2)]
 ticks = [(0,1.2,.2), (-.8,.2,.2), (0,1.2,.2),(0,0.8,.2), 
          (-.4,.6,.2), (-.4,.4,.2), (-0.8,0.2,0.2), (-2,2,1), 
-         (-.3,.2,.1), (-.5,1.5,.5), (0,1.2,.2), (0,0.5,.1)]
+         (-.3,.2,.1), (-.5,1.5,.5), (0,1.2,.2), (-2.5,0.5,.5)]
 plot_titles = ["Productivity", "Output Gap", "Output", "Consumption", 
                "CPI Inflation", "Domestic Inflation","Hours worked", "Real Wage", 
-               "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade","Net exports"]
+               "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade","Marginal Cost Gap"]
 
 for j in range(12):
     charts[j].set_title(plot_titles[j], fontsize = 10)
@@ -431,7 +431,7 @@ lines.append([charts[j].plot(x_axis, series_peg[j], linewidth=linewidth, color="
 
 # Create legend and title
 figure1.legend(lines, ["Optimal", "DITR", "CITR", "PEG"], ncol=4,
-               bbox_to_anchor=(0.5,0.96), loc=9, frameon=False)
+               bbox_to_anchor=(0.5,0.97), loc=9, frameon=False)
 figure1.suptitle("Impulse Responses - Productivity Shock\n", fontweight="bold")
 
 # Draw chart 1
@@ -443,13 +443,13 @@ plt.show()
 # Figure 2 : World Output shock
 figure2 = plt.figure(figsize=figsize)
 lines = []
-charts = [figure2.add_subplot(4, 4, j+1) for j in range(12)]
-limits = [(0,1.1), (-0.2,0.8), (-1.2,0.2), (0,0.8), 
+charts = [figure2.add_subplot(3, 4, j+1) for j in range(12)]
+limits = [(0,1.1), (-0.2,0.8), (-0.2,0.8), (0,0.8),
           (-.6,.4), (-0.2,0.4), (-0.2,0.8), (-0.5,3), 
-          (-0.4,0.1), (-1.1,0.2), (-1.1,0.1), (-0.5,0.1)]
-ticks = [(0,1.2,.2), (-0.2,.8,.2), (-1.2,0.2,.2),(0,0.8,.2), 
+          (-0.4,0.1), (-1.1,0.2), (-1.1,0.1), (-0.5,2.6)]
+ticks = [(0,1.2,.2), (-0.2,.8,.2), (-0.2,.8,.2),(0,0.8,.2),
          (-.6,.4,.2), (-.2,.4,.2), (-0.2,0.8,0.2), (-0.5,3,0.5), 
-         (-.4,.1,.1), (-1,0.2,.2), (-1,0.2,0.2), (-0.5,0.1,.1)]
+         (-.4,.1,.1), (-1,0.2,.2), (-1,0.2,0.2), (0,3,.5)]
 plot_titles[0] = "World Output"
 
 for j in range(12):
@@ -478,7 +478,7 @@ lines.append([charts[j].plot(x_axis, series_peg[j], linewidth=linewidth, color="
 
 # Create legend and title
 figure2.legend(lines, ["Optimal", "DITR", "CITR", "PEG"], ncol=4,
-               bbox_to_anchor=(0.5,0.96), loc=9, frameon=False)
+               bbox_to_anchor=(0.5,0.97), loc=9, frameon=False)
 figure2.suptitle("Impulse Responses - World Output Shock\n", fontweight="bold")
 
 # Draw chart 2

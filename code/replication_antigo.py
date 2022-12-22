@@ -46,7 +46,7 @@ pd.set_option('display.max_columns', 7)
 M    = ε/(ε-1)
 τ    = 1 - 1/(M*(1-α))
 μ    = log(M)
-ν    = μ # + log(1-α)
+ν    = μ #+ log(1-α)
 Ω    = (ν-μ)/(σ_α+φ)
 Γ    = (1+φ)/(σ_α+φ)
 Ψ    = (-Θ*σ_α)/(σ_α+φ)
@@ -397,9 +397,8 @@ def irfs(G1, impact, RC, C, nperiods, shock):
         resp[:, [j]] = G1 @ (resp[:, [j-1]] + C)
 
     #Return irfs series
-    return [resp[3 if shock == "a" else 1, :], resp[0, :], resp[8, :], resp[10, :],
-            resp[11, :], resp[2, :], resp[14, :], resp[15, :],
-            resp[4, :], resp[12, :], resp[8, :], resp[6, :] - resp[10, :]]
+    return [resp[3 if shock=="a" else 1, :], resp[0, :], resp[6, :],
+            resp[11, :], resp[2, :], resp[15, :], resp[4, :], resp[12, :], resp[8, :]]
 
 
 #######################################
@@ -448,25 +447,29 @@ mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["#007E00", "#FF0000", "#00BF
 # Figure 1 : Productivity shock
 figure3 = plt.figure(figsize=figsize)
 lines = []
-charts = [figure3.add_subplot(3, 4, j+1) for j in range(12)]
-plot_titles = ["Productivity", "Output Gap", "Output", "Consumption",
-               "CPI Inflation", "Domestic Inflation","Hours worked", "Real Wage",
-               "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade","Net exports"]
+charts = [figure3.add_subplot(3, 3, j+1) for j in range(9)]
+limits = [(0,1.1), (-1,0.5), (0,1.5), (-.25,.25), (-.4,0.2), (-.5,.5), (-.25,.25), (-.5,.5), (0,1.5)]
+ticks = [(0,1.5,.5), (-1,1,.5), (0,2,.5), (-.4,.6,.2), (-.5,.5,.25), (-.5,1.,0.5),
+         (-.25,.5,.25), (-.5,1,.5), (0,2,.5)]
+plot_titles = ["Productivity", "Output Gap", "Output", "CPI Inflation", "Domestic Inflation",
+               "Real Wage", "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade"]
 
-for j in range(12):
+for j in range(9):
     charts[j].set_title(plot_titles[j], fontsize = 10)
+    charts[j].set_ylim(limits[j])
+    charts[j].set_yticks(np.arange(ticks[j][0], ticks[j][1], ticks[j][2]))
     charts[j].set_xticks(range(0,nperiods+1,5))
     charts[j].set_xlim(0,nperiods+1)
     charts[j].grid(color="#000000", linestyle=':',  dashes=(1,4,1,4))
 
 # Plot irfs
-lines.append([charts[j].plot(x_axis, series_ditr_modification_prod[j])[0] for j in range(12)][0])
-lines.append([charts[j].plot(x_axis, series_citr_modification_prod[j])[0] for j in range(12)][0])
-lines.append([charts[j].plot(x_axis, series_peg_modification_prod[j])[0] for j in range(12)][0])
+lines.append([charts[j].plot(x_axis, series_ditr_modification_prod[j])[0] for j in range(9)][0])
+lines.append([charts[j].plot(x_axis, series_citr_modification_prod[j])[0] for j in range(9)][0])
+lines.append([charts[j].plot(x_axis, series_peg_modification_prod[j])[0] for j in range(9)][0])
 
 # Create legend and title
 figure3.legend(lines, ["DITR", "CITR", "PEG"], ncol=4,
-               bbox_to_anchor=(0.5,0.96), loc=9, frameon=False)
+               bbox_to_anchor=(0.5,0.95), loc=9, frameon=False)
 figure3.suptitle("Impulse Responses - Productivity Shock\n", fontweight="bold")
 
 # Draw chart 1
@@ -476,23 +479,28 @@ plt.show()
 
 # Figure 4 : World Output shock
 figure4 = plt.figure(figsize=figsize)
-charts = [figure4.add_subplot(3, 4, j+1) for j in range(12)]
+charts = [figure4.add_subplot(3, 3, j+1) for j in range(9)]
+limits = [(0,1.1), (-.5,1), (-.5,1), (-.3,.1), (-.2,.1), (-.2,0.4), (-0.4,.2), (-.5,.25), (-.5,0.25)]
+ticks = [(0,1.5,.5), (-0.5,1.5,.5), (-.5,1.5,.5), (-.3,.2,.1), (-.2,.2,.1), (-.2,0.6,.2),
+         (-.4,.4,.2), (-.5,.5,.25), (-.5,.5,.25)]
 plot_titles[0] = "World Output"
 
-for j in range(12):
+for j in range(9):
     charts[j].set_title(plot_titles[j], fontsize = 10)
+    charts[j].set_ylim(limits[j])
+    charts[j].set_yticks(np.arange(ticks[j][0], ticks[j][1], ticks[j][2]))
     charts[j].set_xticks(range(0,nperiods+1,5))
     charts[j].set_xlim(0,nperiods+1)
     charts[j].grid(color="#000000", linestyle=':',  dashes=(1,4,1,4))
 
 # Plot irfs
-[charts[j].plot(x_axis, series_ditr_modification_world[j]) for j in range(12)]
-[charts[j].plot(x_axis, series_citr_modification_world[j]) for j in range(12)]
-[charts[j].plot(x_axis, series_peg_modification_world[j]) for j in range(12)]
+[charts[j].plot(x_axis, series_ditr_modification_world[j]) for j in range(9)]
+[charts[j].plot(x_axis, series_citr_modification_world[j]) for j in range(9)]
+[charts[j].plot(x_axis, series_peg_modification_world[j]) for j in range(9)]
 
 # Create legend and title
 figure4.legend(lines, ["DITR", "CITR", "PEG"], ncol=4,
-               bbox_to_anchor=(0.5,0.96), loc=9, frameon=False)
+               bbox_to_anchor=(0.5,0.95), loc=9, frameon=False)
 figure4.suptitle("Impulse Responses - World Output Shock\n", fontweight="bold")
 
 # Draw chart 2
@@ -518,43 +526,61 @@ for j in range(9):
 
 charts[0].plot(x_axis, series_ditr_original_prod[1], label="Gali & Monacelli")
 charts[0].plot(x_axis, series_ditr_modification_prod[1], label="Our Modification")
+charts[0].set_ylim((-0.25, 0.25))
+charts[0].set_yticks(np.arange(-0.25,0.5,0.25))
 charts[0].set_title("DITR - Output Gap")
 
 charts[1].plot(x_axis, series_ditr_original_prod[2])
 charts[1].plot(x_axis, series_ditr_modification_prod[2])
+charts[1].set_ylim((0, 1.1))
+charts[1].set_yticks(np.arange(0,1.5,.5))
 charts[1].set_title("DITR - Output")
 
 charts[2].plot(x_axis, series_ditr_original_prod[4])
 charts[2].plot(x_axis, series_ditr_modification_prod[4])
+charts[2].set_ylim((-0.2, 0.1))
+charts[2].set_yticks(np.arange(-.2,.2,.1))
 charts[2].set_title("DITR - Domestic Inflation")
 
 charts[3].plot(x_axis, series_citr_original_prod[1])
 charts[3].plot(x_axis, series_citr_modification_prod[1])
+charts[3].set_ylim((-0.5, 0.25))
+charts[3].set_yticks(np.arange(-0.5,0.5,0.25))
 charts[3].set_title("CITR - Output Gap")
 
 charts[4].plot(x_axis, series_citr_original_prod[2])
 charts[4].plot(x_axis, series_citr_modification_prod[2])
+charts[4].set_ylim((0, 1))
+charts[4].set_yticks(np.arange(0,1.5,.5))
 charts[4].set_title("CITR - Output")
 
 charts[5].plot(x_axis, series_citr_original_prod[4])
 charts[5].plot(x_axis, series_citr_modification_prod[4])
+charts[5].set_ylim((-.3, 0.05))
+charts[5].set_yticks(np.arange(-.3,.1,.1))
 charts[5].set_title("CITR - Domestic Inflation")
 
 charts[6].plot(x_axis, series_peg_original_prod[1])
 charts[6].plot(x_axis, series_peg_modification_prod[1])
+charts[6].set_ylim((-1, 0.55))
+charts[6].set_yticks(np.arange(-1,0.75,0.5))
 charts[6].set_title("PEG - Output Gap")
 
 charts[7].plot(x_axis, series_peg_original_prod[2])
 charts[7].plot(x_axis, series_peg_modification_prod[2])
+charts[7].set_ylim((0, 1.05))
+charts[7].set_yticks(np.arange(0,1.5,.5))
 charts[7].set_title("PEG - Output")
 
 charts[8].plot(x_axis, series_peg_original_prod[4])
 charts[8].plot(x_axis, series_peg_modification_prod[4])
+charts[8].set_ylim((-.5, 0.25))
+charts[8].set_yticks(np.arange(-.5,.5,.25))
 charts[8].set_title("PEG - Domestic Inflation")
 
 
 handles, labels = charts[0].get_legend_handles_labels()
-figure5.legend(handles, labels, ncol=2, bbox_to_anchor=(0.5,0.96), loc=9, frameon=False)
+figure5.legend(handles, labels, ncol=2, bbox_to_anchor=(0.5,0.95), loc=9, frameon=False)
 
 # Draw chart 1
 plt.tight_layout()

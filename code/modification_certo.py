@@ -22,7 +22,7 @@ pd.set_option('display.max_columns', 7)
 #######################################
 
 ε    = 6         #elasticity of substitution between varieties (within any country)
-α    = 0.4       #inverse of home bias preference or openess natural index
+α    = 0.3       #inverse of home bias preference or openess natural index
 η    = 1         #substitutability between domestic and foreign goods
 γ    = 1         #substitutability between goods produced in different countries
 σ    = 1         #coefficient of relative risk aversion
@@ -46,7 +46,7 @@ pd.set_option('display.max_columns', 7)
 M    = ε/(ε-1)
 τ    = 1 - 1/(M*(1-α))
 μ    = log(M)
-ν    = μ # + log(1-α)
+ν    = μ #+ log(1-α)
 Ω    = (ν-μ)/(σ_α+φ)
 Γ    = (1+φ)/(σ_α+φ)
 Ψ    = (-Θ*σ_α)/(σ_α+φ)
@@ -110,7 +110,7 @@ def create_matrices(monetary_rule):
                         [0,  0,    0,  -1,  0, 0,   0,   0,   α,     0,      0,  0,  0, -1, 0, 1, 0],
                         [0,  0,    0,   1,  0, 0,  -1,   0,   0,     0,      0,  0,  0, 0,  1, 0, 0],
                         [0,  0,    0,   0,  0, 0,   0,   0,   0,     0,      0,  0,  0, 0,  0, 0, β],
-                        [0,  0,    0,   0,  0, 0,   0,   0,   0,     0,      0,  1,  0, 0,  0,-1, 1]])
+                        [0,  0,    0,   0,  0, 0,   0,   0,   0,     0,      0,  -1,  0, 0,  0,-1, 1]])
 
     Gamma_1  = np.array([[0,  0,  0,  0, 1/σ, 0, 0, 0, 0, 0,   1, 0, 0, 0,  0,  0, 0],
                          [0,  0,  1,  0,  0,  0, 0, 0, 0, 0,   0, 0, 0,-λ,  0,  0, 0],
@@ -329,7 +329,7 @@ def welfare_simulations():
 
 # Case 1 - No wage rigidity: ς = 0
 ς = 0
-Λ = 10000000
+Λ = 10000000000
 
 G1_opt,  impact_opt,  RC_opt,  C_opt  = gensys(*create_matrices("optimal"))
 G1_ditr, impact_ditr, RC_ditr, C_ditr = gensys(*create_matrices("ditr"))
@@ -397,9 +397,9 @@ def irfs(G1, impact, RC, C, nperiods, shock):
         resp[:, [j]] = G1 @ (resp[:, [j-1]] + C)
 
     #Return irfs series
-    return [resp[3 if shock == "a" else 1, :], resp[0, :], resp[8, :], resp[10, :],
+    return [resp[3 if shock=="a" else 1, :], resp[0, :],  resp[6, :], resp[10, :],
             resp[11, :], resp[2, :], resp[14, :], resp[15, :],
-            resp[4, :], resp[12, :], resp[8, :], resp[6, :] - resp[10, :]]
+            resp[4, :], resp[12, :], resp[8, :], resp[8, :]-resp[16, :]]
 
 
 #######################################
@@ -421,7 +421,7 @@ series_peg_modification_world  = irfs(*gensys(*create_matrices("peg")),  nperiod
 
 #Calculating the original model
 Ξ = 1
-Λ = 1000000
+Λ = 100000000
 ξ = log(Ξ)
 
 # Calculate irfs
@@ -437,7 +437,7 @@ series_peg_original_world  = irfs(*gensys(*create_matrices("peg")),  nperiods, "
 #######################################
 # Creating charts
 #######################################
-figsize= (9,5)
+figsize= (16,9)
 x_axis = range(1, nperiods+1)
 mpl.rcParams['lines.linewidth'] = 2
 mpl.rcParams['lines.markersize'] = 5
@@ -449,12 +449,20 @@ mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=["#007E00", "#FF0000", "#00BF
 figure3 = plt.figure(figsize=figsize)
 lines = []
 charts = [figure3.add_subplot(3, 4, j+1) for j in range(12)]
+limits = [(0,1.1), (-1,0.2), (0,1), (0,0.6),
+          (-.3,.2), (-0.3,0.1), (-1,0.2), (-0.3,0.4),
+          (-0.5,0.1), (-.4,0.8), (0,1), (0,0.4)]
+ticks = [(0,1.1,.2), (-1,0.2,.2), (0,1,.2),(0,0.6,.1),
+         (-.3,.2,.1), (-.3,.1,.1), (-1,0.2,0.2), (-0.3,0.4,0.1),
+         (-.5,.1,.1), (-.4,0.8,.2), (0,1,.2), (0,0.4,.1)]
 plot_titles = ["Productivity", "Output Gap", "Output", "Consumption",
                "CPI Inflation", "Domestic Inflation","Hours worked", "Real Wage",
-               "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade","Net exports"]
+               "Nominal Interest Rate", "Exchange rate deprec (Δe)", "Terms of Trade","Wage Inflation"]
 
 for j in range(12):
     charts[j].set_title(plot_titles[j], fontsize = 10)
+    #charts[j].set_ylim(limits[j])
+    #charts[j].set_yticks(np.arange(ticks[j][0], ticks[j][1], ticks[j][2]))
     charts[j].set_xticks(range(0,nperiods+1,5))
     charts[j].set_xlim(0,nperiods+1)
     charts[j].grid(color="#000000", linestyle=':',  dashes=(1,4,1,4))
@@ -466,7 +474,7 @@ lines.append([charts[j].plot(x_axis, series_peg_modification_prod[j])[0] for j i
 
 # Create legend and title
 figure3.legend(lines, ["DITR", "CITR", "PEG"], ncol=4,
-               bbox_to_anchor=(0.5,0.96), loc=9, frameon=False)
+               bbox_to_anchor=(0.5,0.97), loc=9, frameon=False)
 figure3.suptitle("Impulse Responses - Productivity Shock\n", fontweight="bold")
 
 # Draw chart 1
@@ -477,10 +485,18 @@ plt.show()
 # Figure 4 : World Output shock
 figure4 = plt.figure(figsize=figsize)
 charts = [figure4.add_subplot(3, 4, j+1) for j in range(12)]
+limits = [(0,1.1), (-0.4,1), (-1.2,0.2), (-0.2,1),
+          (-.5,.2), (-0.2,0.2), (-0.6,0.8), (-0.1,0.5),
+          (-0.5,0.1), (-1.1,0.3), (-1.1,0.1), (-0.5,0.1)]
+ticks = [(0,1.2,.2), (-0.4,1,.2), (-1.2,0.2,.2),(-0.2,1,.2),
+         (-.4,.2,.1), (-.2,.2,.1), (-0.6,0.8,0.2), (-0.1,0.5,0.1),
+         (-.5,.1,.1), (-1,0.2,.2), (-1,0.2,0.2), (-0.4,0.1,.1)]
 plot_titles[0] = "World Output"
 
 for j in range(12):
     charts[j].set_title(plot_titles[j], fontsize = 10)
+    #charts[j].set_ylim(limits[j])
+    #charts[j].set_yticks(np.arange(ticks[j][0], ticks[j][1], ticks[j][2]))
     charts[j].set_xticks(range(0,nperiods+1,5))
     charts[j].set_xlim(0,nperiods+1)
     charts[j].grid(color="#000000", linestyle=':',  dashes=(1,4,1,4))
@@ -492,7 +508,7 @@ for j in range(12):
 
 # Create legend and title
 figure4.legend(lines, ["DITR", "CITR", "PEG"], ncol=4,
-               bbox_to_anchor=(0.5,0.96), loc=9, frameon=False)
+               bbox_to_anchor=(0.5,0.97), loc=9, frameon=False)
 figure4.suptitle("Impulse Responses - World Output Shock\n", fontweight="bold")
 
 # Draw chart 2
@@ -518,38 +534,56 @@ for j in range(9):
 
 charts[0].plot(x_axis, series_ditr_original_prod[1], label="Gali & Monacelli")
 charts[0].plot(x_axis, series_ditr_modification_prod[1], label="Our Modification")
+#charts[0].set_ylim((-0.3, 0.1))
+#charts[0].set_yticks(np.arange(-0.3,0.1,0.1))
 charts[0].set_title("DITR - Output Gap")
 
 charts[1].plot(x_axis, series_ditr_original_prod[2])
 charts[1].plot(x_axis, series_ditr_modification_prod[2])
+#charts[1].set_ylim((0, 1.1))
+#charts[1].set_yticks(np.arange(0,1.5,.5))
 charts[1].set_title("DITR - Output")
 
 charts[2].plot(x_axis, series_ditr_original_prod[4])
 charts[2].plot(x_axis, series_ditr_modification_prod[4])
+#charts[2].set_ylim((-0.4, 0.4))
+#charts[2].set_yticks(np.arange(-.4,.4,.2))
 charts[2].set_title("DITR - Domestic Inflation")
 
 charts[3].plot(x_axis, series_citr_original_prod[1])
 charts[3].plot(x_axis, series_citr_modification_prod[1])
+charts[3].set_ylim((-0.4, 0.2))
+charts[3].set_yticks(np.arange(-0.4,0.2,0.2))
 charts[3].set_title("CITR - Output Gap")
 
 charts[4].plot(x_axis, series_citr_original_prod[2])
 charts[4].plot(x_axis, series_citr_modification_prod[2])
+charts[4].set_ylim((0, 1))
+charts[4].set_yticks(np.arange(0,1,.2))
 charts[4].set_title("CITR - Output")
 
 charts[5].plot(x_axis, series_citr_original_prod[4])
 charts[5].plot(x_axis, series_citr_modification_prod[4])
+charts[5].set_ylim((-.2, 0.1))
+charts[5].set_yticks(np.arange(-.2,.1,.1))
 charts[5].set_title("CITR - Domestic Inflation")
 
 charts[6].plot(x_axis, series_peg_original_prod[1])
 charts[6].plot(x_axis, series_peg_modification_prod[1])
+charts[6].set_ylim((-0.8, 0.2))
+charts[6].set_yticks(np.arange(-0.8,0.2,0.2))
 charts[6].set_title("PEG - Output Gap")
 
 charts[7].plot(x_axis, series_peg_original_prod[2])
 charts[7].plot(x_axis, series_peg_modification_prod[2])
+charts[7].set_ylim((0, 0.8))
+charts[7].set_yticks(np.arange(0,0.8,.2))
 charts[7].set_title("PEG - Output")
 
 charts[8].plot(x_axis, series_peg_original_prod[4])
 charts[8].plot(x_axis, series_peg_modification_prod[4])
+charts[8].set_ylim((-.3, 0.1))
+charts[8].set_yticks(np.arange(-.3,.1,.1))
 charts[8].set_title("PEG - Domestic Inflation")
 
 
