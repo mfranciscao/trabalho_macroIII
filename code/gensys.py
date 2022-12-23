@@ -1,4 +1,14 @@
-# pure python implementation of GENSYS by Chris Sims
+# -*- coding: UTF-8 -*-
+
+"""
+Pure python implementation of GENSYS by Chris Sims
+
+Developed originally by Ed Herbst and released in https://github.com/eph/dsge/blob/master/dsge/gensys.py
+
+Improved by Catarina Travella and Matheus Franciscão to also include a vector C of Constants
+
+"""
+
 import warnings
 import numpy as np
 from scipy.linalg import ordqz, svd
@@ -10,7 +20,7 @@ def gensys(G0, G1, PSI, PI, C=None, DIV=1 + 1e-8,
     """
     Solves a Linear Rational Expectations model via GENSYS.
 
-    Γ₀xₜ = Γ₁xₜ₋₁ + Ψεₜ + Πηₜ
+    Γ₀xₜ = Γ₁xₜ₋₁ + Ψεₜ + Πηₜ + C
 
     Returns
     -------
@@ -19,10 +29,6 @@ def gensys(G0, G1, PSI, PI, C=None, DIV=1 + 1e-8,
          [ 1,  1] = existence and uniqueness
          [ 1,  0] = existence, not uniqueness
          [-2, -2] = coincicdent zeros
-
-    Notes
-    -----
-    The solution method is detailed in ...
 
     """
     n = G0.shape[0]
